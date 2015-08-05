@@ -13,9 +13,9 @@ import (
 	"strings"
 	"unicode"
 
+	"github.com/gernest/highlight_go"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
-	"github.com/shurcooL/go/highlight_go"
 	"github.com/sourcegraph/syntaxhighlight"
 )
 
