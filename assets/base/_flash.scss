@@ -1,0 +1,22 @@
+.flash-messages{
+  @include outer-container;
+  @include span-columns(12);
+}
+.flash {
+  padding: 15px;
+  border-radius: 3px;
+
+  + .flash { margin-top: 5px; }
+}
+// Content within flash messages.
+.flash-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.flash-success{
+  @extend %flash-success;
+}
+.flash-error{
+  @extend %flash-error;
+}

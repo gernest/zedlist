@@ -1,0 +1,10 @@
+{{$global:=.}}
+{{with .Flash}}
+<div class="flash-messages">
+    {{range $k,$v:= . }}
+    <div class="flash {{snake $v.Kind|dashed}}">
+        {{tr $global.ActiveLang $v.Message}}
+    </div>
+    {{end}}
+</div>
+{{end}}

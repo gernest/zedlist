@@ -1,0 +1,27 @@
+{{$lang:=.ActiveLang}}
+<div class="section">
+    {{with .regions}}
+    {{range $k,$v:=.}}
+    <div class="section">
+        <ul class="filter-list">
+            <li>
+                <a href="/jobs/regions/{{$v.Short}}" class="filter-item selected">
+                    {{$v.Name}}
+                </a>
+            </li>
+            <li>
+                <a href="/jobs/regions/{{$v.Short}}" class="filter-item">
+                    {{$v.Short}}
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    {{end}}
+    {{else}}
+    <div class="blankslate has-fixed-width">
+        <h3>Oops!</h3>
+        <p>It seems there are no regions for show yet.</p>
+    </div>
+    {{end}}
+</div>

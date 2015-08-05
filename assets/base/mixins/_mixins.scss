@@ -1,0 +1,7 @@
+@mixin clear-top{
+  @include pad(80px 0 0 0 );
+  @include media($large-screen-up){
+    @include pad( 5px 0 0 0);
+    margin: flex-gutter();
+  }
+}

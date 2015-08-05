@@ -1,0 +1,21 @@
+{{template "partials/header.html" .}}
+<div class="register">
+    <form method="post">
+        <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
+        {{with .AuthForm}}
+        {{range $i, $field := .Fields}}
+        <label>{{label $field.GetName}}</label>
+        {{plain $field.Html}}
+        <div>
+            {{range $ei, $err := $field.Errors}}
+            <label class="flash-error">{{$err}}</label>
+            {{end}}
+        </div>
+        {{end}}
+        {{end}}
+        <div>
+            <button type="submit" class="btn btn-primary">register</button>
+        </div>
+    </form>
+</div>
+{{template "partials/footer.html" .}}

@@ -1,0 +1,132 @@
+@import "../colors/color-me-sass";
+// Typography
+$sans-serif: $helvetica;
+$serif: $georgia;
+$base-font-family: $sans-serif;
+$header-font-family: $base-font-family;
+
+// Font Sizes
+$base-font-size: 1em;
+$h1-font-size: $base-font-size * 2.25;
+$h2-font-size: $base-font-size * 2;
+$h3-font-size: $base-font-size * 1.75;
+$h4-font-size: $base-font-size * 1.5;
+$h5-font-size: $base-font-size * 1.25;
+$h6-font-size: $base-font-size;
+
+// Line height
+$base-line-height: 1.5;
+$header-line-height: 1.25;
+
+// Other Sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$base-z-index: 0;
+
+// Colors
+$blue: #477DCA;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #DDD;
+$light-red: #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green: #E6EFC2;
+$org: #fcbaff;
+
+// Background Color
+$base-background-color: $org;
+
+// Font Colors
+$base-font-color: $dark-gray;
+$base-accent-color: $blue;
+$base-body-color: $org;
+
+// Link Colors
+$base-link-color: $base-accent-color;
+$hover-link-color: darken($base-accent-color, 15);
+$base-button-color: $base-link-color;
+$hover-button-color: $hover-link-color;
+
+// Flash Colors
+$alert-color: $light-yellow;
+$error-color: $light-red;
+$notice-color: lighten($base-accent-color, 40);
+$success-color: $light-green;
+
+// Border color
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Forms
+$form-border-color: $base-border-color;
+$form-border-color-hover: darken($base-border-color, 10);
+$form-border-color-focus: $base-accent-color;
+$form-border-radius: $base-border-radius;
+$form-box-shadow: inset 0 1px 3px rgba(black,0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px rgba(darken($form-border-color-focus, 5), 0.7);
+$form-font-size: $base-font-size;
+$form-font-family: $base-font-family;
+
+// Navigation
+$navigation-padding: 1em;
+$navigation-background: $org;
+$navigation-color: black;
+$navigation-color-hover: $blue;
+$navigation-height: 60px;
+$navigation-nav-button-background: $base-accent-color;
+$navigation-nav-button-background-hover: lighten($navigation-background, 10);
+$navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20);
+$navigation-search-background: white;
+$navigation-search-border: 1px solid darken($navigation-background, 5);
+$navigation-active-link-color: transparentize(white, 0.5);
+$navigation-submenu-padding: 1em;
+$search-bar-border-color: $base-border-color;
+$search-bar-border: 1px solid $search-bar-border-color;
+$search-bar-background: white;
+
+
+
+// Lists
+$top-list-color:
+$blueBoot,
+$blueDarkBoot,
+$greenBoot,
+$redBoot,
+$yellowBoot,
+$orangeBoot,
+$pinkBoot,
+$purpleBoot,
+$linkColor,
+$btnInfoBackground,
+$btnInfoBackgroundHighlight,
+$btnSuccessBackground,
+$btnSuccessBackgroundHighlight,
+$btnDangerBackground,
+$btnDangerBackgroundHighlight,
+$btnInverseBackground,
+$inputBorder,
+$dropdownDividerTop,
+$navbarText,
+$navbarInverseBackground,
+$navbarInverseBackgroundHighlight,
+$navbarInverseBorder,
+$paginationBorder,
+$warningText,
+$warningBackground,
+$errorText,
+$errorBackground,
+$successText,
+$successBackground
+$infoText
+$infoBackground;
+
+
+// Table
+$table-border-color: $base-border-color;
+$table-border: 1px solid $table-border-color;
+$table-background: $base-body-color;
+$table-header-color: lighten($table-background, 10);
+$table-hover-color: darken($table-background, 2);
+$table-stripe-color: darken($table-background, 4);
+$table-stripe-color-hover: darken($table-stripe-color, 5);
+$table-padding: 0.5em;
