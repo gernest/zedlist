@@ -37,7 +37,7 @@ Zedlist uses environment variables for configurations the following are the Envi
 
 #### The following are environment variables that configure zedlist
 
-Naem 						|	Usage				|	Derault
+Naem 						|	Usage				|	Default
 -----------------------------|------------------------|-----------------
 CONFIG_NAME					| the name of the app	| Zedlist
 CONFIG_PORT					| server's port			| 8090'
