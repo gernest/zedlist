@@ -9,7 +9,6 @@ import (
 	"github.com/gernest/zedlist/modules/query"
 
 	"github.com/jinzhu/now"
-	"github.com/labstack/echo/middleware"
 )
 
 var (
@@ -30,7 +29,7 @@ type RSAKeyHolder interface {
 }
 
 // NewJWTAuth returns a JWTValidateFunc for the echo.s JWTAuth middleware.
-func NewJWTAuth(keys RSAKeyHolder) middleware.JWTValidateFunc {
+func NewJWTAuth(keys RSAKeyHolder) func(string, jwt.SigningMethod) ([]byte, error) {
 	return func(token string, method jwt.SigningMethod) ([]byte, error) {
 		tk, err := query.GetTokenByKey(token)
 		k := keys.GetPublicBytes()
