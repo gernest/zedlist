@@ -1,0 +1,4 @@
+zedlist
+*.out
+.idea
+.sass-cache

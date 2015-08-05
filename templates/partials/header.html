@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<meta name="csrf_token" content="{{.CsrfToken}}" />
+    {{with .PageTitle}}
+    <title>{{.}}</title>
+    {{else}}
+    <title>{{.AppName}}</title>
+    {{end}}
+    <link rel="stylesheet" href="/static/css/ui.css">
+    {{with .Scripts}}
+    {{script .}}
+    {{end}}
+</head>
+<body>
+<div class="site">
+    <header class="navigation">
+        <div class="menu-wrapper">
+            <a href="/" class="logo">
+            <span class="logo-text">
+                Zedlist
+            </span>
+            </a>
+
+            <p class="navigation-menu-button" id="js-mobile-menu">MENU</p>
+
+            <div class="nav">
+                <ul id="navigation-menu">
+                    <li class="nav-link"> <a href="/">{{tr .ActiveLang "home-btn"}}</a></li>
+                    <li class="nav-link">
+                        <a href="/jobs/">{{tr .ActiveLang "jobs-btn"}}</a>
+                    </li>
+                    <li class="nav-link more"><a class="menu-item selected" href="/jobs/regions">{{tr .ActiveLang "regions"}}</a>
+                        <ul class="submenu">
+                            <li><a class="menu-item" href="/jobs/regions/mza">Mwanza</a></li>
+                            <li><a class="menu-item" href="/jobs/regions/dar">Dars</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/docs">{{tr .ActiveLang "help-btn"}}</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/contact">{{tr .ActiveLang "contact-btn"}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navigation-tools">
+                <div class="search-bar">
+                    <div class="search-and-submit">
+                        <input type="search" placeholder="Enter Search"/>
+                        <button type="submit">
+                            Go
+                        </button>
+                    </div>
+                </div>
+                {{if .IsLoged}}
+                <a class="sign-up" href="/dash/">{{tr .ActiveLang "dashboard"}}</a>
+                <a class="sign-up" href="/auth/logout">{{tr .ActiveLang "logout"}}</a>
+                {{else}}
+                <a class="sign-up" href="/auth/login">{{tr .ActiveLang "login"}}</a>
+                <a class="sign-up" href="/auth/register">{{tr .ActiveLang "register"}}</a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+    {{if .Flash}}
+    {{template "partials/flash.html" .}}
+    {{end}}
+
+

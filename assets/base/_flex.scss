@@ -1,0 +1,80 @@
+.job-list {
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $flex-title-color:black;
+  $base-font-color: $dark-gray !default;
+  $flex-box-border-color: $light-gray;
+  $flex-box-border: 1px solid $flex-box-border-color;
+  $flex-box-background: lighten($light-gray, 10%);
+  $flex-box-gutter: 0.4em;
+  $flex-box-width: 18em;
+  $flex-box-color: transparentize($base-font-color, 0.3);
+
+  @include clearfix;
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(stretch);
+  @include flex-wrap(wrap);
+  clear: both;
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 25px;
+  @include media($large-screen-up){
+    padding-top: 5px;
+    margin-top: 5px;
+  }
+
+  .job-item {
+    @include transition (all 0.2s ease-in-out);
+    @include flex(2 3 20em);
+    @include align-self(stretch);
+    background: $flex-box-background;
+    border-radius: $base-border-radius;
+    box-shadow: inset 0 0 1px $flex-box-border-color, 0 2px 4px darken($base-background-color, 10%);
+    display: block;
+    margin: $flex-box-gutter;
+    padding: 2em 2em 3em 2em;
+    text-decoration: none;
+
+    @for $i from 1 to 23 {
+      // assign colors from $flex-box-top-colors list
+      &:nth-child(#{$i}) {
+        $color-from-list: nth($top-list-color, $i);
+        border-top: 6px solid $color-from-list;
+        background-color: transparentize($color-from-list, 0.9);
+
+        &:focus,
+        &:hover {
+          background-color:  $flex-box-background;
+        }
+      }
+    }
+
+    img {
+      display: block;
+      height: 3em;
+      margin-bottom: 2em;
+      margin: auto;
+      opacity: 0.4;
+    }
+
+    .flex-title {
+      color: $flex-title-color;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      color: transparentize($flex-box-color, 0.1);
+      line-height: 1.5em;
+      margin: auto;
+    }
+  }
+
+  .flex-box-big {
+    @include flex(1 1 40em);
+  }
+}

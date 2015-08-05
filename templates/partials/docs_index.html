@@ -1,0 +1,10 @@
+<div class="section">
+    <nav class="menu">
+        <a class="menu-item selected" href="/jobs/regions">{{tr .ActiveLang "documents"}}</a>
+        {{with .docIndex}}
+        {{range $k,$v:=.}}
+        <a class="menu-item" href="{{$v.URL}}">{{$v.Name}}</a>
+        {{end}}
+        {{end}}
+    </nav>
+</div>

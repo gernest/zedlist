@@ -1,0 +1,3 @@
+```go
+type Bongo struct{}
+```
