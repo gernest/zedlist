@@ -1,4 +1,4 @@
-zedlist
+zedlist [![Coverage Status](https://coveralls.io/repos/gernest/zedlist/badge.svg?branch=master&service=github)](https://coveralls.io/github/gernest/zedlist?branch=master) [![Build Status](https://drone.io/github.com/gernest/zedlist/status.png)](https://drone.io/github.com/gernest/zedlist/latest)
 ========
 A humble job recruitment service.
 
