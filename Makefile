@@ -40,3 +40,7 @@ lint:
 
 migration-test:
 	@CONFIG_DBCONN=$(POSTGRES_CONN) go test ./migration
+
+bindata-prod:
+	@go-bindata  -pkg=static -o=$(STATIC_EMBED) static/...
+	@go-bindata  -pkg=template -o=$(TMPl_EMBED) -prefix=templates/ templates/...
