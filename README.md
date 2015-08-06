@@ -5,7 +5,7 @@ A humble job recruitment service.
 # Motivation
 I have never been employed. I'm in Tanzania, and God knows if there is anyone who cared about my applications.
 
-The purpose of zedlist is to provide infastructure that bridges the gap between job seekers and employers in the african continent( initially forTanzania).
+The purpose of zedlist is to provide infastructure that bridges the gap between job seekers and employers in the african continent (initially for Tanzania).
 
 # Features
 * Job listing.
@@ -16,7 +16,7 @@ The purpose of zedlist is to provide infastructure that bridges the gap between 
 * Builtin Job applications processing.
 * Social account login (facebook, google+, github)
 * Search.
-* Support multiple databases(currently mysql and postgresql) 
+* Support multiple databases (currently mysql and postgresql) 
 
 Some of the features aren't complete yet.
 
