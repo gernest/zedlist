@@ -24,7 +24,7 @@ done
 # push coverage to coveralls
 if [ -n "$COVERALLS" ]
 then
-	goveralls -service drone.io -coverprofile=merged.out -repotoken $COVERALLS
+	goveralls -service drone.io -coverprofile=acc.out -repotoken $COVERALLS
 else
 	go tool cover -html=acc.out
 fi
