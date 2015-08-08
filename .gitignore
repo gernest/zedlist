@@ -1,3 +1,4 @@
+bin
 *.out
 .idea
 .sass-cache
