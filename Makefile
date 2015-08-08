@@ -12,11 +12,10 @@ ifeq "$(origin CONFIG_DBCONN)" "undefined"
 CONFIG_DBCONN=$(DEFAULT_POSTGRES_CONN)
 endif
 all: lint bindata test
-	@go build ./cmd/zedlist
+	@go build -o bin/zedlist ./cmd/zedlist
 
 clean:
-	go clean
-	rm -f  *.out
+	@rm -r bin
 	
 nuke:
 	go clean -i
