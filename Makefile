@@ -42,3 +42,6 @@ lint:
 migration-test:
 	@CONFIG_DBCONN=$(CONFIG_DBCONN) go test ./migration
 
+deps:
+	@go get -u -v github.com/golang/lint/golint
+	@go get -u -v github.com/jteeuwen/go-bindata/...
