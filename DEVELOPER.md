@@ -21,7 +21,7 @@ At the new forked repository, there is a a place which has the project URL. Keep
 ### Step 2 Get the original project
 go get the project
 
-	go get -v github.com/gernest/zedlist
+	go get -v github.com/gernest/zedlist/...
 
 ### Step 3 Setup remotes.
 
