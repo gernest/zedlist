@@ -8,7 +8,7 @@ This is the easiest and recomended to use. All binaries have been signed. We use
 ## Install from source
 This will require a golang SDK  installed in your machine. Then go get the project.
 
-		$ go get github.com/gernest/zedlist
+		$ go get github.com/gernest/cmd/zedlist
 
 This will create the zedlist binary in the $GOPATH/bin directory.
 
