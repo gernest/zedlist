@@ -55,10 +55,10 @@ For instance you want to fix resmue, lets create a fix-resume branch
 Now hack on your branch, when you are done. Run make to make sure you havent broken anything
 
 	make
-	
-And if you want to run the application, the built binary will be at the root of the project so, you can run it like this
 
-	./zedlist
+If all went well, a directory `bin` will be created in the project root with the zedlist binary in it.If you want to run the application , you can run the following command.
+
+	./bin/zedlist
 
 If everything is ok, commit your changes and push to the fork remote like this
 
