@@ -36,8 +36,8 @@ watch:
 	@sass --watch assets/sass:static/css
 	
 lint:
-	@go vet ./...
-	@golint ./... |grep -v bindata/template/* |grep -v bindata/static/*
+	@-go vet ./...
+	@-golint ./... |grep -v bindata/template/* |grep -v bindata/static/*
 
 migration-test:
 	@CONFIG_DBCONN=$(CONFIG_DBCONN) go test ./migration
