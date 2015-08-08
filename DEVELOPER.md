@@ -8,7 +8,7 @@ This section assumes
 
 Please see the assumptions above, and make sure you you have fulfilled them to proceed.
 
-There are different workflowys for contributing to golang project. The way the go toolchain works makes it abit difficult for golang noobs to grok what they should do to cotribute to any golang project.
+There are different workflows for contributing to golang project. The way the go toolchain works makes it abit difficult for golang noobs to grok what they should do to contribute to any golang project.
 
 The following is a simple workflow which I recomend If you are not well versed in golang based source contributionn.
 
@@ -20,14 +20,17 @@ At the new forked repository, there is a a place which has the project URL. Keep
 
 ### Step 2 Get the original project
 go get the project
+
 	go get -v github.com/gernest/zedlist
 
 ### Step 3 Setup remotes.
 
 cd into the project you just installed. NOTE for all the steps that follow I assume you are in the project root(i.e you never left the console after running this command)
+
 	cd $GOPATH/github.com/gernest/zedlist
 
 To make life easier for the folloing steps its wise to do something about expoerting the database connection URL on your shell. There are many ways , I hope you can research and choose whatever you like. The easiest though is to export in the current shell like this.
+
 	export CONFIG_DBCONN=YOUR_DATABASE_CONNECTION_URL
 
 
@@ -46,15 +49,19 @@ Run this command
 
 ### Step 5 Create a branch of what you wanna hack on.
 For instance you want to fix resmue, lets create a fix-resume branch
+
 	git checkout -b fix-resume
 
 Now hack on your branch, when you are done. Run make to make sure you havent broken anything
+
 	make
 	
 And if you want to run the application, the built binary will be at the root of the project so, you can run it like this
+
 	./zedlist
 
 If everything is ok, commit your changes and push to the fork remote like this
+
 	git commit -s -a -m "My awesome fix"
 	
 	git push fork fix-resume
