@@ -10,7 +10,7 @@ import (
 	"github.com/gernest/zedlist/modules/version"
 
 	"github.com/codegangsta/cli"
-	"github.com/gernest/zedlist/cmd/app"
+	app "github.com/gernest/zedlist"
 )
 
 func main() {
