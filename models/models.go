@@ -118,7 +118,7 @@ type PersonName struct {
 	MiddleName string `schema:"middle_name"`
 }
 
-// Foramtted returns the person's full name as a sigle string
+// Formatted returns the person's full name as a sigle string
 func (p *PersonName) Formatted() string {
 	return fmt.Sprintf("%s %s %s", p.GivenName, p.MiddleName, p.FamilyName)
 }

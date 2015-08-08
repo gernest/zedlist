@@ -79,7 +79,7 @@ func (f *Flasher) Add(kind, message string) {
 	f.f = append(f.f, fl)
 }
 
-// Successs adds success flash message
+// Success adds success flash message
 func (f *Flasher) Success(msg string) {
 	f.Add(settings.FlashSuccess, msg)
 }
