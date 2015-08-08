@@ -30,7 +30,7 @@ bindata:
 	@go-bindata -pkg=template -o=$(TMPl_EMBED) -prefix=templates/ templates/...
 
 cover:
-	@CONFIG_POSTGRES_CONN=$(CONFIG_DBCONN) bash ./scripts/coverage.sh
+	@CONFIG_DBCONN=$(CONFIG_DBCONN) bash ./scripts/coverage.sh
 
 watch:
 	@sass --watch assets/sass:static/css
