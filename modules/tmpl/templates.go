@@ -69,7 +69,7 @@ const (
 	//BaseRegionsJobViewTpl renders jobs by a specified region
 	BaseRegionsJobViewTpl = "base/regions_job.html"
 
-	//BaseRegionsPaginateTpl	renders jobs by region with pagination
+	//BaseRegionsPaginateTpl renders jobs by region with pagination
 	BaseRegionsPaginateTpl = "base/regions_paginate.html"
 
 	//ErrNotFoundTpl renders 404
@@ -166,6 +166,9 @@ func (t *Template) Render(tpl string, val interface{}) (string, error) {
 	}
 	return out.String(), nil
 }
+
+// RenderTo renders the templaet with name name and passes data as contx, the result is written
+// to out.
 func (t *Template) RenderTo(out io.Writer, name string, data interface{}) error {
 	return t.tpl.ExecuteTemplate(out, name, data)
 }

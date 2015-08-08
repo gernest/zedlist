@@ -15,6 +15,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+//BaseDB is the base database instance used by zedlist
 var BaseDB *DB
 
 // Conn is the global database connection.
