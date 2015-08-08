@@ -115,7 +115,7 @@ func authDate_pickerHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "auth/date_picker.html", size: 418, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "auth/date_picker.html", size: 418, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -135,7 +135,7 @@ func authLoginHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "auth/login.html", size: 960, mode: os.FileMode(420), modTime: time.Unix(1438068642, 0)}
+	info := bindataFileInfo{name: "auth/login.html", size: 960, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -155,7 +155,7 @@ func authRegisterHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "auth/register.html", size: 662, mode: os.FileMode(420), modTime: time.Unix(1438068642, 0)}
+	info := bindataFileInfo{name: "auth/register.html", size: 662, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -175,7 +175,7 @@ func baseDocsHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/docs.html", size: 229, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/docs.html", size: 229, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -195,7 +195,7 @@ func baseDocs_indexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/docs_index.html", size: 228, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/docs_index.html", size: 228, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -215,7 +215,7 @@ func baseHomeHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/home.html", size: 75, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/home.html", size: 75, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -235,7 +235,7 @@ func baseJobsHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/jobs.html", size: 150, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/jobs.html", size: 150, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -255,7 +255,7 @@ func baseRegionsHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/regions.html", size: 157, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/regions.html", size: 157, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -275,7 +275,7 @@ func baseRegions_jobHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/regions_job.html", size: 153, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/regions_job.html", size: 153, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -295,7 +295,7 @@ func baseRegions_paginateHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/regions_paginate.html", size: 157, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "base/regions_paginate.html", size: 157, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -315,7 +315,7 @@ func dashHomeHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dash/home.html", size: 236, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "dash/home.html", size: 236, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -335,7 +335,7 @@ func dashJobs_newHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dash/jobs_new.html", size: 149, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "dash/jobs_new.html", size: 149, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -355,7 +355,7 @@ func dashName_formHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dash/name_form.html", size: 1059, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "dash/name_form.html", size: 1059, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -375,7 +375,7 @@ func dashNew_jobHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dash/new_job.html", size: 910, mode: os.FileMode(420), modTime: time.Unix(1438068642, 0)}
+	info := bindataFileInfo{name: "dash/new_job.html", size: 910, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -395,7 +395,7 @@ func dashProfileHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dash/profile.html", size: 146, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "dash/profile.html", size: 146, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -415,7 +415,7 @@ func errors400Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/400.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1438633920, 0)}
+	info := bindataFileInfo{name: "errors/400.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -435,7 +435,7 @@ func errors404Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/404.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "errors/404.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -455,7 +455,7 @@ func errors500Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/500.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "errors/500.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -475,7 +475,7 @@ func partialsDocs_indexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/docs_index.html", size: 305, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/docs_index.html", size: 305, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -495,7 +495,7 @@ func partialsFlashHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/flash.html", size: 216, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/flash.html", size: 216, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -515,7 +515,7 @@ func partialsFooterHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/footer.html", size: 22, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/footer.html", size: 22, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -535,7 +535,7 @@ func partialsHeaderHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/header.html", size: 2622, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/header.html", size: 2622, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -555,7 +555,7 @@ func partialsJob_listHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/job_list.html", size: 1377, mode: os.FileMode(420), modTime: time.Unix(1437901535, 0)}
+	info := bindataFileInfo{name: "partials/job_list.html", size: 1377, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -575,7 +575,7 @@ func partialsRegions_listHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/regions_list.html", size: 690, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/regions_list.html", size: 690, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -595,7 +595,7 @@ func partialsSidenavHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/sidenav.html", size: 282, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "partials/sidenav.html", size: 282, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -615,7 +615,7 @@ func resumeHomeHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "resume/home.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1438516337, 0)}
+	info := bindataFileInfo{name: "resume/home.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -635,7 +635,7 @@ func resumeUpdateHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "resume/update.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1438516337, 0)}
+	info := bindataFileInfo{name: "resume/update.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -655,7 +655,7 @@ func resumeViewHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "resume/view.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1438516337, 0)}
+	info := bindataFileInfo{name: "resume/view.html", size: 118, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -675,7 +675,7 @@ func testBaseFooterTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test/base/footer.tpl", size: 37, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "test/base/footer.tpl", size: 37, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -695,7 +695,7 @@ func testBaseHeaderTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test/base/header.tpl", size: 98, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "test/base/header.tpl", size: 98, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -715,7 +715,7 @@ func testTmplHelloTmpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test/tmpl/hello.tmpl", size: 104, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "test/tmpl/hello.tmpl", size: 104, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -735,7 +735,7 @@ func testTmplScriptHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test/tmpl/script.html", size: 17, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "test/tmpl/script.html", size: 17, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }

@@ -88,7 +88,7 @@ func staticCssUiCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/ui.css", size: 26759, mode: os.FileMode(420), modTime: time.Unix(1437987091, 0)}
+	info := bindataFileInfo{name: "static/css/ui.css", size: 26759, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -108,7 +108,7 @@ func staticCssUiCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/ui.css.map", size: 16467, mode: os.FileMode(420), modTime: time.Unix(1437987091, 0)}
+	info := bindataFileInfo{name: "static/css/ui.css.map", size: 16467, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -128,7 +128,7 @@ func staticDocsEnFormsMd() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/docs/en/forms.md", size: 4953, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "static/docs/en/forms.md", size: 4953, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -148,7 +148,7 @@ func staticDocsEnHomeMd() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/docs/en/home.md", size: 81, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "static/docs/en/home.md", size: 81, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -168,7 +168,7 @@ func staticDocsSwHomeMd() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/docs/sw/home.md", size: 75, mode: os.FileMode(420), modTime: time.Unix(1437798150, 0)}
+	info := bindataFileInfo{name: "static/docs/sw/home.md", size: 75, mode: os.FileMode(420), modTime: time.Unix(1439049773, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
