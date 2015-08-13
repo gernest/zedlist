@@ -43,6 +43,7 @@ func testServer() *httptest.Server {
 	e.Get("/language/:lang", SetLanguage)
 	b := e.Group("/jobs")
 	b.Get("/", JobsHome)
+	b.Get("/view/:id", JobView)
 	b.Get("/regions", RegionsHome)
 	b.Get("/regions/:name", RegionsJobView)
 	b.Get("/regions/:name/:from/:to", RegionsJobPaginate)
@@ -153,6 +154,24 @@ func TestJobsHome(t *testing.T) {
 	}
 }
 
+func TestJobsView(t *testing.T) {
+	view := "%s/jobs/view/%d"
+	jobs, err := query.GetLatestJobs()
+	if err != nil {
+		t.Error(err)
+	}
+	for _, job := range jobs {
+		viewURL := fmt.Sprintf(view, ts.URL, job.ID)
+		resp, err := client.Get(viewURL)
+		if err != nil {
+			t.Error(err)
+		}
+		defer resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			t.Errorf("expected %d got %d", http.StatusOK, resp.StatusCode)
+		}
+	}
+}
 func TestJobsRegionsHome(t *testing.T) {
 	home := fmt.Sprintf("%s/jobs/regions", ts.URL)
 	b, err := com.HttpGetBytes(client, home, nil)
