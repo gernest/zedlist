@@ -87,8 +87,8 @@ var Tr = &gt.Build{
 			"sw": "samahaani, tumeshindwa kutengeneza akaunti yako, jaribu tena baadae",
 		},
 		"flash_login_success": {
-			"en": "welcome %s",
-			"sw": "karibu %s",
+			"en": "welcome back",
+			"sw": "karibu ",
 		},
 		"flash_login_failed": {
 			"en": "there was a problem encountered, please check the details and try again",
