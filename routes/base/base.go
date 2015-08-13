@@ -75,7 +75,6 @@ func JobsHome(ctx *echo.Context) error {
 func JobView(ctx *echo.Context) error {
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
-		log.Error(ctx, err)
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
