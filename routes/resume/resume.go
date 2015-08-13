@@ -112,7 +112,7 @@ func Update(ctx *echo.Context) error {
 	resume, err := query.GetResumeByID(id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 
 	// Users are allowed to update resumes that they own.
@@ -145,7 +145,7 @@ func Delete(ctx *echo.Context) error {
 	resume, err := query.GetResumeByID(id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 
 	// Users are allowed to delete resumes that they don't own.
