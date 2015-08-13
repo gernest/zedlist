@@ -54,7 +54,7 @@ func JobsHome(ctx *echo.Context) error {
 	jobs, err := query.GetLatestJobs()
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 
 	}
 	utils.SetData(ctx, settings.JobsListKey, jobs)
@@ -75,13 +75,14 @@ func JobsHome(ctx *echo.Context) error {
 func JobView(ctx *echo.Context) error {
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
+		log.Error(ctx, err)
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
 	job, err := query.GetJobByID(id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	if job != nil {
 		utils.SetData(ctx, "Job", job)
@@ -145,7 +146,7 @@ func DocsHome(ctx *echo.Context) error {
 	d, err := static.Asset(home)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	data.Set("doc", string(d))
 	data.Set(docIndex, getDocIndex(lang))
@@ -173,7 +174,7 @@ func Docs(ctx *echo.Context) error {
 	d, err := static.Asset(fPath)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	data.Set("doc", string(d))
 	data.Set("PageTitle", fname)
@@ -225,7 +226,7 @@ func RegionsHome(ctx *echo.Context) error {
 	regs, err := query.GetAllRegions()
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	utils.SetData(ctx, settings.RegionsListKey, regs)
 	return ctx.Render(http.StatusOK, tmpl.BaseRegionsTpl, utils.GetData(ctx))
@@ -247,7 +248,7 @@ func RegionsJobView(ctx *echo.Context) error {
 	jobs, count, err := query.GetJobByRegionShort(name)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	utils.SetData(ctx, settings.JobsFound, count)
 	utils.SetData(ctx, settings.JobsListKey, jobs)
@@ -282,7 +283,7 @@ func RegionsJobPaginate(ctx *echo.Context) error {
 	jobs, err := query.GetJobByRegionPaginate(name, offset, limit)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
 	}
 	utils.SetData(ctx, settings.JobsListKey, jobs)
 	return ctx.Render(http.StatusOK, tmpl.BaseRegionsPaginateTpl, utils.GetData(ctx))

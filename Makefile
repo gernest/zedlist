@@ -11,8 +11,7 @@ COMPONENTS		:=./middlewares/... ./modules/... ./routes/...
 ifeq "$(origin CONFIG_DBCONN)" "undefined"
 CONFIG_DBCONN=$(DEFAULT_POSTGRES_CONN)
 endif
-all: lint bindata test
-	@go build -o bin/zedlist ./cmd/zedlist
+all: lint bindata test build
 
 clean:
 	@rm -r bin
@@ -20,6 +19,8 @@ clean:
 nuke:
 	go clean -i
 
+build:
+	@go build -o bin/zedlist ./cmd/zedlist
 
 test:migration-test
 	@CONFIG_DBCONN=$(CONFIG_DBCONN) go test $(COMPONENTS)
