@@ -35,7 +35,7 @@ func testServer() *echo.Echo {
 	e.Post("/resume/create", Create)
 	e.Get("/resume/update/:id", Update)
 	e.Get("/resume/view/:id", View)
-	e.Post("/resume/delete", Delete)
+	e.Post("/resume/delete/:id", Delete)
 	return e
 }
 func testUser() *models.Person {
@@ -84,5 +84,79 @@ func TestView(t *testing.T) {
 	ts.ServeHTTP(resp, req)
 	if resp.Code != http.StatusOK {
 		t.Errorf("expected %d got %d", http.StatusOK, resp.Code)
+	}
+}
+
+func TestUpdate(t *testing.T) {
+	path := fmt.Sprintf("/resume/update/%d", user.Resumes[0].ID)
+	req, err := http.NewRequest("GET", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp := httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusOK {
+		t.Errorf("expected %d got %d", http.StatusOK, resp.Code)
+	}
+
+	// Case the resume is not found
+	path = "/resume/update/200"
+	req, err = http.NewRequest("GET", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp = httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusNotFound {
+		t.Errorf("expected %d got %d", http.StatusNotFound, resp.Code)
+	}
+
+	// Case bad request
+	path = "/resume/update/mia"
+	req, err = http.NewRequest("GET", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp = httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusBadRequest {
+		t.Errorf("expected %d got %d", http.StatusBadRequest, resp.Code)
+	}
+}
+
+func TestDelete(t *testing.T) {
+	path := fmt.Sprintf("/resume/delete/%d", user.Resumes[0].ID)
+	req, err := http.NewRequest("POST", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp := httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusFound {
+		t.Errorf("expected %d got %d", http.StatusFound, resp.Code)
+	}
+
+	// Case the resume is not found
+	path = "/resume/delete/200"
+	req, err = http.NewRequest("POST", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp = httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusNotFound {
+		t.Errorf("expected %d got %d", http.StatusNotFound, resp.Code)
+	}
+
+	// Case bad request
+	path = "/resume/delete/mia"
+	req, err = http.NewRequest("POST", path, nil)
+	if err != nil {
+		t.Errorf("creating request %v", err)
+	}
+	resp = httptest.NewRecorder()
+	ts.ServeHTTP(resp, req)
+	if resp.Code != http.StatusBadRequest {
+		t.Errorf("expected %d got %d", http.StatusBadRequest, resp.Code)
 	}
 }
