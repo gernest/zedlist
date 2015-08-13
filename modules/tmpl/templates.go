@@ -170,7 +170,13 @@ func (t *Template) Render(tpl string, val interface{}) (string, error) {
 // RenderTo renders the templaet with name name and passes data as contx, the result is written
 // to out.
 func (t *Template) RenderTo(out io.Writer, name string, data interface{}) error {
-	return t.tpl.ExecuteTemplate(out, name, data)
+	err := t.tpl.ExecuteTemplate(out, name, data)
+	if err != nil {
+		log.Error(nil, err)
+		return err
+	}
+	return nil
+	//return t.tpl.ExecuteTemplate(out, name, data)
 }
 
 // loads the templates, using constraints specified in the cfg provided at initialization.

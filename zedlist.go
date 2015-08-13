@@ -65,6 +65,7 @@ func Routes() *echo.Echo {
 	// BASE
 	b := e.Group("/jobs")
 	b.Get("/", base.JobsHome)
+	b.Get("/view/:id", base.JobView)
 	b.Get("/regions", base.RegionsHome)
 	b.Get("/regions/:name", base.RegionsJobView)
 	b.Get("/regions/:name/:from/:to", base.RegionsJobPaginate)
