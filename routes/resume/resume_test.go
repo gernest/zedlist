@@ -68,13 +68,7 @@ func TestCreate(t *testing.T) {
 	}
 	req.Header.Set(echo.ContentType, echo.ApplicationForm)
 	resp := httptest.NewRecorder()
-	ctx := echo.NewContext(req, echo.NewResponse(resp), ts)
-	ctx.Set("User", user)
-
-	err = Create(ctx)
-	if err != nil {
-		t.Error(err)
-	}
+	ts.ServeHTTP(resp, req)
 	if resp.Code != http.StatusFound {
 		t.Errorf("expected  %d got %d", http.StatusFound, resp.Code)
 	}
