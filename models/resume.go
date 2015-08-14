@@ -30,52 +30,52 @@ type Resume struct {
 
 // ResumeBasic is the basic information for a resume
 type ResumeBasic struct {
-	ID int `json:"id"`
+	ID int `json:"id" schema:"-"`
 
 	// Name is the name of the resume holder
 	// e.g Geofrey Ernest
-	Name string `json:"name"`
+	Name string `json:"name" schema:"name"`
 
 	// Label is a short description
 	// e.g A dreamer from Tanzania
-	Label string `json:"label"`
+	Label string `json:"label" schema:"label"`
 
 	// Picture is a URL to an image file, format JPEG or PNG
-	Picture string `json:"picture"`
+	Picture string `json:"picture" schema:"picture"`
 
 	// Email is an email address
 	// e.g gernest@wakalikwanza.tz
-	Email string `json:"email"`
+	Email string `json:"email" schema:"email"`
 
 	// Phone is the phonenumber, this is used as a string
 	// to suppoert mutliple formats.
-	Phone string `json:"phone"`
+	Phone string `json:"phone" schema:"phone"`
 
 	// Website is the URL to a website.
-	Website string `json:"website"`
+	Website string `json:"website" schema:"website"`
 
 	//Summary is a 2-3 sentence biography about resume owner
-	Summary string `json:"summary"`
+	Summary string `json:"summary" schema:"summary"`
 
-	ResumeLocation   ResumeLocation `json:"location"`
-	ResumeLocationID int            `json:"-"`
+	ResumeLocation   ResumeLocation `json:"location" schema:"location"`
+	ResumeLocationID int            `json:"-" shema:"-"`
 
-	Profiles []ResumeProfile `json:"profiles"`
+	Profiles []ResumeProfile `json:"profiles" schema:"-"`
 
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	CreatedAt time.Time `json:"created_at" schema:"-"`
+	UpdatedAt time.Time `json:"updated_at" schema:"-"`
 }
 
 // ResumeLocation is the location details of a resume owner.
 type ResumeLocation struct {
-	ID          int       `json:"id"`
-	Address     string    `json:"address"`
-	PostalCode  string    `json:"postalCode"`
-	City        string    `json:"city"`
-	CountryCode string    `json:"countryCode"`
-	Region      string    `json:"region"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
+	ID          int       `json:"id" schema:"-"`
+	Address     string    `json:"address" schema:"address"`
+	PostalCode  string    `json:"postalCode" schema:"postal_code"`
+	City        string    `json:"city" schema:"city"`
+	CountryCode string    `json:"countryCode" schema:"country_code"`
+	Region      string    `json:"region" schema:"region"`
+	CreatedAt   time.Time `json:"created_at" schema:"-"`
+	UpdatedAt   time.Time `json:"updated_at" schema:"-"`
 }
 
 // ResumeProfile is the profile of the resume owner.
