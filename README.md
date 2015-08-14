@@ -3,9 +3,7 @@ zedlist [![Coverage Status](https://coveralls.io/repos/gernest/zedlist/badge.svg
 A humble job recruitment service.
 
 # Motivation
-I have never been employed. I'm in Tanzania, and God knows if there is anyone who cared about my applications.
-
-The purpose of zedlist is to provide infastructure that bridges the gap between job seekers and employers in the african continent (initially for Tanzania).
+The purpose of zedlist is to provide infastructure that bridges the gap between job seekers and employers in the African continent (initially for Tanzania).
 
 # Features
 * Job listing.
