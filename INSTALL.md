@@ -2,7 +2,7 @@
 
 
 ### Download precompiled binaries   
-This is the easiest and recomended to use. All binaries have been signed. We use github release, please visit here [release](release) and select the version of your choice.
+This is the easiest and recomended to use. All binaries have been signed. We use github release, please visit here [release](https://github.com/gernest/zedlist/releases/latest) and select the version of your choice.
 
 
 ## Install from source
