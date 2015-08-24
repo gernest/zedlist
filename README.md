@@ -48,9 +48,9 @@ Geofrey Ernest <geofreyernest@live.com>
 
 
 
-# Rodmap
+# Roadmap
 
-* use bootrstap for ui
+* use bootstrap for ui
 * complete resume support
 * add user profile
 
