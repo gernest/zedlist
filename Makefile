@@ -11,6 +11,9 @@ COMPONENTS		:=./middlewares/... ./modules/... ./routes/...
 ifeq "$(origin CONFIG_DBCONN)" "undefined"
 CONFIG_DBCONN=$(DEFAULT_POSTGRES_CONN)
 endif
+ifeq "$(origin APP_VER)" "undefined"
+VERSION=0.1.0
+endif
 all: lint bindata test build
 
 clean:
@@ -45,3 +48,7 @@ migration-test:
 deps:
 	@go get -u -v github.com/golang/lint/golint
 	@go get -u -v github.com/jteeuwen/go-bindata/...
+	@go get github.com/mitchellh/gox
+
+dist:
+	@gox -output="dist/{{.Dir}}v$(VERSION)_{{.OS}}_{{.Arch}}" ./cmd/zedlist
