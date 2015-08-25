@@ -6,15 +6,15 @@ A humble job recruitment service.
 The purpose of zedlist is to provide infastructure that bridges the gap between job seekers and employers in the African continent (initially for Tanzania).
 
 # Features
-* [x] Job listing.
-* [x] Register/Delete/Rename account.
-* [x] Create/Delete/Update jobs via JSON API.
-* [x] JSON Web Tokens support.
-* [ ] Structured Resume support.
-* [ ] Builtin Job applications processing.
-* [ ] Social account login (facebook, google+, github)
-* [ ] Search.
-* [x] Support multiple databases (currently mysql and postgresql) 
+- [x] Job listing.
+- [x] Register/Delete/Rename account.
+- [x] Create/Delete/Update jobs via JSON API.
+- [x] JSON Web Tokens support.
+- [ ] Structured Resume support.
+- [ ] Builtin Job applications processing.
+- [ ] Social account login (facebook, google+, github)
+- [ ] Search.
+- [x] Support multiple databases (currently mysql and postgresql)
 
 Some of the features aren't complete yet.
 
@@ -50,9 +50,9 @@ Geofrey Ernest <geofreyernest@live.com>
 
 # Roadmap
 
-* use bootstrap for ui
-* complete resume support
-* add user profile
+- [ ] use bootstrap for ui
+- [ ] complete resume support
+- [ ] add user profile
 
 
 ## Licence
