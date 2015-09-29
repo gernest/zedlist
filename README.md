@@ -48,7 +48,7 @@ Geofrey Ernest <geofreyernest@live.com>
 
 
 
-# Rodmap
+# Roadmap
 
 * use bootrstap for ui
 * complete resume support
