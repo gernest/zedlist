@@ -56,7 +56,7 @@ var (
 
 func init() {
 	baseTimestamp = time.Now()
-	isTerminal = logrus.IsTerminal()
+	isTerminal = true
 }
 
 func miniTS() int {
