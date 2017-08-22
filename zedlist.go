@@ -29,10 +29,10 @@ import (
 
 	"github.com/gernest/zedlist/migration"
 
-	"github.com/codegangsta/cli"
 	ass "github.com/elazarl/go-bindata-assetfs"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/urfave/cli"
 )
 
 // Routes is the echo instance with all zedlist routes.

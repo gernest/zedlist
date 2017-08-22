@@ -9,8 +9,8 @@ import (
 
 	"github.com/gernest/zedlist/modules/version"
 
-	"github.com/codegangsta/cli"
 	app "github.com/gernest/zedlist"
+	"github.com/urfave/cli"
 )
 
 func main() {
