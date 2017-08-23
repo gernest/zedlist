@@ -31,7 +31,7 @@ func TestData(t *testing.T) {
 	res := httptest.NewRecorder()
 
 	// Create the context on which we will be messing with
-	ctx := echo.NewContext(req, echo.NewResponse(res), e)
+	ctx := e.NewContext(req, res)
 
 	//
 	//	SetData
@@ -79,7 +79,7 @@ func TestIsAjax(t *testing.T) {
 		t.Error(err)
 	}
 	res := httptest.NewRecorder()
-	ctx := echo.NewContext(req, echo.NewResponse(res), e)
+	ctx := e.NewContext(req, res)
 
 	if ok := IsAjax(ctx); ok {
 		t.Errorf("expected false got %v", ok)
@@ -91,7 +91,7 @@ func TestIsAjax(t *testing.T) {
 	}
 	req1.Header.Set("X-Requested-With", "XMLHttpRequest")
 	res1 := httptest.NewRecorder()
-	ctx1 := echo.NewContext(req1, echo.NewResponse(res1), e)
+	ctx1 := e.NewContext(req1, res1)
 
 	if ok := IsAjax(ctx1); !ok {
 		t.Errorf("expected true got %v", ok)

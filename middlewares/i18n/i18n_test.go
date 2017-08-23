@@ -19,8 +19,8 @@ import (
 
 func TestLangs(t *testing.T) {
 	e := echo.New()
-	e.Use(Langs())
-	e.Get("/", func(ctx *echo.Context) error {
+	e.Use(utils.WrapMiddleware(Langs()))
+	e.GET("/", func(ctx echo.Context) error {
 		lang := utils.GetLang(ctx)
 		return ctx.String(http.StatusOK, lang)
 	})

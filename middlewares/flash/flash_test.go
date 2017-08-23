@@ -23,14 +23,15 @@ import (
 
 var message = "hello flash"
 
-func helloFlash(ctx *echo.Context) error {
+func helloFlash(ctx echo.Context) error {
 	flashMessages := flash.New()
 	flashMessages.Success(message)
 	flashMessages.Save(ctx)
 	ctx.Redirect(http.StatusFound, "/home")
 	return nil
 }
-func home(ctx *echo.Context) error {
+
+func home(ctx echo.Context) error {
 	d := utils.GetData(ctx).(utils.Data)
 	flashes := d.Get("Flash").(flash.Flashes)[0]
 	return ctx.String(http.StatusOK, fmt.Sprintf("%#v", pretty.Formatter(flashes)))
@@ -38,9 +39,9 @@ func home(ctx *echo.Context) error {
 
 func TestFlash(t *testing.T) {
 	e := echo.New()
-	e.Use(Flash())
-	e.Get("/home", home)
-	e.Get("/flash", helloFlash)
+	e.Use(utils.WrapMiddleware(Flash()))
+	e.GET("/home", home)
+	e.GET("/flash", helloFlash)
 	ts := httptest.NewServer(e)
 	defer ts.Close()
 	jar, err := cookiejar.New(nil)

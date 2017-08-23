@@ -27,7 +27,7 @@ import (
 //		Restrictions     Yes
 //
 // 		Template         resume/home.html
-func Home(ctx *echo.Context) error {
+func Home(ctx echo.Context) error {
 	user := ctx.Get("User").(*models.Person)
 	if res, err := query.GetAllPersonResumes(user); err == nil {
 		utils.SetData(ctx, "resumes", res)
@@ -44,7 +44,7 @@ func Home(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         resume/view.html
-func View(ctx *echo.Context) error {
+func View(ctx echo.Context) error {
 	iid, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
@@ -68,7 +68,7 @@ func View(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         None
-func Create(ctx *echo.Context) error {
+func Create(ctx echo.Context) error {
 	var flashMessages = flash.New()
 	r := ctx.Request()
 	r.ParseForm()
@@ -101,7 +101,7 @@ func Create(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         None
-func Update(ctx *echo.Context) error {
+func Update(ctx echo.Context) error {
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
@@ -133,7 +133,7 @@ func Update(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         None
-func Delete(ctx *echo.Context) error {
+func Delete(ctx echo.Context) error {
 	var flashMessages = flash.New()
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {

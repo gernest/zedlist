@@ -22,7 +22,7 @@ func TestFlash(t *testing.T) {
 	}
 	client := &http.Client{Jar: jar}
 	e := echo.New()
-	e.Get("/", func(ctx *echo.Context) error {
+	e.GET("/", func(ctx echo.Context) error {
 		fls := New()
 		fls.Success("Success")
 		fls.Err("Err")
@@ -33,7 +33,7 @@ func TestFlash(t *testing.T) {
 
 	var result Flashes
 
-	e.Get("/flash", func(ctx *echo.Context) error {
+	e.GET("/flash", func(ctx echo.Context) error {
 		result = GetFlashes(ctx)
 		return nil
 	})

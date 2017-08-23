@@ -34,7 +34,7 @@ type Flashes []*Flash
 //
 // BUG multipleflash messages are not propery set. the flashes contains only the first
 // message to be set.
-func GetFlashes(ctx *echo.Context) Flashes {
+func GetFlashes(ctx echo.Context) Flashes {
 	ss, err := store.Get(ctx.Request(), settings.App.Session.Flash)
 	if err != nil {
 		//log.Error(nil, err)
@@ -55,7 +55,7 @@ func GetFlashes(ctx *echo.Context) Flashes {
 // be retrived by calling ctx.Get(settings.FlashKey).
 //
 // NOTE When there are no flash messages then nothing is set.
-func AddFlashToCtx(ctx *echo.Context) {
+func AddFlashToCtx(ctx echo.Context) {
 	f := GetFlashes(ctx)
 	if f != nil {
 		ctx.Set(settings.FlashKey, f)
@@ -95,7 +95,7 @@ func (f *Flasher) Warn(msg string) {
 }
 
 // Save saves flash messages to context
-func (f *Flasher) Save(ctx *echo.Context) error {
+func (f *Flasher) Save(ctx echo.Context) error {
 	ss, err := store.Get(ctx.Request(), settings.App.Session.Flash)
 	if err != nil {
 		//log.Error(nil, err)

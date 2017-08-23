@@ -12,7 +12,7 @@ import (
 
 // Flash adds flash messages to the request context.
 func Flash() echo.HandlerFunc {
-	return func(ctx *echo.Context) error {
+	return func(ctx echo.Context) error {
 		flash.AddFlashToCtx(ctx)
 		return nil
 	}

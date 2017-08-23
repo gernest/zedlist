@@ -17,7 +17,7 @@ var store = session.New()
 
 // Langs sets active language in the request context.
 func Langs() echo.HandlerFunc {
-	return func(ctx *echo.Context) error {
+	return func(ctx echo.Context) error {
 		sess, _ := store.Get(ctx.Request(), settings.App.Session.Lang)
 		target := sess.Values[settings.LangSessionKey]
 		if target != nil {

@@ -12,6 +12,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/labstack/echo"
+
 	"github.com/Unknwon/com"
 	asset "github.com/gernest/zedlist/bindata/template"
 	"github.com/gernest/zedlist/modules/i18n"
@@ -283,6 +285,6 @@ func NewRenderer() *Renderer {
 }
 
 //Render renders a template.
-func (r *Renderer) Render(out io.Writer, name string, data interface{}) error {
+func (r *Renderer) Render(out io.Writer, name string, data interface{}, ctx echo.Context) error {
 	return r.tp.RenderTo(out, name, data)
 }

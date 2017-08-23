@@ -34,7 +34,7 @@ var formDecoder = schema.NewDecoder()
 //		Restrictions     Yes
 //
 // 		Template         dash/home.html
-func Home(ctx *echo.Context) error {
+func Home(ctx echo.Context) error {
 	utils.SetData(ctx, "PageTitle", "dashboard")
 	f := forms.New(utils.GetLang(ctx))
 	utils.SetData(ctx, "JobForm", f.JobForm()())
@@ -50,7 +50,7 @@ func Home(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         dash/jobs_new.html
-func JobsNewGet(ctx *echo.Context) error {
+func JobsNewGet(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	utils.SetData(ctx, "PageTitle", "new job")
 	utils.SetData(ctx, "JobForm", f.JobForm()())
@@ -66,7 +66,7 @@ func JobsNewGet(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         None
-func JobsNewPost(ctx *echo.Context) error {
+func JobsNewPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
 	f := forms.New(utils.GetLang(ctx))
 	jf := f.JobForm()(ctx.Request())
@@ -108,7 +108,7 @@ func JobsNewPost(ctx *echo.Context) error {
 //		Restrictions     Yes
 //
 // 		Template         dash/profile.html
-func Profile(ctx *echo.Context) error {
+func Profile(ctx echo.Context) error {
 	utils.SetData(ctx, "PageTitle", "profile")
 	return ctx.Render(http.StatusOK, tmpl.DashProfileTpl, utils.GetData(ctx))
 }
@@ -124,7 +124,7 @@ func Profile(ctx *echo.Context) error {
 //		Template      None (everything is redirected to '/dash/profile' )
 //
 // When there are validation errors flash messages are set.
-func ProfileName(ctx *echo.Context) error {
+func ProfileName(ctx echo.Context) error {
 	r := ctx.Request()
 	v := forms.NewValid(utils.GetLang(ctx))
 	r.ParseForm()

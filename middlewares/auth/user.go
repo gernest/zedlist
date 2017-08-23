@@ -22,7 +22,7 @@ var store = session.New()
 // Must(). This unlike Must will not return an error, regardless of if the user is loged
 // in or not
 func Normal() echo.HandlerFunc {
-	return func(ctx *echo.Context) error {
+	return func(ctx echo.Context) error {
 		Must()(ctx)
 		return nil
 	}
@@ -33,7 +33,7 @@ func Normal() echo.HandlerFunc {
 //
 // TODO custom not authorized handler?
 func Must() echo.HandlerFunc {
-	return func(ctx *echo.Context) error {
+	return func(ctx echo.Context) error {
 		// If this is called somewhere on the middleware chain, if we find the user
 		// we check the context if is set.
 		if v := ctx.Get("IsLoged"); v != nil && v.(bool) == true {

@@ -10,6 +10,6 @@ import (
 )
 
 // Find is a search function for zedlist database.
-func Find(ctx *echo.Context) error {
+func Find(ctx echo.Context) error {
 	return nil
 }

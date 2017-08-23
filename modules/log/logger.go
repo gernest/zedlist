@@ -123,9 +123,9 @@ func init() {
 //}
 
 // Error logs error messages
-func Error(ctx *echo.Context, args ...interface{}) {
+func Error(ctx echo.Context, args ...interface{}) {
 	if ctx != nil {
-		d := *ctx
+		d := ctx
 		L.WithField("ctx", d).Error(args...)
 	} else {
 		L.Error(args...)
@@ -134,9 +134,9 @@ func Error(ctx *echo.Context, args ...interface{}) {
 }
 
 // Info logs info messages
-func Info(ctx *echo.Context, args ...interface{}) {
+func Info(ctx echo.Context, args ...interface{}) {
 	if ctx != nil {
-		d := *ctx
+		d := ctx
 		L.WithField("ctx", d).Info(args...)
 	} else {
 		L.Info(args...)

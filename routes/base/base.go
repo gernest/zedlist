@@ -36,7 +36,7 @@ import (
 //		Restrictions     None
 //
 // 		Template         base/home.html
-func Home(ctx *echo.Context) error {
+func Home(ctx echo.Context) error {
 	return ctx.Render(http.StatusOK, tmpl.BaseHomeTpl, utils.GetData(ctx))
 }
 
@@ -50,7 +50,7 @@ func Home(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         base/jobs.html
-func JobsHome(ctx *echo.Context) error {
+func JobsHome(ctx echo.Context) error {
 	jobs, err := query.GetLatestJobs()
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
@@ -72,7 +72,7 @@ func JobsHome(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         base/jobs_view.html
-func JobView(ctx *echo.Context) error {
+func JobView(ctx echo.Context) error {
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
@@ -99,7 +99,7 @@ func JobView(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         None ( Redirection is made to home route ("/"))
-func SetLanguage(ctx *echo.Context) error {
+func SetLanguage(ctx echo.Context) error {
 	lang := ctx.Param("lang")
 	var language string
 	switch lang {
@@ -138,7 +138,7 @@ var (
 //
 // 		Template         base/docs_index.html
 //
-func DocsHome(ctx *echo.Context) error {
+func DocsHome(ctx echo.Context) error {
 	data := utils.GetData(ctx).(utils.Data)
 	lang := data.Get(settings.LangDataKey).(string)
 	home := settings.DocsPath + "/" + lang + "/" + settings.DocsIndexPage
@@ -162,7 +162,7 @@ func DocsHome(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         base/docs.html
-func Docs(ctx *echo.Context) error {
+func Docs(ctx echo.Context) error {
 	data := utils.GetData(ctx).(utils.Data)
 	lang := data.Get(settings.LangDataKey).(string)
 	fname := ctx.Param("name")
@@ -221,7 +221,7 @@ func getDocIndex(lang string) []*Doc {
 //
 // 		Template         base/regions.html
 //
-func RegionsHome(ctx *echo.Context) error {
+func RegionsHome(ctx echo.Context) error {
 	regs, err := query.GetAllRegions()
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
@@ -242,7 +242,7 @@ func RegionsHome(ctx *echo.Context) error {
 //
 // 		Template         base/regions_job.html
 //
-func RegionsJobView(ctx *echo.Context) error {
+func RegionsJobView(ctx echo.Context) error {
 	name := ctx.Param("name")
 	jobs, count, err := query.GetJobByRegionShort(name)
 	if err != nil {
@@ -266,7 +266,7 @@ func RegionsJobView(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         base/regions.html
-func RegionsJobPaginate(ctx *echo.Context) error {
+func RegionsJobPaginate(ctx echo.Context) error {
 	name := ctx.Param("name")
 	offset, err := utils.GetInt(ctx.Param("from"))
 	if err != nil {

@@ -18,7 +18,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func hello(ctx *echo.Context) error {
+func hello(ctx echo.Context) error {
 	token := ""
 	d := utils.GetData(ctx).(utils.Data)
 	tok := d.Get("CsrfToken")
@@ -30,10 +30,10 @@ func hello(ctx *echo.Context) error {
 
 func TestCsrf(t *testing.T) {
 	e := echo.New()
-	e.Use(Nosurf())
-	e.Use(Tokens())
-	e.Post("/", hello)
-	e.Get("/", hello)
+	e.Use(echo.WrapMiddleware(Nosurf()))
+	e.Use(utils.WrapMiddleware(Tokens()))
+	e.POST("/", hello)
+	e.GET("/", hello)
 
 	ts := httptest.NewServer(e)
 	defer ts.Close()

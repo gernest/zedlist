@@ -36,7 +36,7 @@ func GetContext() Data {
 }
 
 // SetData stores the given key value in the *echo.Context(under the template context oject)
-func SetData(ctx *echo.Context, key string, val interface{}) {
+func SetData(ctx echo.Context, key string, val interface{}) {
 	v := ctx.Get(settings.DataKey)
 	switch v.(type) {
 	case Data:
@@ -52,7 +52,7 @@ func SetData(ctx *echo.Context, key string, val interface{}) {
 }
 
 // GetData returns template context data stored in *echo.Context
-func GetData(ctx *echo.Context) interface{} {
+func GetData(ctx echo.Context) interface{} {
 	data := GetContext()
 	if v := ctx.Get(settings.DataKey); v != nil {
 		data = v.(Data)
@@ -64,17 +64,17 @@ func GetData(ctx *echo.Context) interface{} {
 }
 
 // GetLang retrieves language from the context.
-func GetLang(ctx *echo.Context) string {
+func GetLang(ctx echo.Context) string {
 	return GetData(ctx).(Data).Get(settings.LangDataKey).(string)
 }
 
 // IsAjax returns true if the request is ajax and false otherwose..
-func IsAjax(ctx *echo.Context) bool {
+func IsAjax(ctx echo.Context) bool {
 	return ctx.Request().Header.Get("X-Requested-With") == "XMLHttpRequest"
 }
 
 // DeleteSession delete session by name.
-func DeleteSession(ctx *echo.Context, sessionName string) error {
+func DeleteSession(ctx echo.Context, sessionName string) error {
 	ss, err := store.Get(ctx.Request(), sessionName)
 	if err != nil {
 		return err
@@ -85,4 +85,16 @@ func DeleteSession(ctx *echo.Context, sessionName string) error {
 //GetInt converts the string to int
 func GetInt(str string) (int, error) {
 	return com.StrTo(str).Int()
+}
+
+// WrapMiddleware wraps a echo.HandlerFunc to echo.MiddlewareFunc
+func WrapMiddleware(h echo.HandlerFunc) echo.MiddlewareFunc {
+	return func(a echo.HandlerFunc) echo.HandlerFunc {
+		return func(ctx echo.Context) error {
+			if err := h(ctx); err != nil {
+				return err
+			}
+			return a(ctx)
+		}
+	}
 }

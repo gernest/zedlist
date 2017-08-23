@@ -25,7 +25,7 @@ func TestNormal(t *testing.T) {
 	}
 	w := httptest.NewRecorder()
 	e := echo.New()
-	ctx := echo.NewContext(req, echo.NewResponse(w), e)
+	ctx := e.NewContext(req, w)
 	err = Normal()(ctx)
 	if err != nil {
 		t.Errorf("expected nil got %v", err)
@@ -39,7 +39,7 @@ func TestMust(t *testing.T) {
 	}
 	w := httptest.NewRecorder()
 	e := echo.New()
-	ctx := echo.NewContext(req, echo.NewResponse(w), e)
+	ctx := e.NewContext(req, w)
 	err = Must()(ctx)
 	if err == nil {
 		t.Error("expected an error got nil")
@@ -70,7 +70,7 @@ func TestMust(t *testing.T) {
 	if err != nil {
 		t.Errorf("expected nil got %v", err)
 	}
-	nctx := echo.NewContext(req, echo.NewResponse(w), e)
+	nctx := e.NewContext(req, w)
 	ss, _ := store.Get(nctx.Request(), settings.App.Session.Name)
 	ss.Values["userID"] = usr.ID
 	err = ss.Save(nctx.Request(), nctx.Response())

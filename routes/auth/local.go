@@ -40,7 +40,7 @@ var sessStore = session.New()
 //
 // 		Template         auth/login.html
 //
-func Login(ctx *echo.Context) error {
+func Login(ctx echo.Context) error {
 
 	f := forms.New(utils.GetLang(ctx))
 	utils.SetData(ctx, authForm, f.LoginForm()())
@@ -64,7 +64,7 @@ func Login(ctx *echo.Context) error {
 // 		Template         None (All actions redirect to other routes )
 //
 // Flash messages may be set before redirection.
-func LoginPost(ctx *echo.Context) error {
+func LoginPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
 
 	f := forms.New(utils.GetLang(ctx))
@@ -130,7 +130,7 @@ func LoginPost(ctx *echo.Context) error {
 //		Restrictions     None
 //
 // 		Template         auth/register.html
-func Register(ctx *echo.Context) error {
+func Register(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	utils.SetData(ctx, authForm, f.RegisterForm()())
 
@@ -151,7 +151,7 @@ func Register(ctx *echo.Context) error {
 // 		Template         None (All actions redirect to other routes )
 //
 // Flash messages may be set before redirection.
-func RegisterPost(ctx *echo.Context) error {
+func RegisterPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
 	f := forms.New(utils.GetLang(ctx))
 	lf := f.RegisterForm()(ctx.Request())
@@ -195,7 +195,7 @@ func RegisterPost(ctx *echo.Context) error {
 // 		Template         None (All actions redirect to other routes )
 //
 // Flash messages may be set before redirection.
-func Logout(ctx *echo.Context) error {
+func Logout(ctx echo.Context) error {
 	utils.DeleteSession(ctx, settings.App.Session.Lang)
 	utils.DeleteSession(ctx, settings.App.Session.Flash)
 	utils.DeleteSession(ctx, settings.App.Session.Name)

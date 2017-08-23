@@ -27,10 +27,10 @@ var client = &http.Client{Jar: getJar()}
 func testServer() *httptest.Server {
 	e := echo.New()
 	a := e.Group("/api")
-	a.Post("/jobs", CreateJob)
-	a.Get("/jobs/:id", GetJob)
-	a.Get("/jobs", GetIndex)
-	a.Put("/jobs", UpdateJob)
+	a.POST("/jobs", CreateJob)
+	a.GET("/jobs/:id", GetJob)
+	a.GET("/jobs", GetIndex)
+	a.PUT("/jobs", UpdateJob)
 	return httptest.NewServer(e)
 }
 

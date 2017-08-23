@@ -23,7 +23,7 @@ func Nosurf() func(http.Handler) http.Handler {
 
 // Tokens adds csrf token context. the context key is CsrfToken
 func Tokens() echo.HandlerFunc {
-	return func(ctx *echo.Context) error {
+	return func(ctx echo.Context) error {
 		utils.SetData(ctx, "CsrfToken", nosurf.Token(ctx.Request()))
 		return nil
 	}

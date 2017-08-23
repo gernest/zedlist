@@ -24,7 +24,7 @@ var (
 )
 
 // CreateJob creates a new job record
-func CreateJob(ctx *echo.Context) error {
+func CreateJob(ctx echo.Context) error {
 	job := &models.Job{}
 	err := unmarshalToJSON(ctx, job)
 	if err != nil {
@@ -42,7 +42,7 @@ func CreateJob(ctx *echo.Context) error {
 }
 
 // unmarhsalls the request body to val(in json format)).
-func unmarshalToJSON(ctx *echo.Context, val interface{}) error {
+func unmarshalToJSON(ctx echo.Context, val interface{}) error {
 	req := ctx.Request()
 	buf := &bytes.Buffer{}
 	_, err := io.Copy(buf, req.Body)
@@ -57,7 +57,7 @@ func unmarshalToJSON(ctx *echo.Context, val interface{}) error {
 }
 
 // GetJob retrieves a job by ID
-func GetJob(ctx *echo.Context) error {
+func GetJob(ctx echo.Context) error {
 	id, err := utils.GetInt(ctx.Param("id"))
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
@@ -74,7 +74,7 @@ func GetJob(ctx *echo.Context) error {
 }
 
 // GetIndex retrieves all jobs.
-func GetIndex(ctx *echo.Context) error {
+func GetIndex(ctx echo.Context) error {
 	jobs, err := query.GetALLJobs()
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
@@ -83,7 +83,7 @@ func GetIndex(ctx *echo.Context) error {
 }
 
 // UpdateJob updates a job record
-func UpdateJob(ctx *echo.Context) error {
+func UpdateJob(ctx echo.Context) error {
 	job := &models.Job{}
 	err := unmarshalToJSON(ctx, job)
 	if err != nil {
