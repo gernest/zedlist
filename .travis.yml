@@ -10,4 +10,4 @@ before_install:
  - go get github.com/mattn/goveralls
 script:
  - go build ./cmd/zedlist
- - make cover
+ - make test
