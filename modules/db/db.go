@@ -47,5 +47,5 @@ func (db *DB) Connect() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &gdb, nil
+	return gdb, nil
 }
