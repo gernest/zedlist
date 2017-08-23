@@ -47,14 +47,19 @@ func NewJWTAuth(keys RSAKeyHolder) func(string, jwt.SigningMethod) ([]byte, erro
 func NewToken(rsaKeys RSAKeyHolder, claims map[string]string) (*models.Token, error) {
 	tk := &models.Token{}
 	token := jwt.New(jwt.SigningMethodRS256)
+	mc := make(jwt.MapClaims)
 	for k, v := range claims {
-		token.Claims[k] = v
+		mc[k] = v
 	}
 	// add expiration
-	token.Claims["exp"] = TokenExpireDate.Unix()
-
+	mc["exp"] = TokenExpireDate.Unix()
+	token.Claims = mc
 	parsedKey := rsaKeys.GetPrivateBytes()
-	tokenStr, err := token.SignedString(parsedKey)
+	rp, err := jwt.ParseRSAPrivateKeyFromPEM(parsedKey)
+	if err != nil {
+		return nil, err
+	}
+	tokenStr, err := token.SignedString(rp)
 	if err != nil {
 		return nil, err
 	}

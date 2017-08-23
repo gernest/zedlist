@@ -12,9 +12,11 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/gernest/zedlist/middlewares/i18n"
 	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
+	"github.com/gernest/zedlist/modules/utils"
 
 	"github.com/labstack/echo"
 )
@@ -22,20 +24,21 @@ import (
 var ts = testServer()
 var user = testUser()
 
-func userMiddleware(ctx *echo.Context) error {
+func userMiddleware(ctx echo.Context) error {
 	ctx.Set("User", user)
 	return nil
 }
 
 func testServer() *echo.Echo {
 	e := echo.New()
-	e.SetRenderer(tmpl.NewRenderer())
-	e.Use(userMiddleware)
-	e.Get("/resume/", Home)
-	e.Post("/resume/create", Create)
-	e.Get("/resume/update/:id", Update)
-	e.Get("/resume/view/:id", View)
-	e.Post("/resume/delete/:id", Delete)
+	e.Renderer = tmpl.NewRenderer()
+	e.Use(utils.WrapMiddleware(i18n.Langs())) // languages
+	e.Use(utils.WrapMiddleware(userMiddleware))
+	e.GET("/resume/", Home)
+	e.POST("/resume/create", Create)
+	e.GET("/resume/update/:id", Update)
+	e.GET("/resume/view/:id", View)
+	e.POST("/resume/delete/:id", Delete)
 	return e
 }
 func testUser() *models.Person {
@@ -66,7 +69,7 @@ func TestCreate(t *testing.T) {
 	if err != nil {
 		t.Errorf("creating request %v", err)
 	}
-	req.Header.Set(echo.ContentType, echo.ApplicationForm)
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationForm)
 	resp := httptest.NewRecorder()
 	ts.ServeHTTP(resp, req)
 	if resp.Code != http.StatusFound {

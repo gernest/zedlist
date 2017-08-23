@@ -16,6 +16,7 @@ import (
 	"testing"
 
 	"github.com/gernest/zedlist/modules/tmpl"
+	"github.com/gernest/zedlist/modules/utils"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Unknwon/com"
@@ -38,26 +39,26 @@ var (
 
 func testServer() *httptest.Server {
 	e := echo.New()
-	e.SetRenderer(tmpl.NewRenderer())
+	e.Renderer = tmpl.NewRenderer()
 	// middlewares
-	e.Use(i18n.Langs())      // languages
-	e.Use(flash.Flash())     // flash messages
-	e.Use(userAuth.Normal()) // adding user context data
+	e.Use(utils.WrapMiddleware(i18n.Langs()))      // languages
+	e.Use(utils.WrapMiddleware(flash.Flash()))     // flash messages
+	e.Use(utils.WrapMiddleware(userAuth.Normal())) // adding user context data
 
 	// HOME
-	e.Get("/", base.Home)
+	e.GET("/", base.Home)
 
 	// AUTH
 	xauth := e.Group("/auth")
 
-	xauth.Use(csrf.Nosurf()) // csrf protection
-	xauth.Use(csrf.Tokens()) // csrf tokens
+	xauth.Use(echo.WrapMiddleware(csrf.Nosurf()))  // csrf protection
+	xauth.Use(utils.WrapMiddleware(csrf.Tokens())) // csrf tokens
 
-	xauth.Get("/login", Login)
-	xauth.Post("/login", LoginPost)
-	xauth.Get("/register", Register)
-	xauth.Post("/register", RegisterPost)
-	xauth.Get("/logout", Logout)
+	xauth.GET("/login", Login)
+	xauth.POST("/login", LoginPost)
+	xauth.GET("/register", Register)
+	xauth.POST("/register", RegisterPost)
+	xauth.GET("/logout", Logout)
 
 	return httptest.NewServer(e)
 }

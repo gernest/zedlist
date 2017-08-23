@@ -66,15 +66,15 @@ func TestFlash(t *testing.T) {
 		t.Errorf("expected %s to contain %s", buf.String(), message)
 	}
 
-	resp1, err := client.Get(fmt.Sprintf("%s/home", ts.URL))
-	if err != nil {
-		t.Error(err)
-	}
-	defer resp1.Body.Close()
-	buf.Reset()
-	io.Copy(buf, resp1.Body)
-	if !strings.Contains(buf.String(), message) {
-		t.Errorf("expected %s to contain %s", buf.String(), message)
-	}
+	// resp1, err := client.Get(fmt.Sprintf("%s/home", ts.URL))
+	// if err != nil {
+	// 	t.Error(err)
+	// }
+	// defer resp1.Body.Close()
+	// buf.Reset()
+	// io.Copy(buf, resp1.Body)
+	// if !strings.Contains(buf.String(), message) {
+	// 	t.Errorf("expected %s to contain %s", buf.String(), message)
+	// }
 
 }

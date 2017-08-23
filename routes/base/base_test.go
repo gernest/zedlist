@@ -15,6 +15,7 @@ import (
 
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
+	"github.com/gernest/zedlist/modules/utils"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Unknwon/com"
@@ -31,26 +32,26 @@ var client = &http.Client{Jar: getJar()}
 
 func testServer() *httptest.Server {
 	e := echo.New()
-	e.SetRenderer(tmpl.NewRenderer())
+	e.Renderer = tmpl.NewRenderer()
 
 	// middlewares
-	e.Use(i18n.Langs())      // languages
-	e.Use(flash.Flash())     // flash messages
-	e.Use(userAuth.Normal()) // adding user context data
+	e.Use(utils.WrapMiddleware(i18n.Langs()))      // languages
+	e.Use(utils.WrapMiddleware(flash.Flash()))     // flash messages
+	e.Use(utils.WrapMiddleware(userAuth.Normal())) // adding user context data
 
 	// HOME
-	e.Get("/", Home)
-	e.Get("/language/:lang", SetLanguage)
+	e.GET("/", Home)
+	e.GET("/language/:lang", SetLanguage)
 	b := e.Group("/jobs")
-	b.Get("/", JobsHome)
-	b.Get("/view/:id", JobView)
-	b.Get("/regions", RegionsHome)
-	b.Get("/regions/:name", RegionsJobView)
-	b.Get("/regions/:name/:from/:to", RegionsJobPaginate)
+	b.GET("/", JobsHome)
+	b.GET("/view/:id", JobView)
+	b.GET("/regions", RegionsHome)
+	b.GET("/regions/:name", RegionsJobView)
+	b.GET("/regions/:name/:from/:to", RegionsJobPaginate)
 
 	// DOCS
-	e.Get("/docs", DocsHome)
-	e.Get("/docs/:name", Docs)
+	e.GET("/docs", DocsHome)
+	e.GET("/docs/:name", Docs)
 
 	return httptest.NewServer(e)
 }

@@ -13,6 +13,7 @@ import (
 
 	"github.com/Unknwon/com"
 	"github.com/gernest/zedlist/modules/tmpl"
+	"github.com/gernest/zedlist/modules/utils"
 
 	userAuth "github.com/gernest/zedlist/middlewares/auth"
 	"github.com/gernest/zedlist/middlewares/flash"
@@ -29,25 +30,25 @@ var bufPool = bpool.NewBufferPool(10)
 
 func testServer() *httptest.Server {
 	e := echo.New()
-	e.SetRenderer(tmpl.NewRenderer())
+	e.Renderer = tmpl.NewRenderer()
 
 	// middlewares
-	e.Use(i18n.Langs())      // languages
-	e.Use(flash.Flash())     // flash messages
-	e.Use(userAuth.Normal()) // adding user context data
+	e.Use(utils.WrapMiddleware(i18n.Langs()))      // languages
+	e.Use(utils.WrapMiddleware(flash.Flash()))     // flash messages
+	e.Use(utils.WrapMiddleware(userAuth.Normal())) // adding user context data
 
 	// BASE
 
 	// DASHBOARD
 	d := e.Group("/dash")
-	d.Get("/", Home)
-	d.Get("/jobs/new", JobsNewGet)
-	d.Post("/jobs/new", JobsNewPost)
-	d.Get("/profile", Profile)
-	d.Post("/profile/name", ProfileName)
+	d.GET("/", Home)
+	d.GET("/jobs/new", JobsNewGet)
+	d.POST("/jobs/new", JobsNewPost)
+	d.GET("/profile", Profile)
+	d.POST("/profile/name", ProfileName)
 
 	// AUTH
-	e.Post("/login", auth.LoginPost)
+	e.POST("/login", auth.LoginPost)
 	return httptest.NewServer(e)
 }
 
