@@ -10,8 +10,7 @@ import (
 	"github.com/gernest/zedlist/modules/settings"
 	"github.com/jinzhu/gorm"
 
-	// support mysq and postgresql
-	_ "github.com/go-sql-driver/mysql"
+	// use postgres only
 	_ "github.com/lib/pq"
 )
 
