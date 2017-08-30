@@ -55,7 +55,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/gernest/highlight_go"
+  name = "github.com/gernest/github_flavored_markdown"
 
 [[constraint]]
   name = "github.com/gernest/vala"
@@ -112,14 +112,6 @@
 [[constraint]]
   branch = "master"
   name = "github.com/oxtoacart/bpool"
-
-[[constraint]]
-  name = "github.com/russross/blackfriday"
-  version = "2.0.0"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/sourcegraph/syntaxhighlight"
 
 [[constraint]]
   name = "github.com/urfave/cli"

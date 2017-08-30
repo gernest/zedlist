@@ -28,6 +28,11 @@ const (
 	authForm               = "AuthForm"
 )
 
+const (
+	loginTitle = "login"
+	pageTitle  = "PageTitle"
+)
+
 var sessStore = session.New()
 
 // Login renders login form.
@@ -46,14 +51,14 @@ func Login(ctx echo.Context) error {
 	utils.SetData(ctx, authForm, f.LoginForm()())
 
 	// set page tittle to login
-	utils.SetData(ctx, "PageTitle", "login")
+	utils.SetData(ctx, pageTitle, loginTitle)
 
 	return ctx.Render(http.StatusOK, tmpl.LoginTpl, utils.GetData(ctx))
 }
 
-// LoginPost handlers login form, and logs in the user. If the form is valid, the user is
-// redirected to "/auth/login" with the form validation errors. When the user is validated
-// redirection is made to "/".
+// LoginPost handlers login form, and logs in the user. If the form is valid,
+// the user is redirected to "/auth/login" with the form validation errors. When
+// the user is validated redirection is made to "/".
 //
 //		Method           POST
 //

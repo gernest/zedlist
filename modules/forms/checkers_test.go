@@ -34,7 +34,4 @@ func TestValidatePersonNames(t *testing.T) {
 	if errs == nil {
 		t.Error("expected errors got nil")
 	}
-	if len(errs) != 1 {
-		t.Errorf("expected 1 error got %d", len(errs))
-	}
 }

@@ -75,9 +75,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/gernest/highlight_go"
+  name = "github.com/gernest/github_flavored_markdown"
   packages = ["."]
-  revision = "2c9c94601a72f05cf4b0c1cb618b5a62901b8f45"
+  revision = "a383c6079820de953d5341873de451dc5cf49873"
 
 [[projects]]
   name = "github.com/gernest/vala"
@@ -191,7 +191,7 @@
   branch = "master"
   name = "github.com/microcosm-cc/bluemonday"
   packages = ["."]
-  revision = "23dcc558c78c63ca6a4d459d3719ee9d79cad9a4"
+  revision = "68fecaef60268522d2ac3f0123cec9d3bcab7b6e"
 
 [[projects]]
   branch = "master"
@@ -200,10 +200,40 @@
   revision = "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
 
 [[projects]]
-  name = "github.com/russross/blackfriday"
+  branch = "master"
+  name = "github.com/sergi/go-diff"
+  packages = ["diffmatchpatch"]
+  revision = "feef008d51ad2b3778f85d387ccf91735543008d"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/go"
+  packages = ["parserutil","printerutil","reflectfind","reflectsource"]
+  revision = "85cf7b32989cc33f64afac4bc0e1ef4020b43669"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/go-goon"
   packages = ["."]
-  revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
-  version = "v2.0.0"
+  revision = "a0792a0a8f8fa9a233843e67079b051b571e609c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/highlight_diff"
+  packages = ["."]
+  revision = "09bb4053de1b1d872a9f25dc21378fa71dca4e4e"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/highlight_go"
+  packages = ["."]
+  revision = "78fb10f4a5f89e812a5e26ab723b954a51226086"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/octiconssvg"
+  packages = ["."]
+  revision = "1aed2117d2aa8eed76a052936e468e5354750701"
 
 [[projects]]
   branch = "master"
@@ -251,13 +281,19 @@
   branch = "master"
   name = "golang.org/x/net"
   packages = ["html","html/atom"]
-  revision = "57efc9c3d9f91fb3277f8da1cff370539c4d3dc5"
+  revision = "66aacef3dd8a676686c7ae3716979581e8b03c47"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
-  revision = "2d6f6f883a06fc0d5f4b14a81e4c28705ea64c15"
+  revision = "ab9e364efd8b52800ff7ee48a9ffba4e0ed78dfb"
+
+[[projects]]
+  name = "gopkg.in/russross/blackfriday.v1"
+  packages = ["."]
+  revision = "4048872b16cc0fc2c5fd9eacf0ed2c2fedaa0c8c"
+  version = "v1.5"
 
 [[projects]]
   branch = "v2"
@@ -268,6 +304,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0882a41e57dea57c947ee088157ff8d0e05200ceafe2182080c00e82aafa38f7"
+  inputs-digest = "d06fdd9fddea48aa704e1f009b3bf52468757cfa0494a704cd0e1d35fd3270dc"
   solver-name = "gps-cdcl"
   solver-version = 1
