@@ -52,3 +52,6 @@ deps:
 
 dist:
 	@gox -output="dist/{{.Dir}}v$(VERSION)_{{.OS}}_{{.Arch}}" ./cmd/zedlist
+
+server:build
+	./bin/zedlist server
