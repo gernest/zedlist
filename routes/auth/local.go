@@ -10,6 +10,8 @@ import (
 
 	"github.com/kr/pretty"
 
+	validate "github.com/asaskevich/govalidator"
+	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/flash"
 	"github.com/gernest/zedlist/modules/forms"
 	"github.com/gernest/zedlist/modules/log"
@@ -88,19 +90,34 @@ func LoginPost(ctx echo.Context) error {
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
 	}
+	var user *models.User
 
-	// Check email and password
-	user, err := query.AuthenticateUserByEmail(*lf)
-	if err != nil {
-		log.Error(ctx, err)
+	if validate.IsEmail(lf.Name) {
+		user, err = query.AuthenticateUserByEmail(*lf)
+		if err != nil {
+			log.Error(ctx, err)
 
-		// We want the user to try again, but rather than rendering the form right
-		// away, we redirect him/her to /auth/login route(where the login process with
-		// start aflsesh albeit with a flash message)
-		flashMessages.Err(msgLoginErr)
-		flashMessages.Save(ctx)
-		ctx.Redirect(http.StatusFound, "/auth/login")
-		return nil
+			// We want the user to try again, but rather than rendering the form right
+			// away, we redirect him/her to /auth/login route(where the login process with
+			// start aflsesh albeit with a flash message)
+			flashMessages.Err(msgLoginErr)
+			flashMessages.Save(ctx)
+			ctx.Redirect(http.StatusFound, "/auth/login")
+			return nil
+		}
+	} else {
+		user, err = query.AuthenticateUserByName(*lf)
+		if err != nil {
+			log.Error(ctx, err)
+
+			// We want the user to try again, but rather than rendering the form right
+			// away, we redirect him/her to /auth/login route(where the login process with
+			// start aflsesh albeit with a flash message)
+			flashMessages.Err(msgLoginErr)
+			flashMessages.Save(ctx)
+			ctx.Redirect(http.StatusFound, "/auth/login")
+			return nil
+		}
 	}
 
 	// create a session for the user after the validation has passed. The info stored

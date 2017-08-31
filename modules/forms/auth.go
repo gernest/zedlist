@@ -27,7 +27,7 @@ var decoder = schema.NewDecoder()
 
 // Login is the login form
 type Login struct {
-	Email    string `schema:"username"`
+	Name     string `schema:"username"`
 	Password string `schema:"password"`
 	CSRF     string `schema:"csrf_token"`
 }

@@ -175,6 +175,16 @@ func GetUserByEmail(email string) (*models.User, error) {
 	return usr, nil
 }
 
+// GetUserByName retrieves a user by name.
+func GetUserByName(name string) (*models.User, error) {
+	usr := &models.User{}
+	q := db.Conn.Where(&models.User{Name: name}).First(usr)
+	if q.Error != nil {
+		return nil, q.Error
+	}
+	return usr, nil
+}
+
 // CreateNewUser creates a new user.
 func CreateNewUser(reg forms.Register) (*models.User, error) {
 	_, err := GetUserByEmail(reg.Email)
@@ -188,16 +198,10 @@ func CreateNewUser(reg forms.Register) (*models.User, error) {
 	usr := &models.User{
 		Email:    reg.Email,
 		Password: hashedPass,
+		Name:     reg.UserName,
 		Status:   models.StatusActive,
 		Person: models.Person{
-			// Birthday: reg.BirthDay,
-			Email: reg.Email,
-			// Gender:   reg.Gender,
-			// PersonName: models.PersonName{
-			// 	FamilyName: reg.LastName,
-			// 	GivenName:  reg.FirstName,
-			// 	MiddleName: reg.MiddleName,
-			// },
+			Email:      reg.Email,
 			ObjectType: models.ObjPerson,
 		},
 	}
@@ -210,7 +214,20 @@ func CreateNewUser(reg forms.Register) (*models.User, error) {
 
 // AuthenticateUserByEmail checks if the user which matches the loginForm details exist, and is valid.
 func AuthenticateUserByEmail(loginForm forms.Login) (*models.User, error) {
-	usr, err := GetUserByEmail(loginForm.Email)
+	usr, err := GetUserByEmail(loginForm.Name)
+	if err != nil {
+		return nil, err
+	}
+	err = verifyPass(usr.Password, loginForm.Password)
+	if err != nil {
+		return nil, err
+	}
+	return usr, nil
+}
+
+// AuthenticateUserByEmail checks if the user which matches the loginForm details exist, and is valid.
+func AuthenticateUserByName(loginForm forms.Login) (*models.User, error) {
+	usr, err := GetUserByName(loginForm.Name)
 	if err != nil {
 		return nil, err
 	}

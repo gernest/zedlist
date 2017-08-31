@@ -132,7 +132,7 @@ func TestUserQuery(t *testing.T) {
 	// AuthenticateUserByEmail
 	//
 	loginForm := forms.Login{
-		Email:    sample[0].email,
+		Name:     sample[0].email,
 		Password: sample[0].pass,
 	}
 
@@ -146,14 +146,14 @@ func TestUserQuery(t *testing.T) {
 	}
 
 	// Wrong email
-	loginForm.Email = "bogue"
+	loginForm.Name = "bogue"
 	_, err = AuthenticateUserByEmail(loginForm)
 	if err == nil {
 		t.Error("expected error got nil instead")
 	}
 
 	// Wrong password
-	loginForm.Email = sample[0].email
+	loginForm.Name = sample[0].email
 	loginForm.Password = "Ohmygawd"
 	_, err = AuthenticateUserByEmail(loginForm)
 	if err == nil {

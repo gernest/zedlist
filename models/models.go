@@ -190,6 +190,7 @@ type User struct {
 	ID        int
 	Email     string `sql:"type:varchar(100);unique_index"`
 	Password  string
+	Name      string
 	Person    Person
 	PersonID  int
 	Status    int
