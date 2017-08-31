@@ -29,6 +29,7 @@ var decoder = schema.NewDecoder()
 type Login struct {
 	Email    string `schema:"username"`
 	Password string `schema:"password"`
+	CSRF     string `schema:"csrf_token"`
 }
 
 func (l *Login) Valid() bool {
@@ -37,10 +38,11 @@ func (l *Login) Valid() bool {
 
 // Register is the registration form
 type Register struct {
-	UserName        string `schema:"user_name"`
+	UserName        string `schema:"username"`
 	Email           string `schema:"email"`
 	Password        string `schema:"password"`
 	ConfirmPassword string `schema:"confirm_password"`
+	CSRF            string `schema:"csrf_token"`
 }
 
 func (r *Register) Valid() bool {
@@ -105,6 +107,10 @@ func (f *Form) Register() template.HTML {
 		<input type="text" name="username" placeholder="%s">
 	</div>
 	<div class="field">
+		<label> %s </label>
+		<input type="text" name="email" placeholder="%s">
+	</div>
+	<div class="field">
 		<label> %s</label>
 		<input type="password" name="password" placeholder="%s">
 	</div>
@@ -113,6 +119,7 @@ func (f *Form) Register() template.HTML {
 		<input type="password" name="confirm_password" placeholder="%s">
 	</div>
 `, f.tr.T("username"), f.tr.T("username"),
+		f.tr.T("email"), f.tr.T("email"),
 		f.tr.T("password"), f.tr.T("password"),
 		f.tr.T("confirm_password"), f.tr.T("confirm_password"),
 	))

@@ -8,6 +8,8 @@ package auth
 import (
 	"net/http"
 
+	"github.com/kr/pretty"
+
 	"github.com/gernest/zedlist/modules/flash"
 	"github.com/gernest/zedlist/modules/forms"
 	"github.com/gernest/zedlist/modules/log"
@@ -75,6 +77,7 @@ func LoginPost(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	lf, err := f.DecodeLogin(ctx.Request())
 	if err != nil {
+		pretty.Println(err)
 		utils.SetData(ctx, "form", f)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil

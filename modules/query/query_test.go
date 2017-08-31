@@ -183,11 +183,6 @@ func TestPersonQuery(t *testing.T) {
 		t.Errorf("getting person %v", err)
 	}
 
-	// check if the person name is also loaded
-	if person.PersonName.GivenName != "root" {
-		t.Errorf("expected root got %s", person.PersonName.GivenName)
-	}
-
 	//
 	//	PersonCreateJob
 	//

@@ -130,6 +130,10 @@ var Tr = &gt.Build{
 			"en": "Confirm Password",
 			"sw": "Thibitisha neno la siri",
 		},
+		"email": {
+			"en": "Email",
+			"sw": "Barua pepe",
+		},
 	},
 }
 

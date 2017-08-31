@@ -9,7 +9,6 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/gernest/zedlist/modules/forms"
 	"github.com/gernest/zedlist/modules/query"
@@ -49,14 +48,10 @@ func TestMust(t *testing.T) {
 	}
 
 	regForm := forms.Register{
-		FirstName:       "root",
-		LastName:        "roote",
-		MiddleName:      "root",
+		UserName:        "root",
 		Email:           "auth@home.com",
 		Password:        "superroot",
 		ConfirmPassword: "superroot",
-		Gender:          1,
-		BirthDay:        time.Now(),
 	}
 	usr, err := query.CreateNewUser(regForm)
 	if err != nil {

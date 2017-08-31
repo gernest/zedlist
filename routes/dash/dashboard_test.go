@@ -96,7 +96,7 @@ func TestJobsNewPost(t *testing.T) {
 	l := fmt.Sprintf("%s/jobs/new", dashPath)
 
 	loginForm := url.Values{
-		"email":    {"root@home.com"},
+		"username": {"root@home.com"},
 		"password": {"superroot"},
 	}
 

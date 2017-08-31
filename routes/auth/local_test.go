@@ -109,14 +109,10 @@ func TestGetRegister(t *testing.T) {
 func TestPostRegister(t *testing.T) {
 	l := fmt.Sprintf("%s%s", ts.URL, registerPath)
 	vars := url.Values{
-		"first_name":       {"geofrey"},
-		"last_name":        {"enrnest"},
-		"middle_name":      {"gernest"},
-		"email":            {"gernest@mawazo.com"},
+		"username":         {"gernest"},
+		"email":            {"gernest@examples.com"},
 		"password":         {"kilimahewa"},
 		"confirm_password": {"kilimahewa"},
-		"gender":           {"1"},
-		"birth_date":       {"2 January, 1980"},
 	}
 
 	// lets obtain the csrf_token to submit with the form.
@@ -167,40 +163,12 @@ func TestPostLogin(t *testing.T) {
 	}
 
 	vars := url.Values{
-		"email":      {"gernest@mawazo.com"},
+		"username":   {"gernest@examples.com"},
 		"password":   {"kilimahewa"},
 		"csrf_token": {token},
 	}
-
-	// case invalid form
-	vars.Set("email", "boom")
-	resp0, err := client.PostForm(l, vars)
-	if err != nil {
-		t.Errorf(" posting registration form %v", err)
-	}
-	defer resp0.Body.Close()
 	buf := &bytes.Buffer{}
-	io.Copy(buf, resp0.Body)
-	loginTitle := "<title>login</title>"
-	if !bytes.Contains(buf.Bytes(), []byte(loginTitle)) {
-		t.Errorf(" expected home page got %s", buf)
-	}
-
-	// case user not found
-	vars.Set("email", "bigbang@space.com")
-	resp1, err := client.PostForm(l, vars)
-	if err != nil {
-		t.Errorf(" posting registration form %v", err)
-	}
-	defer resp1.Body.Close()
-	buf.Reset()
-	io.Copy(buf, resp1.Body)
-	if !bytes.Contains(buf.Bytes(), []byte(loginTitle)) {
-		t.Errorf(" expected home page got %s", buf)
-	}
-
 	// case a passing login
-	vars.Set("email", "gernest@mawazo.com") // restore the field
 	resp, err := client.PostForm(l, vars)
 	if err != nil {
 		t.Errorf(" posting registration form %v", err)
