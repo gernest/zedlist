@@ -1,21 +1,13 @@
 {{template "partials/header.html" .}}
-<div class="register">
-    <form method="post">
-        <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
-        {{with .AuthForm}}
-        {{range $i, $field := .Fields}}
-        <label>{{label $field.GetName}}</label>
-        {{plain $field.Html}}
-        <div>
-            {{range $ei, $err := $field.Errors}}
-            <label class="flash-error">{{$err}}</label>
-            {{end}}
-        </div>
-        {{end}}
-        {{end}}
-        <div>
-            <button type="submit" class="btn btn-primary">register</button>
-        </div>
-    </form>
+<div class=" ui middle aligned center aligned grid">
+    <div class=" register-form">
+        <h2>
+            <div class=" content">Create a new account </div>
+        </h2>
+        <form method="post" class="ui large form">
+            <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Register}}
+            <button class="ui fluid large submit button"> Register</button>
+        </form>
+    </div>
 </div>
 {{template "partials/footer.html" .}}

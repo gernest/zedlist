@@ -48,7 +48,7 @@ var sessStore = session.New()
 func Login(ctx echo.Context) error {
 
 	f := forms.New(utils.GetLang(ctx))
-	utils.SetData(ctx, authForm, f.LoginForm()())
+	utils.SetData(ctx, "form", f)
 
 	// set page tittle to login
 	utils.SetData(ctx, pageTitle, loginTitle)
@@ -73,15 +73,21 @@ func LoginPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
 
 	f := forms.New(utils.GetLang(ctx))
-	lf := f.LoginForm()(ctx.Request())
-	if !lf.IsValid() {
-		utils.SetData(ctx, authForm, lf)
+	lf, err := f.DecodeLogin(ctx.Request())
+	if err != nil {
+		utils.SetData(ctx, "form", f)
+		ctx.Redirect(http.StatusFound, "/auth/login")
+		return nil
+	}
+	if !lf.Valid() {
+		f.SetLogin(lf)
+		utils.SetData(ctx, "form", lf)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
 	}
 
 	// Check email and password
-	user, err := query.AuthenticateUserByEmail(lf.GetModel().(forms.Login))
+	user, err := query.AuthenticateUserByEmail(*lf)
 	if err != nil {
 		log.Error(ctx, err)
 
@@ -137,7 +143,7 @@ func LoginPost(ctx echo.Context) error {
 // 		Template         auth/register.html
 func Register(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
-	utils.SetData(ctx, authForm, f.RegisterForm()())
+	utils.SetData(ctx, "form", f)
 
 	// set page tittle to register
 	utils.SetData(ctx, "PageTitle", "register")
@@ -159,9 +165,14 @@ func Register(ctx echo.Context) error {
 func RegisterPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
 	f := forms.New(utils.GetLang(ctx))
-	lf := f.RegisterForm()(ctx.Request())
-	if !lf.IsValid() {
 
+	lf, err := f.DecodeRegister(ctx.Request())
+	if err != nil {
+		// Case the form is not valid, ships it back with the errors exclusively
+		utils.SetData(ctx, authForm, lf)
+		return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
+	}
+	if !lf.Valid() {
 		// Case the form is not valid, ships it back with the errors exclusively
 		utils.SetData(ctx, authForm, lf)
 		return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
@@ -169,7 +180,7 @@ func RegisterPost(ctx echo.Context) error {
 
 	// we are not interested in the returned user, rather we make sure the user has
 	// been created.
-	_, err := query.CreateNewUser(lf.GetModel().(forms.Register))
+	_, err = query.CreateNewUser(*lf)
 	if err != nil {
 		flashMessages.Err(msgAccountCreateFailed)
 		flashMessages.Save(ctx)

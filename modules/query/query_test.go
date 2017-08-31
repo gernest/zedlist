@@ -86,9 +86,6 @@ func TestUserQuery(t *testing.T) {
 	users := []*models.User{}
 	for _, v := range sample {
 		f := forms.Register{}
-		f.FirstName = v.name
-		f.MiddleName = v.name
-		f.LastName = v.name
 		f.Email = v.email
 		f.Password = v.pass
 

@@ -114,6 +114,22 @@ var Tr = &gt.Build{
 			"en": "middle name",
 			"sw": "jina la baba",
 		},
+		"username": {
+			"en": "Username",
+			"sw": "Jina la akaunti",
+		},
+		"username_or_email": {
+			"en": "Username or Email",
+			"sw": "Jina la akaunti au barua pepe",
+		},
+		"password": {
+			"en": "Password",
+			"sw": "Neno la siri",
+		},
+		"confirm_password": {
+			"en": "Confirm Password",
+			"sw": "Thibitisha neno la siri",
+		},
 	},
 }
 

@@ -6,11 +6,12 @@
 package forms
 
 import (
-	"time"
+	"fmt"
+	"html/template"
+	"net/http"
 
-	"github.com/gernest/gforms"
 	"github.com/gernest/zedlist/modules/i18n"
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/gorilla/schema"
 	"github.com/melvinmt/gt"
 )
 
@@ -22,146 +23,108 @@ var (
 	msgEqual     = "message_equal"
 )
 
+var decoder = schema.NewDecoder()
+
 // Login is the login form
 type Login struct {
-	Email    string `gforms:"email"`
-	Password string `gforms:"password"`
+	Email    string `schema:"username"`
+	Password string `schema:"password"`
+}
+
+func (l *Login) Valid() bool {
+	return true
 }
 
 // Register is the registration form
 type Register struct {
-	FirstName       string    `gforms:"first_name"`
-	LastName        string    `gforms:"last_name"`
-	MiddleName      string    `gforms:"middle_name"`
-	Email           string    `gforms:"email"`
-	Password        string    `gforms:"password"`
-	ConfirmPassword string    `gforms:"confirm_password"`
-	Gender          int       `gforms:"gender"`
-	BirthDay        time.Time `gforms:"birth_date"`
+	UserName        string `schema:"user_name"`
+	Email           string `schema:"email"`
+	Password        string `schema:"password"`
+	ConfirmPassword string `schema:"confirm_password"`
+}
+
+func (r *Register) Valid() bool {
+	return true
 }
 
 // Form is contains form validation functions, it support translation
-// of error messages. This uses gforms.
+// of error messages. This uses schema.
 //
 // TODO translate  field names in widgets?
 type Form struct {
 	tr *gt.Build
+	l  *Login
+	r  *Register
 }
 
 // New returns a new Form with laguage Target set to lang
 func New(lang string) *Form {
 	l := i18n.CloneLang()
 	l.SetTarget(lang)
-	return &Form{l}
+	return &Form{tr: l}
 }
 
-// LoginForm returns a gform model for Login.
-func (f *Form) LoginForm() gforms.ModelForm {
-	var attrs = map[string]string{
-		"class": "input-large",
-	}
-	return gforms.DefineModelForm(Login{}, gforms.NewFields(
-		gforms.NewTextField(
-			"email",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-				gforms.EmailValidator(f.tr.T(msgEmail)),
-			},
-			gforms.BaseTextWidget("email", attrs),
-		),
-		gforms.NewTextField(
-			"password",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-				gforms.MinLengthValidator(6, f.tr.T(msgMinLength, 6)),
-			},
-			gforms.PasswordInputWidget(attrs),
-		),
+func (f *Form) SetLogin(l *Login) {
+	f.l = l
+}
+
+func (f *Form) Login() template.HTML {
+	return template.HTML(fmt.Sprintf(`
+	<div class="field">
+		<label> %s </label>
+		<input type="text" name="username" placeholder="%s">
+	</div>
+	<div class="field">
+		<label> %s</label>
+		<input type="password" name="password" placeholder="%s">
+	</div>
+`, f.tr.T("username"), f.tr.T("username_or_email"),
+		f.tr.T("password"), f.tr.T("password"),
 	))
 }
 
-// RegisterForm implements gforms.ModelForm interface for Registration form.
-func (f *Form) RegisterForm() gforms.ModelForm {
-	var birtdateAttrs = map[string]string{
-		"id":    "birthdate",
-		"class": "input-large",
+func (f *Form) DecodeLogin(r *http.Request) (*Login, error) {
+	if err := r.ParseForm(); err != nil {
+		return nil, err
 	}
-	var inputAttrs = map[string]string{
-		"class": "input-large",
+	l := &Login{}
+	if err := decoder.Decode(l, r.PostForm); err != nil {
+		return nil, err
 	}
-	return gforms.DefineModelForm(Register{}, gforms.NewFields(
-		gforms.NewTextField(
-			"first_name",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.TextInputWidget(inputAttrs),
-		),
-		gforms.NewTextField(
-			"last_name",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.TextInputWidget(inputAttrs),
-		),
-		gforms.NewTextField(
-			"middle_name",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.TextInputWidget(inputAttrs),
-		),
-		gforms.NewTextField(
-			"email",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-				gforms.EmailValidator(f.tr.T(msgEmail)),
-			},
-			gforms.BaseTextWidget("email", inputAttrs),
-		),
-		gforms.NewTextField(
-			"password",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-				gforms.MinLengthValidator(6, f.tr.T(msgMinLength, 6)),
-			},
-			gforms.PasswordInputWidget(inputAttrs),
-		),
-		gforms.NewTextField(
-			"confirm_password",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-				gforms.MinLengthValidator(6, f.tr.T(msgMinLength, 6)),
-				EqualValidator{To: "password", Message: f.tr.T(msgEqual)},
-			},
-			gforms.PasswordInputWidget(inputAttrs),
-		),
-		gforms.NewTextField(
-			"gender",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.SelectWidget(
-				inputAttrs,
-				func() gforms.SelectOptions {
-					return gforms.StringSelectOptions([][]string{
-						{"Select...", "", "true", "false"},
-						{"Male", "0", "false", "false"},
-						{"Female", "1", "false", "false"},
-						{"Zombie", "2", "false", "true"},
-					})
-				},
-			),
-		),
+	return l, nil
+}
 
-		gforms.NewDateTimeField(
-			"birth_date",
-			settings.App.BirthDateFormat,
-			gforms.Validators{
-				BirthDateValidator{Limit: settings.App.MinimumAge, Message: f.tr.T(msgAge, settings.App.MinimumAge)},
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.BaseTextWidget("text", birtdateAttrs),
-		),
+func (f *Form) SetRegister(r *Register) {
+	f.r = r
+}
+
+func (f *Form) Register() template.HTML {
+	return template.HTML(fmt.Sprintf(`
+	<div class="field">
+		<label> %s </label>
+		<input type="text" name="username" placeholder="%s">
+	</div>
+	<div class="field">
+		<label> %s</label>
+		<input type="password" name="password" placeholder="%s">
+	</div>
+	<div class="field">
+		<label> %s</label>
+		<input type="password" name="confirm_password" placeholder="%s">
+	</div>
+`, f.tr.T("username"), f.tr.T("username"),
+		f.tr.T("password"), f.tr.T("password"),
+		f.tr.T("confirm_password"), f.tr.T("confirm_password"),
 	))
+}
+
+func (f *Form) DecodeRegister(r *http.Request) (*Register, error) {
+	if err := r.ParseForm(); err != nil {
+		return nil, err
+	}
+	l := &Register{}
+	if err := decoder.Decode(l, r.PostForm); err != nil {
+		return nil, err
+	}
+	return l, nil
 }

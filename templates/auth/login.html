@@ -1,32 +1,13 @@
 {{template "partials/header.html" .}}
-<div class="login">
-    <form method="post">
-        <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
-        {{with .AuthForm}}
-        <table>
-            {{range $i, $field := .Fields}}
-            <tr>
-                <td>
-                    <label>{{label $field.GetName}}</label>
-                </td>
-                <td>
-                    {{plain $field.Html}}
-                    <div>
-                        {{range $ei, $err := $field.Errors}}
-                        <label class="flash-error">{{$err}}</label>
-                        {{end}}
-                    </div>
-                </td>
-            </tr>
-            {{end}}
-            <tr>
-                <td>
-                    <button type="submit" class="btn btn-primary">login</button>
-                </td>
-            </tr>
-        </table>
-        {{end}}
-    </form>
-
+<div class=" ui middle aligned center aligned grid">
+    <div class=" login-form">
+        <h2>
+            <div class=" content">Login to your account </div>
+        </h2>
+        <form method="post" class="ui large form">
+            <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Login}}
+            <button class="ui fluid large submit button"> Login</button>
+        </form>
+    </div>
 </div>
 {{template "partials/footer.html" .}}

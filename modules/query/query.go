@@ -135,14 +135,9 @@ func DropSession() {
 func SampleUser() error {
 	// create a  sample user( to speed up development)
 	regForm := forms.Register{
-		FirstName:       "root",
-		LastName:        "roote",
-		MiddleName:      "root",
 		Email:           "root@home.com",
 		Password:        "superroot",
 		ConfirmPassword: "superroot",
-		Gender:          1,
-		BirthDay:        time.Now(),
 	}
 	u, err := CreateNewUser(regForm)
 	if err != nil {
@@ -195,14 +190,14 @@ func CreateNewUser(reg forms.Register) (*models.User, error) {
 		Password: hashedPass,
 		Status:   models.StatusActive,
 		Person: models.Person{
-			Birthday: reg.BirthDay,
-			Email:    reg.Email,
-			Gender:   reg.Gender,
-			PersonName: models.PersonName{
-				FamilyName: reg.LastName,
-				GivenName:  reg.FirstName,
-				MiddleName: reg.MiddleName,
-			},
+			// Birthday: reg.BirthDay,
+			Email: reg.Email,
+			// Gender:   reg.Gender,
+			// PersonName: models.PersonName{
+			// 	FamilyName: reg.LastName,
+			// 	GivenName:  reg.FirstName,
+			// 	MiddleName: reg.MiddleName,
+			// },
 			ObjectType: models.ObjPerson,
 		},
 	}
@@ -389,7 +384,7 @@ func Update(v interface{}) error {
 	return s.Error
 }
 
-//Delete deletes a value v from the database.
+//Delete deletes a value v fr©om the database.
 func Delete(v interface{}) error {
 	d := db.Conn.Delete(v)
 	return d.Error
