@@ -6,9 +6,9 @@
   - [ ] json API
 - [ ] accounts
   - [ ] oauth2
-  - [ ] login
-  - [ ] logout
-  - [ ] register
+  - [x] login
+  - [x] logout
+  - [x] register
   - [ ] delete
   - [ ] dashboard
 - [ ] ui
