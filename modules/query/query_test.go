@@ -8,6 +8,10 @@ import (
 	"github.com/gernest/zedlist/models"
 )
 
+func init() {
+
+}
+
 func TestJobQuery(t *testing.T) {
 	sample := []*models.Job{
 		{Title: "first"},
@@ -88,7 +92,7 @@ func TestUserQuery(t *testing.T) {
 		f := forms.Register{}
 		f.Email = v.email
 		f.Password = v.pass
-
+		f.UserName = v.name
 		// CreateNewUser
 		usr, err := CreateNewUser(f)
 		if err != nil {

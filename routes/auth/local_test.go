@@ -109,7 +109,7 @@ func TestGetRegister(t *testing.T) {
 func TestPostRegister(t *testing.T) {
 	l := fmt.Sprintf("%s%s", ts.URL, registerPath)
 	vars := url.Values{
-		"username":         {"gernest"},
+		"username":         {"gernest1"},
 		"email":            {"gernest@examples.com"},
 		"password":         {"kilimahewa"},
 		"confirm_password": {"kilimahewa"},
