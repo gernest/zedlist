@@ -1,9 +1,11 @@
-{{$global:=.}}
-{{with .Flash}}
-<div class="flash-messages">
+{{$global:=.}} {{with .Flash}}
+<div class="ui container">
     {{range $k,$v:= . }}
-    <div class="flash {{snake $v.Kind|dashed}}">
-        {{tr $global.ActiveLang $v.Message}}
+    <div class="ui message transition blue {{snake $v.Kind|dashed}}">
+        <div class="header">
+            {{tr $global.ActiveLang $v.Message}}
+        </div>
+        <i class="close icon"></i>
     </div>
     {{end}}
 </div>

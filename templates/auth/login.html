@@ -1,13 +1,15 @@
 {{template "partials/header.html" .}}
-<div class=" ui middle aligned center aligned grid">
-    <div class=" login-form">
-        <h2>
-            <div class=" content">Login to your account </div>
-        </h2>
-        <form method="post" class="ui large form">
-            <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Login}}
-            <button class="ui fluid large submit button"> Login</button>
-        </form>
+<div class=" ui container">
+    <div class=" ui middle aligned center aligned grid">
+        <div class=" login-form">
+            <h2>
+                <div class=" content">Login to your account </div>
+            </h2>
+            <form method="post" class="ui large form">
+                <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Login}}
+                <button class="ui fluid large submit button"> Login</button>
+            </form>
+        </div>
     </div>
 </div>
 {{template "partials/footer.html" .}}
