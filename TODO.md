@@ -10,7 +10,7 @@
   - [x] logout
   - [x] register
   - [ ] delete
-  - [ ] dashboard
+- [ ] dashboard
 - [ ] ui
   - [ ] migrate to semnatic-ui
   - [ ] good looking landing page
