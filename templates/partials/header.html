@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="/static/css/ui.css">
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script src="/static/js/semantic.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.ui.dropdown').dropdown({
+                on: 'hover'
+            });
+        })
+    </script>
 </head>
 
 <body>
@@ -22,9 +29,7 @@
             <a class="item">Github</a>
             <a class="item" href="/docs/">{{tr .ActiveLang "help-btn"}}</a>
             <div class="right menu">
-                {{if .IsLoged}}
-                <a class="item" href="/dash/">{{tr .ActiveLang "dashboard"}}</a>
-                <a class="item" href="/auth/logout">{{tr .ActiveLang "logout"}}</a> {{else}}
+                {{if .IsLoged}} {{template "partials/user.html" .}} {{else}}
                 <a class="item" href="/auth/login">{{tr .ActiveLang "login"}}</a>
                 <a class="item" href="/auth/register">{{tr .ActiveLang "register"}}</a> {{end}}
             </div>

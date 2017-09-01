@@ -1,0 +1,8 @@
+<div class="ui  dropdown">
+    <div class="text">{{.User.PersonName.Name}}</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+        <a class="item" href="/dash/">{{tr .ActiveLang "dashboard"}}</a>
+        <a class="item" href="/auth/logout">{{tr .ActiveLang "logout"}}</a> 
+    </div>
+</div>

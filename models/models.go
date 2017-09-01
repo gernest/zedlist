@@ -113,6 +113,7 @@ type Person struct {
 // PersonName contains user's names.
 type PersonName struct {
 	ID         int    `shcema:"-"`
+	Name       string `shcema:"name"`
 	FamilyName string `schema:"family_name"`
 	GivenName  string `schema:"given_name"`
 	MiddleName string `schema:"middle_name"`

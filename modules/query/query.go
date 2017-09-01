@@ -203,6 +203,9 @@ func CreateNewUser(reg forms.Register) (*models.User, error) {
 		Person: models.Person{
 			Email:      reg.Email,
 			ObjectType: models.ObjPerson,
+			PersonName: models.PersonName{
+				Name: reg.UserName,
+			},
 		},
 	}
 	err = Create(usr)
