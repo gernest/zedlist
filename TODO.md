@@ -16,5 +16,5 @@
     - [ ] Avatar/profile picture upload&display
 - [ ] dashboard
 - [ ] ui
-  - [ ] migrate to semnatic-ui
+  - [x] migrate to semnatic-ui
   - [ ] good looking landing page
