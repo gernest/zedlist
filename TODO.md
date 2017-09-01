@@ -10,6 +10,10 @@
   - [x] logout
   - [x] register
   - [x] delete
+- [ ] settings
+  - [ ] Profile
+    - [ ] Update Profile details
+    - [ ] Avatar/profile picture upload&display
 - [ ] dashboard
 - [ ] ui
   - [ ] migrate to semnatic-ui
