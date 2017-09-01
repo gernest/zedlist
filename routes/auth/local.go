@@ -232,9 +232,11 @@ func RegisterPost(ctx echo.Context) error {
 //
 // Flash messages may be set before redirection.
 func Logout(ctx echo.Context) error {
-	utils.DeleteSession(ctx, settings.App.Session.Lang)
-	utils.DeleteSession(ctx, settings.App.Session.Flash)
-	utils.DeleteSession(ctx, settings.App.Session.Name)
+	if _, ok := ctx.Get("User").(*models.Person); ok {
+		utils.DeleteSession(ctx, settings.App.Session.Lang)
+		utils.DeleteSession(ctx, settings.App.Session.Flash)
+		utils.DeleteSession(ctx, settings.App.Session.Name)
+	}
 	ctx.Redirect(http.StatusFound, "/")
 	return nil
 }
