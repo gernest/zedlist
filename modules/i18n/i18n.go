@@ -94,6 +94,14 @@ var Tr = &gt.Build{
 			"en": "there was a problem encountered, please check the details and try again",
 			"sw": "kuna majanga mkuu, jaribu kupitia maelezo ya fomu na ujaribu tena",
 		},
+		"flash_unauthorized": {
+			"en": "not authorized",
+			"sw": "ihauna ruhusa",
+		},
+		"flash_unknown_account": {
+			"en": "unknown account",
+			"sw": "ihauna ruhusa",
+		},
 		"issued_by": {
 			"en": "issued by",
 			"sw": "imetolewa na",
@@ -133,6 +141,10 @@ var Tr = &gt.Build{
 		"email": {
 			"en": "Email",
 			"sw": "Barua pepe",
+		},
+		"delete_account": {
+			"en": "Delete account",
+			"sw": "Funga akaunti",
 		},
 	},
 }

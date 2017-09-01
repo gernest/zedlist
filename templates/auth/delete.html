@@ -1,0 +1,13 @@
+{{template "partials/header.html" .}}
+<div class=" ui middle aligned center aligned grid">
+    <div class=" login-form">
+        <h2>
+            <div class=" content">Are you sure you want do delete your account? </div>
+        </h2>
+        <form method="post" class="ui large form">
+            <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Delete}}
+            <button class="negative ui fluid large submit button"> DELETE</button>
+        </form>
+    </div>
+</div>
+{{template "partials/footer.html" .}}

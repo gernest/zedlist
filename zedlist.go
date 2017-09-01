@@ -83,6 +83,8 @@ func Routes() *echo.Echo {
 	xauth.GET("/register", auth.Register)
 	xauth.POST("/register", auth.RegisterPost)
 	xauth.GET("/logout", auth.Logout)
+	xauth.GET("/delete", auth.Delete)
+	xauth.POST("/delete", auth.DeletePost)
 
 	// DASHBOARD
 	dashboard := e.Group("/dash")

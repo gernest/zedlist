@@ -457,3 +457,13 @@ func CreateResume(p *models.Person, r models.Resume) error {
 	p.Resumes = append(p.Resumes, r)
 	return Update(p)
 }
+
+func DeleteUser(id int) error {
+	usr := &models.User{}
+	q := db.Conn.Preload("Person").
+		First(usr, id)
+	if q.Error != nil {
+		return q.Error
+	}
+	return Delete(usr)
+}

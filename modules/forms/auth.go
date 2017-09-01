@@ -135,3 +135,16 @@ func (f *Form) DecodeRegister(r *http.Request) (*Register, error) {
 	}
 	return l, nil
 }
+
+func (f *Form) Delete() template.HTML {
+	return template.HTML(`
+<div class="field">
+	<input type="text" name="delete" placeholder="Type your username">
+</div>	
+	`)
+}
+
+func (f *Form) DecodeDelete(r *http.Request) string {
+	r.ParseForm()
+	return r.Form.Get("delete")
+}

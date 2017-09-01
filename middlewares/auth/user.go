@@ -49,14 +49,16 @@ func Must() echo.HandlerFunc {
 				// TODO: log this?
 			}
 			if person != nil {
-
+				id := v.(int)
 				// set in main context
 				ctx.Set("IsLoged", true)
 				ctx.Set("User", person)
+				ctx.Set("UserID", id)
 
 				// for templates
 				utils.SetData(ctx, "IsLoged", true)
 				utils.SetData(ctx, "User", person)
+				utils.SetData(ctx, "UserID", id)
 				return nil
 			}
 		}

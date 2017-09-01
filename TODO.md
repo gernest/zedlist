@@ -9,7 +9,7 @@
   - [x] login
   - [x] logout
   - [x] register
-  - [ ] delete
+  - [x] delete
 - [ ] dashboard
 - [ ] ui
   - [ ] migrate to semnatic-ui

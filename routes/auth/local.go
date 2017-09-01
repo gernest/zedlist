@@ -29,6 +29,8 @@ const (
 	msgAccountCreateFailed = "flash_account_create_fail"
 	msgLoginSuccess        = "flash_login_success"
 	msgLoginErr            = "flash_login_failed"
+	msgNotAuthorized       = "flash_unauthorized"
+	msgUnknownAccount      = "flash_unknown_account"
 	authForm               = "AuthForm"
 )
 
@@ -239,4 +241,41 @@ func Logout(ctx echo.Context) error {
 	}
 	ctx.Redirect(http.StatusFound, "/")
 	return nil
+}
+
+func Delete(ctx echo.Context) error {
+	f := forms.New(utils.GetLang(ctx))
+	utils.SetData(ctx, "form", f)
+
+	// set page tittle to login
+	utils.SetData(ctx, pageTitle, "confirm deleting account")
+	return ctx.Render(http.StatusOK, tmpl.DeleteTpl, utils.GetData(ctx))
+}
+
+func DeletePost(ctx echo.Context) error {
+	flashMessages := flash.New()
+	f := forms.New(utils.GetLang(ctx))
+	u, ok := ctx.Get("User").(*models.Person)
+	if !ok {
+		flashMessages.Err(msgNotAuthorized)
+		flashMessages.Save(ctx)
+		ctx.Redirect(http.StatusFound, "/auth/delete")
+		return nil
+	}
+	usr := f.DecodeDelete(ctx.Request())
+	if usr != u.PersonName.Name {
+		flashMessages.Err(msgUnknownAccount)
+		flashMessages.Save(ctx)
+		ctx.Redirect(http.StatusFound, "/auth/delete")
+		return nil
+	}
+	id := ctx.Get("UserID").(int)
+	utils.DeleteSession(ctx, settings.App.Session.Lang)
+	utils.DeleteSession(ctx, settings.App.Session.Flash)
+	utils.DeleteSession(ctx, settings.App.Session.Name)
+
+	if err := query.DeleteUser(id); err != nil {
+		log.Error(ctx, err)
+	}
+	return ctx.Redirect(http.StatusFound, "/")
 }
