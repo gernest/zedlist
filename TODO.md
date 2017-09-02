@@ -6,6 +6,10 @@
   - [ ] json API
 - [ ] accounts
   - [ ] oauth2
+    - [ ] Github
+    - [ ] Google+
+    - [ ] Facebook
+    - [ ] Twitter
   - [x] login
   - [x] logout
   - [x] register
