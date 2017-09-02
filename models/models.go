@@ -24,7 +24,7 @@ func NewJSONErr(msg string) *JSONError {
 
 // Job is the base job struct
 type Job struct {
-	ID    int    `json:"id,omitempty"`
+	ID    int64  `json:"id,omitempty"`
 	Title string `json:"title"`
 
 	// Description is a longer description about the job
@@ -32,7 +32,7 @@ type Job struct {
 	Description string `json:"description" sql:"null;type:text"`
 
 	Region    Region    `json:"region"`
-	RegionID  int       `json:"region_id"`
+	RegionID  int64     `json:"region_id"`
 	Deadline  time.Time `json:"deadline"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -46,7 +46,7 @@ func (j *Job) Sanitize() {
 
 // Logger is the logging infomation schema.
 type Logger struct {
-	ID        int
+	ID        int64
 	Level     int
 	Message   string
 	Path      string
@@ -92,7 +92,7 @@ const (
 
 // Person contains user's details
 type Person struct {
-	ID                 int
+	ID                 int64
 	AboutMe            string
 	Birthday           time.Time
 	CurrentLocation    string
@@ -112,7 +112,7 @@ type Person struct {
 
 // PersonName contains user's names.
 type PersonName struct {
-	ID         int    `shcema:"-"`
+	ID         int64  `shcema:"-"`
 	Name       string `shcema:"name"`
 	FamilyName string `schema:"family_name"`
 	GivenName  string `schema:"given_name"`
@@ -139,14 +139,14 @@ func (p *Person) UpdateNames(pName *PersonName) {
 
 // Region represent the region(look I'm from Tanzania, here we have cities and regions).
 type Region struct {
-	ID    int    `json:"id"`
+	ID    int64  `json:"id"`
 	Name  string `json:"name"`
 	Short string `json:"short"`
 }
 
 // Session stores session data from gorilla/sessions
 type Session struct {
-	ID        int
+	ID        int64
 	Key       string
 	Data      string `sql:"type:text"`
 	ExpiresOn time.Time
@@ -156,7 +156,7 @@ type Session struct {
 
 // Token represent a jwt token object.
 type Token struct {
-	ID        int
+	ID        int64
 	Key       string `sql:"unique_index;type:text"`
 	Valid     bool
 	Claims    []Claim
@@ -167,7 +167,7 @@ type Token struct {
 
 // Claim represent claims to a token with a given TokenID
 type Claim struct {
-	ID      int
+	ID      int64
 	TokenID int `sql:"index"`
 	Key     string
 	Value   string
@@ -188,7 +188,7 @@ const (
 
 // User is the zedlist user.
 type User struct {
-	ID        int
+	ID        int64
 	Email     string `sql:"type:varchar(100);unique_index"`
 	Password  string
 	Name      string `gorm:"unique"`

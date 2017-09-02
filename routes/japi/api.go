@@ -58,7 +58,7 @@ func unmarshalToJSON(ctx echo.Context, val interface{}) error {
 
 // GetJob retrieves a job by ID
 func GetJob(ctx echo.Context) error {
-	id, err := utils.GetInt(ctx.Param("id"))
+	id, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}

@@ -44,12 +44,12 @@ func Must() echo.HandlerFunc {
 			// TODO: log this?
 		}
 		if v, ok := ss.Values["userID"]; ok {
-			person, err := query.GetPersonByUserID(v.(int))
+			id := v.(int64)
+			person, err := query.GetPersonByUserID(id)
 			if err != nil {
 				// TODO: log this?
 			}
 			if person != nil {
-				id := v.(int)
 				// set in main context
 				ctx.Set("IsLoged", true)
 				ctx.Set("User", person)

@@ -73,7 +73,7 @@ func JobsHome(ctx echo.Context) error {
 //
 // 		Template         base/jobs_view.html
 func JobView(ctx echo.Context) error {
-	id, err := utils.GetInt(ctx.Param("id"))
+	id, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))

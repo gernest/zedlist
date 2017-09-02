@@ -45,7 +45,7 @@ func Home(ctx echo.Context) error {
 //
 // 		Template         resume/view.html
 func View(ctx echo.Context) error {
-	iid, err := utils.GetInt(ctx.Param("id"))
+	iid, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
@@ -102,7 +102,7 @@ func Create(ctx echo.Context) error {
 //
 // 		Template         None
 func Update(ctx echo.Context) error {
-	id, err := utils.GetInt(ctx.Param("id"))
+	id, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
@@ -135,7 +135,7 @@ func Update(ctx echo.Context) error {
 // 		Template         None
 func Delete(ctx echo.Context) error {
 	var flashMessages = flash.New()
-	id, err := utils.GetInt(ctx.Param("id"))
+	id, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))

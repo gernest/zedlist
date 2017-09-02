@@ -29,7 +29,7 @@ func CreateJob(j *models.Job) error {
 }
 
 // GetJobByID retrieves a job record from the database by id.
-func GetJobByID(id int) (*models.Job, error) {
+func GetJobByID(id int64) (*models.Job, error) {
 	jb := &models.Job{}
 	q := db.Conn.First(jb, id)
 	if q.Error != nil {
@@ -156,7 +156,7 @@ func SampleUser() error {
 //
 
 // GetUserByID retrieves the user by the given id.
-func GetUserByID(id int) (*models.User, error) {
+func GetUserByID(id int64) (*models.User, error) {
 	usr := &models.User{}
 	q := db.Conn.First(usr, id)
 	if q.Error != nil {
@@ -261,7 +261,7 @@ func hashPassword(pass string) (string, error) {
 //
 
 // GetPersonByUserID retrieves a person by using a user's ID.
-func GetPersonByUserID(userID int) (*models.Person, error) {
+func GetPersonByUserID(userID int64) (*models.Person, error) {
 	p := &models.Person{}
 	usr := &models.User{}
 	qu := db.Conn.First(usr, userID)
@@ -433,7 +433,7 @@ func GetTokenByKey(key string) (*models.Token, error) {
 //
 
 // GetResumeByID retrieves the resume by ID.
-func GetResumeByID(id int) (*models.Resume, error) {
+func GetResumeByID(id int64) (*models.Resume, error) {
 	resume := &models.Resume{}
 	q := db.Conn.Preload("ResumeBasic").First(resume, id)
 	if q.Error != nil {

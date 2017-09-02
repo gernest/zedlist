@@ -10,11 +10,11 @@ import (
 
 // Resume represent Curriculum Vitae
 type Resume struct {
-	ID            int                 `json:"id"`
-	PersonID      int                 `json:"person_id"`
+	ID            int64               `json:"id"`
+	PersonID      int64               `json:"person_id"`
 	Name          string              `json:"name"`
 	ResumeBasic   ResumeBasic         `json:"basic"`
-	ResumeBasicID int                 `json:"basic_id"`
+	ResumeBasicID int64               `json:"basic_id"`
 	Work          []ResumeWork        `json:"work"`
 	Volunteer     []ResumeWork        `json:"volunteer"`
 	Education     []ResumeEducation   `json:"education"`
@@ -30,7 +30,7 @@ type Resume struct {
 
 // ResumeBasic is the basic information for a resume
 type ResumeBasic struct {
-	ID int `json:"id" schema:"-"`
+	ID int64 `json:"id" schema:"-"`
 
 	// Name is the name of the resume holder
 	// e.g Geofrey Ernest
@@ -58,7 +58,7 @@ type ResumeBasic struct {
 	Summary string `json:"summary" schema:"summary"`
 
 	ResumeLocation   ResumeLocation `json:"location" schema:"location"`
-	ResumeLocationID int            `json:"-" shema:"-"`
+	ResumeLocationID int64          `json:"-" shema:"-"`
 
 	Profiles []ResumeProfile `json:"profiles" schema:"-"`
 
@@ -68,7 +68,7 @@ type ResumeBasic struct {
 
 // ResumeLocation is the location details of a resume owner.
 type ResumeLocation struct {
-	ID          int       `json:"id" schema:"-"`
+	ID          int64     `json:"id" schema:"-"`
 	Address     string    `json:"address" schema:"address"`
 	PostalCode  string    `json:"postalCode" schema:"postal_code"`
 	City        string    `json:"city" schema:"city"`
@@ -80,8 +80,8 @@ type ResumeLocation struct {
 
 // ResumeProfile is the profile of the resume owner.
 type ResumeProfile struct {
-	ID            int `json:"id"`
-	ResumeBasicID int `sql:"index"`
+	ID            int64 `json:"id"`
+	ResumeBasicID int64 `sql:"index"`
 
 	// Network is a social network
 	// e.g Facebook google+ or github
@@ -101,8 +101,8 @@ type ResumeProfile struct {
 
 // ResumeWork is the work details of the resume owner.
 type ResumeWork struct {
-	ID       int `json:"id"`
-	ResumeID int `sql:"index"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `sql:"index"`
 
 	// e.g zedlist
 	Company string `json:"company"`
@@ -133,17 +133,17 @@ type ResumeWork struct {
 
 // ResumeItem is a single item.
 type ResumeItem struct {
-	ID        int       `json:"id"`
+	ID        int64     `json:"id"`
 	Body      string    `json:"item"`
-	ItemID    int       `json:"item_id"`
+	ItemID    int64     `json:"item_id"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
 // ResumeEducation is the education details of the resume owner.
 type ResumeEducation struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 
 	// e.g UDOM
 	Institution string `json:"institution"`
@@ -169,8 +169,8 @@ type ResumeEducation struct {
 
 // ResumeAward is the award details of the resume owner.
 type ResumeAward struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 	// e.g Best dreamer
 	Title string `json:"title"`
 
@@ -189,8 +189,8 @@ type ResumeAward struct {
 
 // ResumePublication is the publication details of the resume owner.
 type ResumePublication struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 
 	// e.g Beating poverty with golang
 	Name string `json:"name"`
@@ -213,8 +213,8 @@ type ResumePublication struct {
 
 // ResumeSkill is the skill details of the resume owner.
 type ResumeSkill struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 
 	// e.g web dev
 	Name string `json:"name"`
@@ -231,8 +231,8 @@ type ResumeSkill struct {
 
 // ResumeLanguage is the language details of the resume owner.
 type ResumeLanguage struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 
 	// e.g English, Swahili
 	Language string `json:"language"`
@@ -246,8 +246,8 @@ type ResumeLanguage struct {
 
 // ResumeInterest is the interest details of the resume owner.
 type ResumeInterest struct {
-	ID       int `json:"id"`
-	ResumeID int `json:"resume_id"`
+	ID       int64 `json:"id"`
+	ResumeID int64 `json:"resume_id"`
 
 	// e.g music
 	Name string `json:"name"`
@@ -261,8 +261,8 @@ type ResumeInterest struct {
 
 // ResumeReferee is the details about a person who is refereeing for the resume owner.
 type ResumeReferee struct {
-	ID        int       `json:"id"`
-	ResumeID  int       `json:"resume_id"`
+	ID        int64     `json:"id"`
+	ResumeID  int64     `json:"resume_id"`
 	Name      string    `json:"name"`
 	Reference string    `json:"reference"`
 	CreatedAt time.Time `json:"created_at"`

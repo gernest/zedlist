@@ -83,6 +83,11 @@ func DeleteSession(ctx echo.Context, sessionName string) error {
 }
 
 //GetInt converts the string to int
+func GetInt64(str string) (int64, error) {
+	return com.StrTo(str).Int64()
+}
+
+//GetInt converts the string to int
 func GetInt(str string) (int, error) {
 	return com.StrTo(str).Int()
 }
