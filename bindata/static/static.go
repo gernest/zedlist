@@ -115,7 +115,7 @@ func staticCssThemesDefaultAssetsFontsIconsEot() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.eot", size: 60767, mode: os.FileMode(493), modTime: time.Unix(1502087034, 0)}
+	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.eot", size: 60767, mode: os.FileMode(493), modTime: time.Unix(1504340310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -135,7 +135,7 @@ func staticCssThemesDefaultAssetsFontsIconsSvg() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.svg", size: 313398, mode: os.FileMode(493), modTime: time.Unix(1502087034, 0)}
+	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.svg", size: 313398, mode: os.FileMode(493), modTime: time.Unix(1504340310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -155,7 +155,7 @@ func staticCssThemesDefaultAssetsFontsIconsTtf() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.ttf", size: 122092, mode: os.FileMode(493), modTime: time.Unix(1502087034, 0)}
+	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.ttf", size: 122092, mode: os.FileMode(493), modTime: time.Unix(1504340310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -175,7 +175,7 @@ func staticCssThemesDefaultAssetsFontsIconsWoff() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.woff", size: 71508, mode: os.FileMode(493), modTime: time.Unix(1502087034, 0)}
+	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.woff", size: 71508, mode: os.FileMode(493), modTime: time.Unix(1504340310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -195,12 +195,12 @@ func staticCssThemesDefaultAssetsFontsIconsWoff2() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.woff2", size: 56780, mode: os.FileMode(493), modTime: time.Unix(1502087034, 0)}
+	info := bindataFileInfo{name: "static/css/themes/default/assets/fonts/icons.woff2", size: 56780, mode: os.FileMode(493), modTime: time.Unix(1504340310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _staticCssUiCss = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x72\x48\xce\x48\x2c\x2a\x4e\x2d\x51\x50\x0a\x0d\x71\xd3\xb5\x50\xb2\xe6\xe2\xd2\xcb\xc9\x4f\xcf\xcc\xd3\x4d\xcb\x2f\xca\xad\xe6\x52\x50\xc8\x4d\xac\xd0\x2d\xcf\x4c\x29\xc9\xb0\x52\x30\xb1\x30\x28\xa8\xb0\xe6\xaa\xe5\xe2\xd2\x2b\x4a\x4d\xcf\x2c\x2e\x49\x2d\xc2\xa7\x0c\x10\x00\x00\xff\xff\x43\xdd\x9d\x23\x5c\x00\x00\x00")
+var _staticCssUiCss = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x84\x92\x4f\xce\x9b\x30\x10\xc5\xf7\x9c\x62\xfa\xad\x5a\xa9\x58\x90\x3f\x4a\x44\x36\x59\xf5\x04\xed\x01\x1c\x3c\xc0\xa8\x78\x8c\xec\x89\x92\xb4\xca\xdd\x2b\x43\x82\x20\xe9\x97\xb0\x42\xd6\xfb\xbd\xb1\xdf\x9b\x7d\xd9\x68\x1f\x50\xe0\xe3\xd7\xcf\x1f\xe9\xf6\x63\x97\x24\xaa\x75\x35\x71\x5a\x39\x6f\xff\x26\x00\x56\x9f\xd3\x13\x19\x69\x0a\x58\x6d\xb3\xee\xbc\x4b\xae\x49\xa2\x3c\xd6\x14\x04\xfd\x1b\x99\xd5\x41\x1a\xd4\x46\x05\xac\x2d\xb2\x40\x2f\x25\x4e\x1b\xa4\xba\x91\x02\x36\x59\xaf\x05\xe8\xb4\x31\xc4\x75\x01\x39\x5a\xc8\xd0\x46\x7e\xc4\x21\xde\xc9\x29\x12\xb4\x40\xb6\x1e\x5c\xb4\x8f\xd7\xf4\x83\x4f\xfe\x44\x1c\x49\x59\xe4\x63\xff\x73\x38\x8a\x38\x9e\x62\x2d\x56\x52\x40\xa6\xd6\x8f\x5c\x93\x47\x20\xfe\xa2\x9f\x02\xe2\xba\x02\x96\x51\x3d\x1e\x1d\x9c\x88\xb3\xc5\x70\x5b\x80\xca\xb1\xa4\x81\xfe\x60\x01\xab\xc9\xc9\xe9\xf6\x52\x76\xde\xea\x76\x1e\x0b\x34\x8b\x7e\xc6\x04\xcd\xd5\xe6\x35\x1c\xbf\xbd\x45\x43\x1a\x1c\xb7\x17\x08\xa5\x47\x64\xd0\x6c\xe0\xeb\xa4\x84\x3e\xd8\x6f\xbd\x7b\x7c\x50\x45\x67\x34\x43\x20\xf1\x08\xc0\x50\xe8\x5a\x7d\x89\xd6\x8c\xf0\x85\x6c\xe7\xbc\x68\x96\x38\xfa\x1a\xa1\x80\xa5\x63\xa3\xfd\x45\x75\x8e\x58\x88\xeb\x5b\x9e\xb1\x85\xef\x2f\x15\x9f\x8d\x79\xef\x2d\xae\x1c\x5a\x7e\xa0\x0f\xad\x2b\x7f\x8f\xf8\x7f\xb7\x6a\xbe\x57\xcb\xf5\x6d\xaf\x66\xc0\x73\xbb\xb3\xec\x17\x43\xf2\xf3\xce\xf3\x61\x47\x9e\x9c\x16\xf7\xa9\x13\x6d\x76\xd7\x3e\x54\x3a\x3a\x5c\xff\x05\x00\x00\xff\xff\xb6\xb7\x05\xb3\x70\x03\x00\x00")
 
 func staticCssUiCssBytes() ([]byte, error) {
 	return bindataRead(
@@ -215,7 +215,7 @@ func staticCssUiCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/ui.css", size: 92, mode: os.FileMode(420), modTime: time.Unix(1504270349, 0)}
+	info := bindataFileInfo{name: "static/css/ui.css", size: 880, mode: os.FileMode(420), modTime: time.Unix(1504341597, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

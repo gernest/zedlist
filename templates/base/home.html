@@ -1,2 +1,6 @@
-{{template "partials/header.html" .}}
+{{if .IsLoged}}
+{{template "partials/common_header.html" .}}
+{{else}}
+{{template "base/landing.html" .}}
+{{end}}
 {{template "partials/footer.html" .}}

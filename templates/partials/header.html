@@ -26,17 +26,3 @@
 </head>
 
 <body>
-    <div class="ui large top  menu">
-        <div class="ui container">
-            <a class="item" href="/">{{tr .ActiveLang "home-btn"}}</a>
-            <a class="item" href="/jobs/">{{tr .ActiveLang "jobs-btn"}}</a>
-            <a class="item" href="https://github.com/gernest/zedlist" target="_blank">Github</a>
-            <a class="item" href="/docs/">{{tr .ActiveLang "help-btn"}}</a>
-            <div class="right menu">
-                {{if .IsLoged}} {{template "partials/user.html" .}} {{else}}
-                <a class="item" href="/auth/login">{{tr .ActiveLang "login"}}</a>
-                <a class="item" href="/auth/register">{{tr .ActiveLang "register"}}</a> {{end}}
-            </div>
-        </div>
-    </div>
-    {{if .Flash}} {{template "partials/flash.html" .}} {{end}}

@@ -27,5 +27,5 @@
 - [ ] dashboard
 - [ ] ui
   - [x] migrate to semnatic-ui
-  - [ ] good looking landing page
+  - [x] good looking landing page
 - [ ] Migrate to use ngorm as ORM

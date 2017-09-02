@@ -1,0 +1,22 @@
+{{template "partials/header.html" .}}
+<div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui container">
+        <div class="ui large secondary inverted pointing menu">
+            <a class="item" href="/">{{tr .ActiveLang "home-btn"}}</a>
+            <a class="item" href="/jobs/">{{tr .ActiveLang "jobs-btn"}}</a>
+            <a class="item" href="https://github.com/gernest/zedlist" target="_blank">Github</a>
+            <a class="item" href="/docs/">{{tr .ActiveLang "help-btn"}}</a>
+            <div class="right item">
+                <a class="ui inverted button" href="/auth/login">{{tr .ActiveLang "login"}}</a>
+                <a class="ui inverted button" href="/auth/register">{{tr .ActiveLang "register"}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui text container">
+        <h1 class="ui inverted header">
+            Get the right person for the Job
+        </h1>
+        <h2>A humble self hosted recruitment service</h2>
+        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+    </div>
+</div>
