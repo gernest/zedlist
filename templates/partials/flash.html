@@ -1,7 +1,7 @@
 {{$global:=.}} {{with .Flash}}
 <div class="ui container">
     {{range $k,$v:= . }}
-    <div class="ui message transition blue {{snake $v.Kind|dashed}}">
+    <div class="ui message transition  {{$v.Class}}">
         <div class="header">
             {{tr $global.ActiveLang $v.Message}}
         </div>

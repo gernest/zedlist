@@ -27,6 +27,19 @@ type Flash struct {
 	Message string
 }
 
+func (f *Flash) Class() string {
+	switch f.Kind {
+	case settings.FlashErr:
+		return "red"
+	case settings.FlashSuccess:
+		return "blue"
+	case settings.FlashWarn:
+		return "orange"
+	default:
+		return ""
+	}
+}
+
 // Flashes is a collection of flash messages
 type Flashes []*Flash
 
