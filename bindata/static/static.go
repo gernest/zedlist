@@ -13,6 +13,7 @@
 // static/docs/sw/home.md
 // static/js/jquery-3.2.1.min.js
 // static/js/semantic.min.js
+// static/js/zedlist.js
 // DO NOT EDIT!
 
 package static
@@ -340,6 +341,26 @@ func staticJsSemanticMinJs() (*asset, error) {
 	return a, nil
 }
 
+var _staticJsZedlistJs = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x5c\x8d\xd1\xaa\xc2\x30\x0c\x40\xdf\xef\x57\xf4\x61\x90\x04\x2e\xf9\x00\xfd\x9a\xd2\x66\xae\xb8\x25\xd2\x74\x8a\xc8\xfe\x5d\xb6\xc9\x04\xf3\x14\xc2\x39\x39\x1d\x66\x4b\xf3\x24\xda\x88\xab\xc4\xfc\xc4\x7e\xd6\xd4\x8a\x29\xd2\xeb\x2f\x84\x10\x3a\x04\x9e\x0b\xe7\x6a\xb7\x6c\x0f\x05\x3a\x56\xdc\x81\x75\x4c\x4f\x01\x06\xbb\x4b\x85\xed\xb6\xd0\xf9\x90\x27\x71\x8f\x17\x09\x9c\x46\x73\x01\x62\x53\x84\x34\x96\x74\x85\xff\xdf\xd8\xee\xb4\xa1\x38\xed\xb8\xb7\xef\x07\xa0\x83\xe1\x56\xa3\x7a\xd9\x54\xe8\x63\x16\xf8\x04\xd7\xf0\x42\xef\x00\x00\x00\xff\xff\xc7\x74\xba\x97\xd6\x00\x00\x00")
+
+func staticJsZedlistJsBytes() ([]byte, error) {
+	return bindataRead(
+		_staticJsZedlistJs,
+		"static/js/zedlist.js",
+	)
+}
+
+func staticJsZedlistJs() (*asset, error) {
+	bytes, err := staticJsZedlistJsBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "static/js/zedlist.js", size: 214, mode: os.FileMode(420), modTime: time.Unix(1504366953, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -405,6 +426,7 @@ var _bindata = map[string]func() (*asset, error){
 	"static/docs/sw/home.md": staticDocsSwHomeMd,
 	"static/js/jquery-3.2.1.min.js": staticJsJquery321MinJs,
 	"static/js/semantic.min.js": staticJsSemanticMinJs,
+	"static/js/zedlist.js": staticJsZedlistJs,
 }
 
 // AssetDir returns the file names below a certain
@@ -478,6 +500,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		"js": &bintree{nil, map[string]*bintree{
 			"jquery-3.2.1.min.js": &bintree{staticJsJquery321MinJs, map[string]*bintree{}},
 			"semantic.min.js": &bintree{staticJsSemanticMinJs, map[string]*bintree{}},
+			"zedlist.js": &bintree{staticJsZedlistJs, map[string]*bintree{}},
 		}},
 	}},
 }}
