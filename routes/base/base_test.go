@@ -134,7 +134,7 @@ func TestSetLang(t *testing.T) {
 	}
 
 	// Yes a home page should contain swahili words
-	if !bytes.Contains(b, []byte("nyumbani")) {
+	if !bytes.Contains(b, []byte("Nyumbani")) {
 		t.Errorf("expected home page to be in swahili got %s", b)
 	}
 }

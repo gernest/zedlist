@@ -6,7 +6,7 @@
 package i18n
 
 import (
-	"github.com/melvinmt/gt"
+	"github.com/gernest/gt"
 )
 
 // Tr contains translations.
@@ -157,11 +157,11 @@ var Tr = &gt.Build{
 	},
 }
 
+func init() {
+	Tr.Init()
+}
+
 // CloneLang returns a copy of translations.
 func CloneLang() *gt.Build {
-	b := &gt.Build{}
-	b.Origin = Tr.Origin
-	b.Target = Tr.Target
-	b.Index = Tr.Index
-	return b
+	return Tr
 }

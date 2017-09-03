@@ -80,6 +80,12 @@
   revision = "a383c6079820de953d5341873de451dc5cf49873"
 
 [[projects]]
+  name = "github.com/gernest/gt"
+  packages = ["."]
+  revision = "7a6e877e96a228bc28dff7f64d6bd1370179a432"
+  version = "v1.1.0"
+
+[[projects]]
   name = "github.com/gernest/vala"
   packages = ["."]
   revision = "bfe9b50e828ad56312e486cbf4165ff1ac3a9bae"
@@ -182,12 +188,6 @@
   version = "v0.0.2"
 
 [[projects]]
-  name = "github.com/melvinmt/gt"
-  packages = ["."]
-  revision = "89145987ddf6dda4617d70e9e12e028c238cbdaf"
-  version = "v1.0.1"
-
-[[projects]]
   branch = "master"
   name = "github.com/microcosm-cc/bluemonday"
   packages = ["."]
@@ -287,7 +287,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
-  revision = "ab9e364efd8b52800ff7ee48a9ffba4e0ed78dfb"
+  revision = "7ddbeae9ae08c6a06a59597f0c9edbc5ff2444ce"
 
 [[projects]]
   name = "gopkg.in/russross/blackfriday.v1"
@@ -304,6 +304,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d06fdd9fddea48aa704e1f009b3bf52468757cfa0494a704cd0e1d35fd3270dc"
+  inputs-digest = "7ccd11caff4766a54445ca87bb43f7568db9c6061a4d3a4fdff9a5a4e81d1b9f"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -8,9 +8,9 @@ import (
 	validate "github.com/asaskevich/govalidator"
 	"github.com/gernest/zedlist/models"
 
+	"github.com/gernest/gt"
 	"github.com/gernest/vala"
 	"github.com/gernest/zedlist/modules/i18n"
-	"github.com/melvinmt/gt"
 )
 
 var (

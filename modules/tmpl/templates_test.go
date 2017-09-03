@@ -24,8 +24,8 @@ func TestNew(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if !strings.Contains(rst, "nyumbani") {
-		t.Errorf("expected %s to contain hello world", rst)
+	if !strings.Contains(rst, "Nyumbani") {
+		t.Errorf("expected %s to contain Nyumbani", rst)
 	}
 }
 
@@ -67,11 +67,11 @@ func TestFuncs(t *testing.T) {
 	}
 
 	// translate
-	if translate("en", "home-btn") != "home" {
-		t.Errorf("expected home got %s", translate("ne", "home-btn"))
+	if translate("en", "home-btn") != "Home" {
+		t.Errorf("expected Home got %s", translate("ne", "home-btn"))
 	}
-	if translate("sw", "home-btn") != "nyumbani" {
-		t.Errorf("expected nyumbani got %s", translate("ne", "home-btn"))
+	if translate("sw", "home-btn") != "Nyumbani" {
+		t.Errorf("expected Nyumbani got %s", translate("ne", "home-btn"))
 	}
 
 	// date

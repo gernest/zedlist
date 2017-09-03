@@ -10,9 +10,9 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/gernest/gt"
 	"github.com/gernest/zedlist/modules/i18n"
 	"github.com/gorilla/schema"
-	"github.com/melvinmt/gt"
 )
 
 var (
