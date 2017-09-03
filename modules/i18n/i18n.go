@@ -22,6 +22,14 @@ var Tr = &gt.Build{
 			"en": "Jobs",
 			"sw": "Ajira",
 		},
+		"job": {
+			"en": "Job",
+			"sw": "Ajira",
+		},
+		"resume": {
+			"en": "Resume",
+			"sw": "Rejea",
+		},
 		"help-btn": {
 			"en": "Help",
 			"sw": "Msaada",
@@ -153,6 +161,10 @@ var Tr = &gt.Build{
 		"login_form_title": {
 			"en": "Login to your account",
 			"sw": "Ingia kwenye akaunti yako",
+		},
+		"new": {
+			"en": "New",
+			"sw": "Mpya",
 		},
 	},
 }
