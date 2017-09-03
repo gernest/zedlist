@@ -8,6 +8,7 @@
             {{if .IsLoged}} {{template "partials/user.html" .}} {{else}}
             <a class="item" href="/auth/login">{{tr .ActiveLang "login"}}</a>
             <a class="item" href="/auth/register">{{tr .ActiveLang "register"}}</a> {{end}}
+            <a class="ui inverted button" href="/language/{{ switchLang .ActiveLang}}"><i class="{{flag .ActiveLang}} flag "></i></a>
         </div>
     </div>
 </div>

@@ -15,16 +15,16 @@ var Tr = &gt.Build{
 	Target: "sw",
 	Index: gt.Strings{
 		"home-btn": {
-			"en": "home",
-			"sw": "nyumbani",
+			"en": "Home",
+			"sw": "Nyumbani",
 		},
 		"jobs-btn": {
-			"en": "jobs",
-			"sw": "ajira",
+			"en": "Jobs",
+			"sw": "Ajira",
 		},
 		"help-btn": {
-			"en": "help",
-			"sw": "msaada",
+			"en": "Help",
+			"sw": "Msaada",
 		},
 		"contact-btn": {
 			"en": "contact us",
@@ -43,16 +43,16 @@ var Tr = &gt.Build{
 			"sw": "omba sasa",
 		},
 		"login": {
-			"en": "login",
-			"sw": "ingia",
+			"en": "Login",
+			"sw": "Ingia",
 		},
 		"logout": {
-			"en": "logout",
-			"sw": "jitoe",
+			"en": "Logout",
+			"sw": "Jitoe",
 		},
 		"register": {
-			"en": "register",
-			"sw": "jiunge",
+			"en": "Register",
+			"sw": "Iiunge",
 		},
 		"message_required": {
 			"en": "this field should not be empty",
@@ -145,6 +145,14 @@ var Tr = &gt.Build{
 		"delete_account": {
 			"en": "Delete account",
 			"sw": "Funga akaunti",
+		},
+		"register_form_title": {
+			"en": "Create a new account",
+			"sw": "Tengeneza akaunti mpya",
+		},
+		"login_form_title": {
+			"en": "Login to your account",
+			"sw": "Ingia kwenye akaunti yako",
 		},
 	},
 }

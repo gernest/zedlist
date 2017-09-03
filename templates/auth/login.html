@@ -3,11 +3,10 @@
     <div class=" ui middle aligned center aligned grid">
         <div class=" login-form">
             <h2>
-                <div class=" content">Login to your account </div>
+                <div class=" content">{{tr .ActiveLang "login_form_title"}}</div>
             </h2>
             <form method="post" class="ui large form">
                 <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Login}}
-                <button class="ui fluid large submit button"> Login</button>
             </form>
         </div>
     </div>

@@ -122,14 +122,16 @@ func init() {
 
 // Funcs is a map of default template functions.
 var Funcs = template.FuncMap{
-	"date":   date,
-	"tr":     translate,
-	"md":     toMarkdown,
-	"plain":  toHTML,
-	"label":  label,
-	"script": script,
-	"snake":  com.ToSnakeCase,
-	"dashed": dashed,
+	"date":       date,
+	"tr":         translate,
+	"md":         toMarkdown,
+	"plain":      toHTML,
+	"label":      label,
+	"script":     script,
+	"snake":      com.ToSnakeCase,
+	"dashed":     dashed,
+	"flag":       flagClass,
+	"switchLang": switchLang,
 }
 
 // Config is the template configuration. Templates are loaded from embedded source, this act as a
@@ -217,6 +219,28 @@ func (t *Template) load() (*Template, error) {
 // default date format for zedlist.
 func date(t time.Time) string {
 	return t.Format(time.RFC822)
+}
+
+func flagClass(lang string) template.CSS {
+	switch lang {
+	case "en":
+		return template.CSS("us")
+	case "sw":
+		return template.CSS("tz")
+	default:
+		return template.CSS("")
+	}
+}
+
+func switchLang(lang string) template.CSS {
+	switch lang {
+	case "en":
+		return template.CSS("sw")
+	case "sw":
+		return template.CSS("en")
+	default:
+		return template.CSS("en")
+	}
 }
 
 // translate the str, into a given lang. Only two languages are supported english( en )

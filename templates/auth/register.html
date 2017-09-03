@@ -2,11 +2,10 @@
 <div class=" ui middle aligned center aligned grid">
     <div class=" register-form">
         <h2>
-            <div class=" content">Create a new account </div>
+            <div class=" content">{{tr .ActiveLang "register_form_title"}}</div>
         </h2>
         <form method="post" class="ui large form">
             <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Register}}
-            <button class="ui fluid large submit button"> Register</button>
         </form>
     </div>
 </div>

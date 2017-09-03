@@ -80,8 +80,10 @@ func (f *Form) Login() template.HTML {
 		<label> %s</label>
 		<input type="password" name="password" placeholder="%s">
 	</div>
+	<button class="ui fluid large submit button"> %s</button>
 `, f.tr.T("username"), f.tr.T("username_or_email"),
 		f.tr.T("password"), f.tr.T("password"),
+		f.tr.T("login"),
 	))
 }
 
@@ -118,10 +120,12 @@ func (f *Form) Register() template.HTML {
 		<label> %s</label>
 		<input type="password" name="confirm_password" placeholder="%s">
 	</div>
+	<button class="ui fluid large submit button"> %s</button>
 `, f.tr.T("username"), f.tr.T("username"),
 		f.tr.T("email"), f.tr.T("email"),
 		f.tr.T("password"), f.tr.T("password"),
 		f.tr.T("confirm_password"), f.tr.T("confirm_password"),
+		f.tr.T("register"),
 	))
 }
 
