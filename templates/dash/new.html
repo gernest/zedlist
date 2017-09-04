@@ -1,13 +1,24 @@
 {{template "partials/common_header.html" .}}
 <div class=" ui container">
-    <div class=" ui middle aligned center aligned grid">
-        <div class=" login-form">
-            <h2>
-                <div class=" content">{{tr .ActiveLang "login_form_title"}}</div>
-            </h2>
-            <form method="post" class="ui large form">
-                <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.NewJobForm}}
-            </form>
+    <div class=" ui grid">
+        <div class="row">
+            <div class="eight wide centered column">
+                <h2>
+                    <div class=" content">{{tr .ActiveLang "new_job_title"}}</div>
+                </h2>
+                <form method="post" class="ui large form">
+                    <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
+                    <div class="field">
+                        <label> {{tr .ActiveLang "job_title"}} </label>
+                        <input type="text" name="title" >
+                    </div>
+                    <div class="field">
+                        <label> {{tr .ActiveLang "job_desc"}} </label>
+                        <textarea name="description"></textarea>
+                    </div>
+                    <button class="ui fluid large submit button"> {{tr .ActiveLang "create"}}</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

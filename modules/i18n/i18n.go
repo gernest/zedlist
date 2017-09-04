@@ -174,6 +174,22 @@ var Tr = &gt.Build{
 			"en": "A humble self hosted recruitment service",
 			"sw": "Mfumo bora wa ajira",
 		},
+		"new_job_title": {
+			"en": "Create a Job posting",
+			"sw": "Tengeneza ajira mpya",
+		},
+		"job_title": {
+			"en": "Title",
+			"sw": "Kichwa cha habari",
+		},
+		"job_desc": {
+			"en": "Description",
+			"sw": "Maelezo",
+		},
+		"create": {
+			"en": "Create",
+			"sw": "Tengeneza",
+		},
 	},
 }
 
