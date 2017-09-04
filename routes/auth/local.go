@@ -270,7 +270,7 @@ func DeletePost(ctx echo.Context) error {
 		ctx.Redirect(http.StatusFound, "/auth/delete")
 		return nil
 	}
-	id := ctx.Get("UserID").(int)
+	id := ctx.Get("UserID").(int64)
 	utils.DeleteSession(ctx, settings.App.Session.Lang)
 	utils.DeleteSession(ctx, settings.App.Session.Flash)
 	utils.DeleteSession(ctx, settings.App.Session.Name)
