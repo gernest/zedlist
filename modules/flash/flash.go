@@ -30,11 +30,11 @@ type Flash struct {
 func (f *Flash) Class() string {
 	switch f.Kind {
 	case settings.FlashErr:
-		return "red"
+		return "error"
 	case settings.FlashSuccess:
-		return "blue"
+		return "success"
 	case settings.FlashWarn:
-		return "orange"
+		return "warning"
 	default:
 		return ""
 	}
