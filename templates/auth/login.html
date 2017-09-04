@@ -6,7 +6,16 @@
                 <div class=" content">{{tr .ActiveLang "login_form_title"}}</div>
             </h2>
             <form method="post" class="ui large form">
-                <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> {{.form.Login}}
+                <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
+                <div class="field">
+                    <label> {{tr .ActiveLang "username"}} </label>
+                    <input type="text" name="username" placeholder="{{tr .ActiveLang "username_or_email"}}">
+                </div>
+                <div class="field">
+                    <label> {{tr .ActiveLang "password"}}</label>
+                    <input type="password" name="password" placeholder="{{tr .ActiveLang "password"}}">
+                </div>
+                <button class="ui fluid large submit button"> {{tr .ActiveLang "login"}}</button>
             </form>
         </div>
     </div>
