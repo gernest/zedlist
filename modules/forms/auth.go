@@ -70,23 +70,6 @@ func (f *Form) SetLogin(l *Login) {
 	f.l = l
 }
 
-func (f *Form) Login() template.HTML {
-	return template.HTML(fmt.Sprintf(`
-	<div class="field">
-		<label> %s </label>
-		<input type="text" name="username" placeholder="%s">
-	</div>
-	<div class="field">
-		<label> %s</label>
-		<input type="password" name="password" placeholder="%s">
-	</div>
-	<button class="ui fluid large submit button"> %s</button>
-`, f.tr.T("username"), f.tr.T("username_or_email"),
-		f.tr.T("password"), f.tr.T("password"),
-		f.tr.T("login"),
-	))
-}
-
 func (f *Form) DecodeLogin(r *http.Request) (*Login, error) {
 	if err := r.ParseForm(); err != nil {
 		return nil, err
