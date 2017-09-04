@@ -10,6 +10,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/forms"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/settings"
@@ -53,12 +54,12 @@ func TestMust(t *testing.T) {
 		Password:        "superroot",
 		ConfirmPassword: "superroot",
 	}
-	usr, err := query.CreateNewUser(regForm)
+	usr, err := query.CreateNewUser(db.Conn, regForm)
 	if err != nil {
 		t.Errorf("creating new user %v", err)
 	}
 
-	defer query.Delete(usr)
+	defer query.Delete(db.Conn, usr)
 
 	ctx.Set("IsLoged", true)
 	err = Must()(ctx)

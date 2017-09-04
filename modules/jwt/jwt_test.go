@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/query"
 
 	"github.com/labstack/echo"
@@ -57,7 +58,7 @@ func TestNewJWTAuth(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = query.Create(tok)
+	err = query.Create(db.Conn, tok)
 	if err != nil {
 		t.Error(err)
 	}

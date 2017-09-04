@@ -8,6 +8,7 @@ package dash
 import (
 	"net/http"
 
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/flash"
 
 	"github.com/gernest/zedlist/modules/forms"
@@ -80,7 +81,7 @@ func JobsNewPost(ctx echo.Context) error {
 
 	if isLoged := ctx.Get("IsLoged"); isLoged != nil {
 		person := ctx.Get("User").(*models.Person)
-		if jerr := query.PersonCreateJob(person, jf.GetModel().(forms.JobForm)); jerr != nil {
+		if jerr := query.PersonCreateJob(db.Conn, person, jf.GetModel().(forms.JobForm)); jerr != nil {
 			// TODO: improve flash message ?
 			flashMessages.Err("some really bad fish happened")
 			flashMessages.Save(ctx)
@@ -139,7 +140,7 @@ func ProfileName(ctx echo.Context) error {
 
 	person := ctx.Get("User").(*models.Person)
 	person.UpdateNames(pName)
-	err := query.Update(person)
+	err := query.Update(db.Conn, person)
 	if err != nil {
 		// TODO: do somethins?
 	}

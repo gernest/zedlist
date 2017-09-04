@@ -8,6 +8,7 @@ package auth
 import (
 	"net/http"
 
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/session"
 	"github.com/gernest/zedlist/modules/utils"
@@ -45,7 +46,7 @@ func Must() echo.HandlerFunc {
 		}
 		if v, ok := ss.Values["userID"]; ok {
 			id := v.(int64)
-			person, err := query.GetPersonByUserID(id)
+			person, err := query.GetPersonByUserID(db.Conn, id)
 			if err != nil {
 				// TODO: log this?
 			}

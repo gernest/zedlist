@@ -98,7 +98,7 @@ func TestHome(t *testing.T) {
 			t.Errorf("migrating regios %v", q.Error)
 		}
 	}
-	regs, err := query.GetAllRegions()
+	regs, err := query.GetAllRegions(db.Conn)
 	if err != nil {
 		t.Errorf("retrieving regions %v", err)
 	}
@@ -157,7 +157,7 @@ func TestJobsHome(t *testing.T) {
 
 func TestJobsView(t *testing.T) {
 	view := "%s/jobs/view/%d"
-	jobs, err := query.GetLatestJobs()
+	jobs, err := query.GetLatestJobs(db.Conn)
 	if err != nil {
 		t.Error(err)
 	}
@@ -185,7 +185,7 @@ func TestJobsRegionsHome(t *testing.T) {
 }
 
 func TestJobsRegionsByShortName(t *testing.T) {
-	regs, err := query.GetAllRegions()
+	regs, err := query.GetAllRegions(db.Conn)
 	if err != nil {
 		t.Errorf("retriving regions %v", err)
 	}

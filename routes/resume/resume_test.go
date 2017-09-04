@@ -14,6 +14,7 @@ import (
 
 	"github.com/gernest/zedlist/middlewares/i18n"
 	"github.com/gernest/zedlist/models"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
 	"github.com/gernest/zedlist/modules/utils"
@@ -45,7 +46,7 @@ func testUser() *models.Person {
 	p := &models.Person{
 		AboutMe: "nut cracker",
 	}
-	query.Create(p)
+	query.Create(db.Conn, p)
 	return p
 }
 

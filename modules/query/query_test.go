@@ -3,6 +3,7 @@ package query
 import (
 	"testing"
 
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/forms"
 
 	"github.com/gernest/zedlist/models"
@@ -19,7 +20,7 @@ func TestJobQuery(t *testing.T) {
 		{Title: "third"},
 	}
 	defer func() {
-		err := Delete(&sample)
+		err := Delete(db.Conn, &sample)
 		if err != nil {
 			t.Error(err)
 		}
@@ -27,7 +28,7 @@ func TestJobQuery(t *testing.T) {
 
 	// CreaateJob
 	for _, v := range sample {
-		err := CreateJob(v)
+		err := CreateJob(db.Conn, v)
 		if err != nil {
 			t.Errorf("creating new job %v", err)
 		}
@@ -35,7 +36,7 @@ func TestJobQuery(t *testing.T) {
 
 	// GetJobByID
 	for _, v := range sample {
-		j, err := GetJobByID(v.ID)
+		j, err := GetJobByID(db.Conn, v.ID)
 		if err != nil {
 			t.Errorf("getting a job %v", err)
 		}
@@ -45,7 +46,7 @@ func TestJobQuery(t *testing.T) {
 	}
 
 	// GetAllJobs
-	jobs, err := GetALLJobs()
+	jobs, err := GetALLJobs(db.Conn)
 	if err != nil {
 		t.Errorf("getting all jobs %v", err)
 	}
@@ -57,7 +58,7 @@ func TestJobQuery(t *testing.T) {
 	}
 
 	// GetLatestJobs
-	latest, err := GetLatestJobs()
+	latest, err := GetLatestJobs(db.Conn)
 	if err != nil {
 		t.Errorf("getting latest jobs %v", err)
 	}
@@ -94,7 +95,7 @@ func TestUserQuery(t *testing.T) {
 		f.Password = v.pass
 		f.UserName = v.name
 		// CreateNewUser
-		usr, err := CreateNewUser(f)
+		usr, err := CreateNewUser(db.Conn, f)
 		if err != nil {
 			t.Errorf("creating new user %v", err)
 		}
@@ -103,7 +104,7 @@ func TestUserQuery(t *testing.T) {
 	for _, v := range users {
 
 		// GetUserByID
-		usr, err := GetUserByID(v.ID)
+		usr, err := GetUserByID(db.Conn, v.ID)
 		if err != nil {
 			t.Errorf("getting user by id %v", err)
 		}
@@ -112,7 +113,7 @@ func TestUserQuery(t *testing.T) {
 		}
 
 		// GetUserByEmail
-		eUsr, err := GetUserByEmail(v.Email)
+		eUsr, err := GetUserByEmail(db.Conn, v.Email)
 		if err != nil {
 			t.Errorf("getting user by email %v", err)
 		}
@@ -123,11 +124,11 @@ func TestUserQuery(t *testing.T) {
 
 	// Failure cases
 
-	_, err := GetUserByID(2000)
+	_, err := GetUserByID(db.Conn, 2000)
 	if err == nil {
 		t.Error("expected error got nil instead")
 	}
-	_, err = GetUserByEmail("bogus")
+	_, err = GetUserByEmail(db.Conn, "bogus")
 	if err == nil {
 		t.Error("expected error got nilinstead")
 	}
@@ -141,7 +142,7 @@ func TestUserQuery(t *testing.T) {
 	}
 
 	// Passing case
-	usr, err := AuthenticateUserByEmail(loginForm)
+	usr, err := AuthenticateUserByEmail(db.Conn, loginForm)
 	if err != nil {
 		t.Errorf("authenticating user by email %v", err)
 	}
@@ -151,7 +152,7 @@ func TestUserQuery(t *testing.T) {
 
 	// Wrong email
 	loginForm.Name = "bogue"
-	_, err = AuthenticateUserByEmail(loginForm)
+	_, err = AuthenticateUserByEmail(db.Conn, loginForm)
 	if err == nil {
 		t.Error("expected error got nil instead")
 	}
@@ -159,18 +160,18 @@ func TestUserQuery(t *testing.T) {
 	// Wrong password
 	loginForm.Name = sample[0].email
 	loginForm.Password = "Ohmygawd"
-	_, err = AuthenticateUserByEmail(loginForm)
+	_, err = AuthenticateUserByEmail(db.Conn, loginForm)
 	if err == nil {
 		t.Error("expected error got nil instead")
 	}
 }
 
 func TestPersonQuery(t *testing.T) {
-	err := SampleUser()
+	err := SampleUser(db.Conn)
 	if err != nil {
 		t.Errorf("creating sample user %v", err)
 	}
-	sampleUser, err := GetUserByEmail("root@home.com")
+	sampleUser, err := GetUserByEmail(db.Conn, "root@home.com")
 	if err != nil {
 		t.Errorf("getting sample user %v", err)
 	}
@@ -182,7 +183,7 @@ func TestPersonQuery(t *testing.T) {
 	//
 	//	GetPersonByUserID
 	//
-	person, err := GetPersonByUserID(sampleUser.ID)
+	person, err := GetPersonByUserID(db.Conn, sampleUser.ID)
 	if err != nil {
 		t.Errorf("getting person %v", err)
 	}
@@ -191,7 +192,7 @@ func TestPersonQuery(t *testing.T) {
 	//	PersonCreateJob
 	//
 	jobForm := forms.JobForm{Title: "whacko job"}
-	err = PersonCreateJob(person, jobForm)
+	err = PersonCreateJob(db.Conn, person, jobForm)
 	if err != nil {
 		t.Errorf("creating job %v", err)
 	}
@@ -201,7 +202,7 @@ func TestResumeQuery(t *testing.T) {
 	p := &models.Person{
 		AboutMe: "rocket scientist",
 	}
-	err := Create(p)
+	err := Create(db.Conn, p)
 	if err != nil {
 		t.Error(err)
 	}
@@ -214,7 +215,7 @@ func TestResumeQuery(t *testing.T) {
 		//
 		//	CreateResume
 		//
-		rerr := CreateResume(p, resume)
+		rerr := CreateResume(db.Conn, p, resume)
 		if rerr != nil {
 			t.Errorf("creating resume %v", rerr)
 		}
@@ -223,7 +224,7 @@ func TestResumeQuery(t *testing.T) {
 	//
 	//	GetResumeByID
 	//
-	resume, err := GetResumeByID(p.Resumes[0].ID)
+	resume, err := GetResumeByID(db.Conn, p.Resumes[0].ID)
 	if err != nil {
 		t.Errorf("getting resume %v", err)
 	}
@@ -236,7 +237,7 @@ func TestResumeQuery(t *testing.T) {
 	//
 	//	GetAllPersonResumes
 	//
-	resumes, err := GetAllPersonResumes(p)
+	resumes, err := GetAllPersonResumes(db.Conn, p)
 	if err != nil {
 		t.Errorf("getting all erson resumes %v", err)
 	}

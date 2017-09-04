@@ -13,6 +13,7 @@ import (
 	"net/http"
 
 	"github.com/gernest/zedlist/models"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/utils"
 
@@ -34,7 +35,7 @@ func CreateJob(ctx echo.Context) error {
 	// sanitize before saving.
 	job.Sanitize()
 
-	err = query.CreateJob(job)
+	err = query.CreateJob(db.Conn, job)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}
@@ -62,7 +63,7 @@ func GetJob(ctx echo.Context) error {
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}
-	job, err := query.GetJobByID(id)
+	job, err := query.GetJobByID(db.Conn, id)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}
@@ -75,7 +76,7 @@ func GetJob(ctx echo.Context) error {
 
 // GetIndex retrieves all jobs.
 func GetIndex(ctx echo.Context) error {
-	jobs, err := query.GetALLJobs()
+	jobs, err := query.GetALLJobs(db.Conn)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}
@@ -93,7 +94,7 @@ func UpdateJob(ctx echo.Context) error {
 	// sanitize before saving
 	job.Sanitize()
 
-	err = query.Update(job)
+	err = query.Update(db.Conn, job)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(err.Error()))
 	}

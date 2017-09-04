@@ -6,6 +6,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gernest/zedlist/models"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/query"
 
 	"github.com/jinzhu/now"
@@ -31,7 +32,7 @@ type RSAKeyHolder interface {
 // NewJWTAuth returns a JWTValidateFunc for the echo.s JWTAuth middleware.
 func NewJWTAuth(keys RSAKeyHolder) func(string, jwt.SigningMethod) ([]byte, error) {
 	return func(token string, method jwt.SigningMethod) ([]byte, error) {
-		tk, err := query.GetTokenByKey(token)
+		tk, err := query.GetTokenByKey(db.Conn, token)
 		k := keys.GetPublicBytes()
 		if err != nil {
 			return k, err

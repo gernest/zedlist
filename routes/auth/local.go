@@ -12,6 +12,7 @@ import (
 
 	validate "github.com/asaskevich/govalidator"
 	"github.com/gernest/zedlist/models"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/flash"
 	"github.com/gernest/zedlist/modules/forms"
 	"github.com/gernest/zedlist/modules/log"
@@ -95,7 +96,7 @@ func LoginPost(ctx echo.Context) error {
 	var user *models.User
 
 	if validate.IsEmail(lf.Name) {
-		user, err = query.AuthenticateUserByEmail(*lf)
+		user, err = query.AuthenticateUserByEmail(db.Conn, *lf)
 		if err != nil {
 			log.Error(ctx, err)
 
@@ -108,7 +109,7 @@ func LoginPost(ctx echo.Context) error {
 			return nil
 		}
 	} else {
-		user, err = query.AuthenticateUserByName(*lf)
+		user, err = query.AuthenticateUserByName(db.Conn, *lf)
 		if err != nil {
 			log.Error(ctx, err)
 
@@ -133,7 +134,7 @@ func LoginPost(ctx echo.Context) error {
 	if err != nil {
 		log.Error(ctx, err)
 	}
-	person, err := query.GetPersonByUserID(user.ID)
+	person, err := query.GetPersonByUserID(db.Conn, user.ID)
 	if err != nil {
 		log.Error(ctx, err)
 		flashMessages.Err(msgLoginErr)
@@ -202,7 +203,7 @@ func RegisterPost(ctx echo.Context) error {
 
 	// we are not interested in the returned user, rather we make sure the user has
 	// been created.
-	_, err = query.CreateNewUser(*lf)
+	_, err = query.CreateNewUser(db.Conn, *lf)
 	if err != nil {
 		flashMessages.Err(msgAccountCreateFailed)
 		flashMessages.Save(ctx)
@@ -274,7 +275,7 @@ func DeletePost(ctx echo.Context) error {
 	utils.DeleteSession(ctx, settings.App.Session.Flash)
 	utils.DeleteSession(ctx, settings.App.Session.Name)
 
-	if err := query.DeleteUser(id); err != nil {
+	if err := query.DeleteUser(db.Conn, id); err != nil {
 		log.Error(ctx, err)
 	}
 	return ctx.Redirect(http.StatusFound, "/")

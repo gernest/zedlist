@@ -10,6 +10,7 @@ import (
 	"net/http"
 
 	"github.com/gernest/zedlist/models"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/flash"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
@@ -29,7 +30,7 @@ import (
 // 		Template         resume/home.html
 func Home(ctx echo.Context) error {
 	user := ctx.Get("User").(*models.Person)
-	if res, err := query.GetAllPersonResumes(user); err == nil {
+	if res, err := query.GetAllPersonResumes(db.Conn, user); err == nil {
 		utils.SetData(ctx, "resumes", res)
 	}
 	return ctx.Render(http.StatusOK, tmpl.ResumeHomeTpl, utils.GetData(ctx))
@@ -50,7 +51,7 @@ func View(ctx echo.Context) error {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
-	resume, err := query.GetResumeByID(iid)
+	resume, err := query.GetResumeByID(db.Conn, iid)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, tmpl.NotFoundMessage)
@@ -78,7 +79,7 @@ func Create(ctx echo.Context) error {
 
 	resume := models.SampleResume()
 	resume.Name = name
-	err := query.CreateResume(user, resume)
+	err := query.CreateResume(db.Conn, user, resume)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.ServerErrorMessage)
 		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
@@ -109,7 +110,7 @@ func Update(ctx echo.Context) error {
 	}
 	user := ctx.Get("User").(*models.Person)
 
-	resume, err := query.GetResumeByID(id)
+	resume, err := query.GetResumeByID(db.Conn, id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -142,7 +143,7 @@ func Delete(ctx echo.Context) error {
 	}
 	user := ctx.Get("User").(*models.Person)
 
-	resume, err := query.GetResumeByID(id)
+	resume, err := query.GetResumeByID(db.Conn, id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -154,7 +155,7 @@ func Delete(ctx echo.Context) error {
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
 
-	err = query.Delete(resume)
+	err = query.Delete(db.Conn, resume)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.ServerErrorMessage)
 		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))

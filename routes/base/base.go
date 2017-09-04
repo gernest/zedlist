@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/gernest/zedlist/bindata/static"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/session"
@@ -51,7 +52,7 @@ func Home(ctx echo.Context) error {
 //
 // 		Template         base/jobs.html
 func JobsHome(ctx echo.Context) error {
-	jobs, err := query.GetLatestJobs()
+	jobs, err := query.GetLatestJobs(db.Conn)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -78,7 +79,7 @@ func JobView(ctx echo.Context) error {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
-	job, err := query.GetJobByID(id)
+	job, err := query.GetJobByID(db.Conn, id)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -222,7 +223,7 @@ func getDocIndex(lang string) []*Doc {
 // 		Template         base/regions.html
 //
 func RegionsHome(ctx echo.Context) error {
-	regs, err := query.GetAllRegions()
+	regs, err := query.GetAllRegions(db.Conn)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -244,7 +245,7 @@ func RegionsHome(ctx echo.Context) error {
 //
 func RegionsJobView(ctx echo.Context) error {
 	name := ctx.Param("name")
-	jobs, count, err := query.GetJobByRegionShort(name)
+	jobs, count, err := query.GetJobByRegionShort(db.Conn, name)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
@@ -279,7 +280,7 @@ func RegionsJobPaginate(ctx echo.Context) error {
 		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
-	jobs, err := query.GetJobByRegionPaginate(name, offset, limit)
+	jobs, err := query.GetJobByRegionPaginate(db.Conn, name, offset, limit)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
