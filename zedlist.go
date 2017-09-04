@@ -15,6 +15,7 @@ import (
 	"github.com/gernest/zedlist/middlewares/i18n"
 
 	"github.com/gernest/zedlist/bindata/static"
+	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/settings"
@@ -25,6 +26,7 @@ import (
 	"github.com/gernest/zedlist/routes/base"
 	"github.com/gernest/zedlist/routes/dash"
 	"github.com/gernest/zedlist/routes/japi"
+	"github.com/gernest/zedlist/routes/jobs"
 	"github.com/gernest/zedlist/routes/resume"
 	"github.com/gernest/zedlist/routes/search"
 
@@ -86,6 +88,11 @@ func Routes() *echo.Echo {
 	xauth.GET("/delete", auth.Delete)
 	xauth.POST("/delete", auth.DeletePost)
 
+	// JObs
+	j := e.Group("/jobs")
+	j.Use(utils.WrapMiddleware(userAuth.Must()))
+	j.GET("/new", jobs.New)
+
 	// DASHBOARD
 	dashboard := e.Group("/dash")
 	dashboard.Use(utils.WrapMiddleware(userAuth.Must()))
@@ -145,7 +152,7 @@ func Migrate(ctx *cli.Context) {
 		migration.DropTables()
 	}
 	migration.MigrateTables()
-	query.PopulateDB()
+	query.PopulateDB(db.Conn)
 }
 
 // FlagDev is true when in developmet mode.

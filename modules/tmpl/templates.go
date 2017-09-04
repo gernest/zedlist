@@ -30,6 +30,8 @@ const (
 
 	DeleteTpl = "auth/delete.html"
 
+	JobsNewTpl = "dash/new.html"
+
 	//RegisterScripts addition scripts to be included in the registration page
 	// this adds link to the pickadate.js jquery and other date related javascript.
 	RegisterScripts = "/auth/date_picker.html"

@@ -15,6 +15,7 @@
 // templates/dash/home.html
 // templates/dash/jobs_new.html
 // templates/dash/name_form.html
+// templates/dash/new.html
 // templates/dash/new_job.html
 // templates/dash/profile.html
 // templates/errors/400.html
@@ -400,6 +401,26 @@ func dashName_formHtml() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "dash/name_form.html", size: 1059, mode: os.FileMode(420), modTime: time.Unix(1503401626, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _dashNewHtml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x91\xcf\x4a\xc4\x30\x10\xc6\xef\xfb\x14\xc3\xdc\xed\x82\xe7\xed\x82\x08\x1e\x44\x3c\x79\x2f\xb1\x99\xb6\x83\x49\xa6\xa4\xd3\x8a\x84\xbc\xbb\x64\xa9\x5a\xbb\x7b\x4a\xe6\xcf\x6f\xbe\x2f\x99\x94\x94\xfc\xe8\x8c\x12\xe0\x68\xa2\xb2\x71\xd3\xb1\x15\xef\x25\x34\x03\x19\x4b\xb1\x1a\xd4\x3b\x84\x2a\xe7\xc3\xc9\xf2\x02\xad\x33\xd3\x54\x23\xcc\x0c\xad\x04\x35\x1c\x28\xe2\xf9\x00\x00\xb0\xaf\x7b\xb6\xd6\x11\x18\xc7\x7d\x20\x0b\x2d\x05\xa5\xf8\x1b\xf6\x91\xed\x0a\x5e\xc1\x4e\x7a\x0e\x77\x9d\x44\xbf\xe9\xb8\x74\x0d\xf7\xff\x13\x57\x68\x31\x45\x41\xf1\x9c\x92\x46\xa8\x1e\x5a\xe5\x85\x5e\x4c\xe8\x01\x2f\x53\x9b\x32\xb5\x51\x56\x47\x98\xf3\xe9\x68\x79\xd9\x49\x1c\xf7\x1a\xa7\x82\x80\x27\x1d\xc4\xd6\x38\xca\xa4\xf8\x23\x37\x33\x38\x13\x7b\x82\x1b\x5e\x2f\x28\x87\x71\x56\x60\x5b\xa3\xca\x07\x05\x04\xfd\x1a\xa9\xc6\x81\xad\x2d\x51\x30\x9e\x6a\x6c\xa7\xd8\x35\x6b\x7d\x31\x6e\xa6\x1a\x53\x82\xea\x71\x8a\xdd\x5b\xc9\x42\xce\x78\x86\x94\xaa\xa2\x52\xbd\xd2\xe7\xb3\xbc\x3f\x49\xf4\x39\xef\x9c\x97\xfa\xe6\x4b\xff\x1e\xb7\x5e\xd7\xe3\xe6\xd6\x3b\x11\xdd\xae\xfb\x3b\x00\x00\xff\xff\xca\x72\x76\x0f\x1b\x02\x00\x00")
+
+func dashNewHtmlBytes() ([]byte, error) {
+	return bindataRead(
+		_dashNewHtml,
+		"dash/new.html",
+	)
+}
+
+func dashNewHtml() (*asset, error) {
+	bytes, err := dashNewHtmlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "dash/new.html", size: 539, mode: os.FileMode(420), modTime: time.Unix(1504522985, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -911,6 +932,7 @@ var _bindata = map[string]func() (*asset, error){
 	"dash/home.html": dashHomeHtml,
 	"dash/jobs_new.html": dashJobs_newHtml,
 	"dash/name_form.html": dashName_formHtml,
+	"dash/new.html": dashNewHtml,
 	"dash/new_job.html": dashNew_jobHtml,
 	"dash/profile.html": dashProfileHtml,
 	"errors/400.html": errors400Html,
@@ -995,6 +1017,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		"home.html": &bintree{dashHomeHtml, map[string]*bintree{}},
 		"jobs_new.html": &bintree{dashJobs_newHtml, map[string]*bintree{}},
 		"name_form.html": &bintree{dashName_formHtml, map[string]*bintree{}},
+		"new.html": &bintree{dashNewHtml, map[string]*bintree{}},
 		"new_job.html": &bintree{dashNew_jobHtml, map[string]*bintree{}},
 		"profile.html": &bintree{dashProfileHtml, map[string]*bintree{}},
 	}},

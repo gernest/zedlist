@@ -5,6 +5,8 @@
 package forms
 
 import (
+	"html/template"
+
 	"github.com/gernest/gforms"
 )
 
@@ -38,4 +40,13 @@ func (f *Form) JobForm() gforms.ModelForm {
 			gforms.TextAreaWidget(descAttr),
 		),
 	))
+}
+
+func (f *Form) NewJobForm() template.HTML {
+	return template.HTML(`
+<div class="field">
+	<label> Title</label>
+	<input type="text" name="title" placeholder="jJob Title">
+</div>
+`)
 }
