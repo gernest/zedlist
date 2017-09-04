@@ -6,7 +6,6 @@
 package forms
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 
@@ -83,33 +82,6 @@ func (f *Form) DecodeLogin(r *http.Request) (*Login, error) {
 
 func (f *Form) SetRegister(r *Register) {
 	f.r = r
-}
-
-func (f *Form) Register() template.HTML {
-	return template.HTML(fmt.Sprintf(`
-	<div class="field">
-		<label> %s </label>
-		<input type="text" name="username" placeholder="%s">
-	</div>
-	<div class="field">
-		<label> %s </label>
-		<input type="text" name="email" placeholder="%s">
-	</div>
-	<div class="field">
-		<label> %s</label>
-		<input type="password" name="password" placeholder="%s">
-	</div>
-	<div class="field">
-		<label> %s</label>
-		<input type="password" name="confirm_password" placeholder="%s">
-	</div>
-	<button class="ui fluid large submit button"> %s</button>
-`, f.tr.T("username"), f.tr.T("username"),
-		f.tr.T("email"), f.tr.T("email"),
-		f.tr.T("password"), f.tr.T("password"),
-		f.tr.T("confirm_password"), f.tr.T("confirm_password"),
-		f.tr.T("register"),
-	))
 }
 
 func (f *Form) DecodeRegister(r *http.Request) (*Register, error) {

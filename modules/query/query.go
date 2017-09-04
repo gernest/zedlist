@@ -458,7 +458,7 @@ func CreateResume(conn *gorm.DB, p *models.Person, r models.Resume) error {
 	return Update(conn, p)
 }
 
-func DeleteUser(conn *gorm.DB, id int) error {
+func DeleteUser(conn *gorm.DB, id int64) error {
 	usr := &models.User{}
 	q := conn.Preload("Person").
 		First(usr, id)
