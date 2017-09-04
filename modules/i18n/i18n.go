@@ -166,6 +166,14 @@ var Tr = &gt.Build{
 			"en": "New",
 			"sw": "Mpya",
 		},
+		"catch_phrase": {
+			"en": "Get the right person for the Job",
+			"sw": "Pata mtu sahihi kwa kazi sahihi",
+		},
+		"catch_phrase_sub": {
+			"en": "A humble self hosted recruitment service",
+			"sw": "Mfumo bora wa ajira",
+		},
 	},
 }
 
