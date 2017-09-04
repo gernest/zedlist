@@ -30,7 +30,7 @@ const (
 
 	DeleteTpl = "auth/delete.html"
 
-	JobsNewTpl = "dash/new.html"
+	JobsNewTpl = "jobs/new.html"
 
 	//RegisterScripts addition scripts to be included in the registration page
 	// this adds link to the pickadate.js jquery and other date related javascript.
@@ -113,6 +113,7 @@ func init() {
 			"dash",
 			"errors",
 			"resume",
+			"jobs",
 		},
 	}
 	t, err := New(config)
