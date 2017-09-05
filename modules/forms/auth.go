@@ -6,7 +6,6 @@
 package forms
 
 import (
-	"html/template"
 	"net/http"
 	"strings"
 
@@ -51,7 +50,6 @@ func (r *Register) Valid() bool {
 		r.vals = make(map[string]string)
 	}
 	var haserror bool
-
 	r.vals["username"] = r.UserName
 	r.vals["email"] = r.Email
 	r.vals["password"] = r.Password
@@ -133,14 +131,6 @@ func (f *Form) DecodeRegister(r *http.Request) (*Register, error) {
 		return nil, err
 	}
 	return l, nil
-}
-
-func (f *Form) Delete() template.HTML {
-	return template.HTML(`
-<div class="field">
-	<input type="text" name="delete" placeholder="Type your username">
-</div>	
-	`)
 }
 
 func (f *Form) DecodeDelete(r *http.Request) string {
