@@ -165,9 +165,6 @@ func LoginPost(ctx echo.Context) error {
 //
 // 		Template         auth/register.html
 func Register(ctx echo.Context) error {
-	f := forms.New(utils.GetLang(ctx))
-	utils.SetData(ctx, "form", f)
-
 	// set page tittle to register
 	utils.SetData(ctx, "PageTitle", "register")
 	return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
@@ -196,11 +193,13 @@ func RegisterPost(ctx echo.Context) error {
 		return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
 	}
 	if !lf.Valid() {
-		// Case the form is not valid, ships it back with the errors exclusively
-		utils.SetData(ctx, authForm, lf)
-		return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
+		for k, v := range lf.Ctx() {
+			flashMessages.AddCtx(k, v)
+		}
+		flashMessages.Save(ctx)
+		return ctx.Redirect(http.StatusFound, "/auth/register")
 	}
-
+	pretty.Println(lf.Ctx())
 	// we are not interested in the returned user, rather we make sure the user has
 	// been created.
 	_, err = query.CreateNewUser(db.Conn, *lf)

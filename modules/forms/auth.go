@@ -8,6 +8,7 @@ package forms
 import (
 	"html/template"
 	"net/http"
+	"strings"
 
 	"github.com/gernest/gt"
 	"github.com/gernest/zedlist/modules/i18n"
@@ -42,10 +43,42 @@ type Register struct {
 	Password        string `schema:"password"`
 	ConfirmPassword string `schema:"confirm_password"`
 	CSRF            string `schema:"csrf_token"`
+	vals            map[string]string
 }
 
 func (r *Register) Valid() bool {
-	return true
+	if r.vals == nil {
+		r.vals = make(map[string]string)
+	}
+	r.vals["username"] = r.UserName
+	r.vals["email"] = r.Email
+	r.vals["password"] = r.Password
+	r.vals["confirm_password"] = r.ConfirmPassword
+	r.UserName = strings.TrimSpace(r.UserName)
+	if r.UserName == "" {
+		r.vals["username_error"] = "username is required"
+	}
+	r.Email = strings.TrimSpace(r.Email)
+	if r.Email == "" {
+		r.vals["email_error"] = "email is required"
+	}
+	r.Password = strings.TrimSpace(r.Password)
+	if r.Password == "" {
+		r.vals["password_error"] = "password is required"
+	}
+	r.ConfirmPassword = strings.TrimSpace(r.ConfirmPassword)
+	if r.ConfirmPassword == "" {
+		r.vals["confirm_password_error"] = "confirm password is required"
+	} else {
+		if r.Password != r.ConfirmPassword {
+			r.vals["confirm_password_error"] = "confirm password must match passwordd"
+		}
+	}
+	return len(r.vals) == 0
+}
+
+func (r *Register) Ctx() map[string]string {
+	return r.vals
 }
 
 // Form is contains form validation functions, it support translation

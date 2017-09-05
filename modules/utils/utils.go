@@ -57,8 +57,11 @@ func GetData(ctx echo.Context) interface{} {
 	if v := ctx.Get(settings.DataKey); v != nil {
 		data = v.(Data)
 	}
-	if v := ctx.Get("Flash"); v != nil {
-		data.Set("Flash", v)
+	if v := ctx.Get(settings.FlashKey); v != nil {
+		data.Set(settings.FlashKey, v)
+	}
+	if v := ctx.Get(settings.FlashCtxKey); v != nil {
+		data.Set(settings.FlashCtxKey, v)
 	}
 	return data
 }

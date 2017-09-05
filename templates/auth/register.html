@@ -4,25 +4,54 @@
         <h2>
             <div class=" content">{{tr .ActiveLang "register_form_title"}}</div>
         </h2>
-        <form method="post" class="ui large form">
+        <form method="post" class="ui large form {{if .FlashCtx}}error{{end}} ">
             <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}"> 
-            <div class="field">
+            <div class="field {{if .FlashCtx}}{{if .FlashCtx.username_error}} error {{end}}{{end}} ">
                 <label> {{tr .ActiveLang "username"}} </label>
-                <input type="text" name="username" placeholder="{{tr .ActiveLang "username"}}">
+                <input type="text" name="username" placeholder="{{tr .ActiveLang "username"}}"
+                {{if .FlashCtx}} value="{{.FlashCtx.username}}"{{end}}
+                >
             </div>
-            <div class="field">
+            {{if .FlashCtx}}
+            {{if .FlashCtx.username_error}}
+            <div class="ui error message">{{.FlashCtx.username_error}} </div>
+            {{end}}
+            {{end}}
+            <div class="field {{if .FlashCtx}}{{if .FlashCtx.email_error}} error {{end}}{{end}}">
                 <label> {{tr .ActiveLang "email"}} </label>
-                <input type="text" name="email" placeholder="{{tr .ActiveLang "email"}}">
+                <input type="text" name="email" placeholder="{{tr .ActiveLang "email"}}"
+                {{if .FlashCtx}} value="{{.FlashCtx.email}}"{{end}}
+                >
             </div>
-            <div class="field">
+            {{if .FlashCtx}}
+            {{if .FlashCtx.email_error}}
+            <div class="ui error message">{{.FlashCtx.email_error}} </div>
+            {{end}}
+            {{end}}
+            <div class="field {{if .FlashCtx}}{{if .FlashCtx.password_error}} error {{end}}{{end}}">
                 <label> {{tr .ActiveLang "password"}}</label>
-                <input type="password" name="password" placeholder="{{tr .ActiveLang "password"}}">
+                <input type="password" name="password" placeholder="{{tr .ActiveLang "password"}}"
+                {{if .FlashCtx}} value="{{.FlashCtx.password}}"{{end}}
+                >
             </div>
-            <div class="field">
+            {{if .FlashCtx}}
+            {{if .FlashCtx.password_error}}
+            <div class="ui error message">{{.FlashCtx.password_error}} </div>
+            {{end}}
+            {{end}}
+            <div class="field {{if .FlashCtx}}{{if .FlashCtx.confirm_password_error}} error {{end}}{{end}}">
                 <label> {{tr .ActiveLang "confirm_password"}}</label>
-                <input type="password" name="confirm_password" placeholder="{{tr .ActiveLang "confirm_password"}}">
+                <input type="password" name="confirm_password" placeholder="{{tr .ActiveLang "confirm_password"}}"
+                {{if .FlashCtx}} value="{{.FlashCtx.confirm_password}}"{{end}}
+                >
             </div>
-            <button class="ui fluid large submit button"> {{tr .ActiveLang "register"}}</button>
+            {{if .FlashCtx}}
+            {{if .FlashCtx.confirm_password_error}}
+            <div class="ui error message">{{.FlashCtx.confirm_password_error}} </div>
+            {{end}}
+            {{end}}
+            <button class="ui flui
+            d large submit button"> {{tr .ActiveLang "register"}}</button>
         </form>
     </div>
 </div>
