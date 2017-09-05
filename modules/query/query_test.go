@@ -192,7 +192,7 @@ func TestPersonQuery(t *testing.T) {
 	//	PersonCreateJob
 	//
 	jobForm := forms.JobForm{Title: "whacko job"}
-	err = PersonCreateJob(db.Conn, person, jobForm)
+	_, err = PersonCreateJob(db.Conn, person, jobForm)
 	if err != nil {
 		t.Errorf("creating job %v", err)
 	}
