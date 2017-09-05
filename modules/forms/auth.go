@@ -50,6 +50,8 @@ func (r *Register) Valid() bool {
 	if r.vals == nil {
 		r.vals = make(map[string]string)
 	}
+	var haserror bool
+
 	r.vals["username"] = r.UserName
 	r.vals["email"] = r.Email
 	r.vals["password"] = r.Password
@@ -57,24 +59,29 @@ func (r *Register) Valid() bool {
 	r.UserName = strings.TrimSpace(r.UserName)
 	if r.UserName == "" {
 		r.vals["username_error"] = "username is required"
+		haserror = true
 	}
 	r.Email = strings.TrimSpace(r.Email)
 	if r.Email == "" {
 		r.vals["email_error"] = "email is required"
+		haserror = true
 	}
 	r.Password = strings.TrimSpace(r.Password)
 	if r.Password == "" {
 		r.vals["password_error"] = "password is required"
+		haserror = true
 	}
 	r.ConfirmPassword = strings.TrimSpace(r.ConfirmPassword)
 	if r.ConfirmPassword == "" {
 		r.vals["confirm_password_error"] = "confirm password is required"
+		haserror = true
 	} else {
 		if r.Password != r.ConfirmPassword {
 			r.vals["confirm_password_error"] = "confirm password must match passwordd"
+			haserror = true
 		}
 	}
-	return len(r.vals) == 0
+	return !haserror
 }
 
 func (r *Register) Ctx() map[string]string {

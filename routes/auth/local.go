@@ -8,8 +8,6 @@ package auth
 import (
 	"net/http"
 
-	"github.com/kr/pretty"
-
 	validate "github.com/asaskevich/govalidator"
 	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/db"
@@ -82,7 +80,6 @@ func LoginPost(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	lf, err := f.DecodeLogin(ctx.Request())
 	if err != nil {
-		pretty.Println(err)
 		utils.SetData(ctx, "form", f)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
@@ -199,7 +196,6 @@ func RegisterPost(ctx echo.Context) error {
 		flashMessages.Save(ctx)
 		return ctx.Redirect(http.StatusFound, "/auth/register")
 	}
-	pretty.Println(lf.Ctx())
 	// we are not interested in the returned user, rather we make sure the user has
 	// been created.
 	_, err = query.CreateNewUser(db.Conn, *lf)
