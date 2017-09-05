@@ -75,7 +75,11 @@ func AddFlashToCtx(ctx echo.Context) {
 	}
 	fctx := GetFlashes(ctx, settings.FlashCtxKey)
 	if fctx != nil {
-		ctx.Set(settings.FlashCtxKey, fctx)
+		m := make(map[string]string)
+		for _, v := range fctx {
+			m[v.Kind] = v.Message
+		}
+		ctx.Set(settings.FlashCtxKey, m)
 	}
 }
 
