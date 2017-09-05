@@ -24,7 +24,6 @@ import (
 
 	"github.com/gernest/zedlist/routes/auth"
 	"github.com/gernest/zedlist/routes/base"
-	"github.com/gernest/zedlist/routes/dash"
 	"github.com/gernest/zedlist/routes/japi"
 	"github.com/gernest/zedlist/routes/jobs"
 	"github.com/gernest/zedlist/routes/resume"
@@ -92,15 +91,6 @@ func Routes() *echo.Echo {
 	j := e.Group("/jobs")
 	j.Use(utils.WrapMiddleware(userAuth.Must()))
 	j.GET("/new", jobs.New)
-
-	// DASHBOARD
-	dashboard := e.Group("/dash")
-	dashboard.Use(utils.WrapMiddleware(userAuth.Must()))
-	dashboard.GET("/", dash.Home)
-	dashboard.GET("/jobs/new", dash.JobsNewGet)
-	dashboard.POST("/jobs/new", dash.JobsNewPost)
-	dashboard.GET("/profile", dash.Profile)
-	dashboard.POST("/profile/name", dash.ProfileName)
 
 	// RESUME
 	r := e.Group("/resume")
