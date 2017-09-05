@@ -68,6 +68,8 @@ var (
 	// FlashKey is the context key, passed to templates which holds lash messages
 	FlashKey = "Flash"
 
+	FlashCtxKey = "FlashCtx"
+
 	// CodecsKeyPair is a slice of key pairs used to secure cookies
 	CodecsKeyPair [][]byte
 )

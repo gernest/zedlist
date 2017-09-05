@@ -47,13 +47,13 @@ type Flashes []*Flash
 //
 // BUG multipleflash messages are not propery set. the flashes contains only the first
 // message to be set.
-func GetFlashes(ctx echo.Context) Flashes {
+func GetFlashes(ctx echo.Context, key string) Flashes {
 	ss, err := store.Get(ctx.Request(), settings.App.Session.Flash)
 	if err != nil {
 		//log.Error(nil, err)
 	}
-	if v, ok := ss.Values[settings.FlashKey]; ok {
-		delete(ss.Values, settings.FlashKey)
+	if v, ok := ss.Values[key]; ok {
+		delete(ss.Values, key)
 		serr := ss.Save(ctx.Request(), ctx.Response())
 		if serr != nil {
 			log.Error(ctx, err)
@@ -69,15 +69,20 @@ func GetFlashes(ctx echo.Context) Flashes {
 //
 // NOTE When there are no flash messages then nothing is set.
 func AddFlashToCtx(ctx echo.Context) {
-	f := GetFlashes(ctx)
+	f := GetFlashes(ctx, settings.FlashKey)
 	if f != nil {
 		ctx.Set(settings.FlashKey, f)
+	}
+	fctx := GetFlashes(ctx, settings.FlashCtxKey)
+	if fctx != nil {
+		ctx.Set(settings.FlashCtxKey, fctx)
 	}
 }
 
 //Flasher tracks flash messages
 type Flasher struct {
-	f Flashes
+	f   Flashes
+	ctx Flashes
 }
 
 //New creates new flasher. This alllows accumulation of lash messages. To save the flash messages
@@ -90,6 +95,11 @@ func New() *Flasher {
 func (f *Flasher) Add(kind, message string) {
 	fl := &Flash{kind, message}
 	f.f = append(f.f, fl)
+}
+
+func (f *Flasher) AddCtx(kind, message string) {
+	fl := &Flash{kind, message}
+	f.ctx = append(f.ctx, fl)
 }
 
 // Success adds success flash message
@@ -113,11 +123,16 @@ func (f *Flasher) Save(ctx echo.Context) error {
 	if err != nil {
 		//log.Error(nil, err)
 	}
-	var flashes Flashes
+	var flashes, flashesCtx Flashes
 	if v, ok := ss.Values[settings.FlashKey]; ok {
 		flashes = v.(Flashes)
 	}
+
+	if v, ok := ss.Values[settings.FlashCtxKey]; ok {
+		flashesCtx = v.(Flashes)
+	}
 	ss.Values[settings.FlashKey] = append(flashes, f.f...)
+	ss.Values[settings.FlashCtxKey] = append(flashesCtx, f.ctx...)
 	err = ss.Save(ctx.Request(), ctx.Response())
 	if err != nil {
 		return err

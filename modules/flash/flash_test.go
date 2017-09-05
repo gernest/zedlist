@@ -11,6 +11,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/gernest/zedlist/modules/settings"
+
 	"github.com/labstack/echo"
 )
 
@@ -34,7 +36,7 @@ func TestFlash(t *testing.T) {
 	var result Flashes
 
 	e.GET("/flash", func(ctx echo.Context) error {
-		result = GetFlashes(ctx)
+		result = GetFlashes(ctx, settings.FlashKey)
 		return nil
 	})
 	ts := httptest.NewServer(e)
