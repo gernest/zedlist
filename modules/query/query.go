@@ -276,13 +276,16 @@ func GetPersonByUserID(conn *gorm.DB, userID int64) (*models.Person, error) {
 }
 
 // PersonCreateJob creates a job associated with the person p using the given jobForm j.
-func PersonCreateJob(conn *gorm.DB, p *models.Person, j forms.JobForm) error {
-	job := models.Job{
+func PersonCreateJob(conn *gorm.DB, p *models.Person, j forms.JobForm) (*models.Job, error) {
+	job := &models.Job{
 		Title:       j.Title,
 		Description: j.Description,
+		PersonID:    p.ID,
 	}
-	q := conn.Model(p).Association("Jobs").Append(&job)
-	return q.Error
+	if q := conn.Create(job); q.Error != nil {
+		return nil, q.Error
+	}
+	return job, nil
 }
 
 // PersonDeleteJob deletes the job with ID jobID whichz is associated with person p.
@@ -292,8 +295,7 @@ func PersonDeleteJob(conn *gorm.DB, p *models.Person, jobID int) error {
 	if q.Error != nil {
 		return q.Error
 	}
-	qn := conn.Model(p).Association("jobs").Delete(job)
-	return qn.Error
+	return conn.Delete(job).Error
 }
 
 //

@@ -31,6 +31,8 @@ type Job struct {
 	// the text format should be in Markdown.
 	Description string `json:"description" sql:"null;type:text"`
 
+	PersonID int64
+
 	Region    Region    `json:"region"`
 	RegionID  int64     `json:"region_id"`
 	Deadline  time.Time `json:"deadline"`
@@ -100,7 +102,7 @@ type Person struct {
 	UpdatedAt          time.Time
 	DisplayName        string
 	Email              string
-	Jobs               []Job `gorm:"many2many:person_jobs;"`
+	Jobs               []Job
 	Gender             int
 	PersonName         PersonName
 	PersonNameID       int

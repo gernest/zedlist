@@ -64,13 +64,12 @@ func Routes() *echo.Echo {
 	e.GET("/docs", base.DocsHome)
 	e.GET("/docs/:name", base.Docs)
 
-	// BASE
-	b := e.Group("/jobs")
-	b.GET("/", base.JobsHome)
-	b.GET("/view/:id", base.JobView)
-	b.GET("/regions", base.RegionsHome)
-	b.GET("/regions/:name", base.RegionsJobView)
-	b.GET("/regions/:name/:from/:to", base.RegionsJobPaginate)
+	// JOBS
+	// b := e.Group("/jobs")
+	// b.GET("/", base.JobsHome)
+	// b.GET("/regions", base.RegionsHome)
+	// b.GET("/regions/:name", base.RegionsJobView)
+	// b.GET("/regions/:name/:from/:to", base.RegionsJobPaginate)
 
 	// AUTH
 	xauth := e.Group("/auth")
@@ -87,10 +86,12 @@ func Routes() *echo.Echo {
 	xauth.GET("/delete", auth.Delete)
 	xauth.POST("/delete", auth.DeletePost)
 
-	// JObs
+	// JOBS
 	j := e.Group("/jobs")
 	j.Use(utils.WrapMiddleware(userAuth.Must()))
 	j.GET("/new", jobs.New)
+	j.POST("/new", jobs.NewPost)
+	j.GET("/view/:id", jobs.View)
 
 	// RESUME
 	r := e.Group("/resume")

@@ -1,6 +1,7 @@
 package jobs
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gernest/zedlist/models"
@@ -41,7 +42,8 @@ func NewPost(ctx echo.Context) error {
 
 	if isLoged := ctx.Get("IsLoged"); isLoged != nil {
 		person := ctx.Get("User").(*models.Person)
-		if jerr := query.PersonCreateJob(db.Conn, person, *jf); jerr != nil {
+		jb, jerr := query.PersonCreateJob(db.Conn, person, *jf)
+		if jerr != nil {
 			// TODO: improve flash message ?
 			flashMessages.Err("some really bad fish happened")
 			flashMessages.Save(ctx)
@@ -51,11 +53,15 @@ func NewPost(ctx echo.Context) error {
 		// add flash message
 		flashMessages.Success("new job was created successful")
 		flashMessages.Save(ctx)
-
-		ctx.Redirect(http.StatusFound, "/jobs")
+		ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", jb.ID))
 		return nil
 	}
 	he := echo.NewHTTPError(http.StatusUnauthorized)
 	ctx.Error(he)
 	return nil
+}
+
+func View(ctx echo.Context) error {
+	utils.SetData(ctx, "PageTitle", "new job")
+	return ctx.Render(http.StatusOK, tmpl.JobsViewTpl, utils.GetData(ctx))
 }

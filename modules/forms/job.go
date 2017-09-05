@@ -10,6 +10,7 @@ import "net/http"
 type JobForm struct {
 	Title       string `schema:"title"`
 	Description string `schema:"description"`
+	CSRF        string `schema:"csrf_token"`
 }
 
 func (j *JobForm) Valid() bool {

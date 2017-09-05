@@ -16,6 +16,7 @@
 // templates/errors/404.html
 // templates/errors/500.html
 // templates/jobs/new.html
+// templates/jobs/view.html
 // templates/partials/common_header.html
 // templates/partials/docs_index.html
 // templates/partials/flash.html
@@ -155,7 +156,7 @@ func authRegisterHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "auth/register.html", size: 2864, mode: os.FileMode(420), modTime: time.Unix(1504619266, 0)}
+	info := bindataFileInfo{name: "auth/register.html", size: 2864, mode: os.FileMode(420), modTime: time.Unix(1504620082, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -416,6 +417,26 @@ func jobsNewHtml() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "jobs/new.html", size: 1076, mode: os.FileMode(420), modTime: time.Unix(1504613282, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _jobsViewHtml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\x4f\xce\xcf\xcd\xcd\xcf\x8b\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xc2\xaa\x38\x2d\x3f\xbf\x04\x45\x15\x20\x00\x00\xff\xff\x6f\x4f\x0a\xfb\x53\x00\x00\x00")
+
+func jobsViewHtmlBytes() ([]byte, error) {
+	return bindataRead(
+		_jobsViewHtml,
+		"jobs/view.html",
+	)
+}
+
+func jobsViewHtml() (*asset, error) {
+	bytes, err := jobsViewHtmlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "jobs/view.html", size: 83, mode: os.FileMode(420), modTime: time.Unix(1504630601, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -828,6 +849,7 @@ var _bindata = map[string]func() (*asset, error){
 	"errors/404.html": errors404Html,
 	"errors/500.html": errors500Html,
 	"jobs/new.html": jobsNewHtml,
+	"jobs/view.html": jobsViewHtml,
 	"partials/common_header.html": partialsCommon_headerHtml,
 	"partials/docs_index.html": partialsDocs_indexHtml,
 	"partials/flash.html": partialsFlashHtml,
@@ -910,6 +932,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	}},
 	"jobs": &bintree{nil, map[string]*bintree{
 		"new.html": &bintree{jobsNewHtml, map[string]*bintree{}},
+		"view.html": &bintree{jobsViewHtml, map[string]*bintree{}},
 	}},
 	"partials": &bintree{nil, map[string]*bintree{
 		"common_header.html": &bintree{partialsCommon_headerHtml, map[string]*bintree{}},
