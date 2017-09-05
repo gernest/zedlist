@@ -45,14 +45,14 @@ func NewPost(ctx echo.Context) error {
 			// TODO: improve flash message ?
 			flashMessages.Err("some really bad fish happened")
 			flashMessages.Save(ctx)
-			ctx.Redirect(http.StatusFound, "/dash/jobs/new")
+			ctx.Redirect(http.StatusFound, "/jobs/new")
 			return nil
 		}
 		// add flash message
 		flashMessages.Success("new job was created successful")
 		flashMessages.Save(ctx)
 
-		ctx.Redirect(http.StatusFound, "/dash/")
+		ctx.Redirect(http.StatusFound, "/jobs")
 		return nil
 	}
 	he := echo.NewHTTPError(http.StatusUnauthorized)

@@ -4,49 +4,26 @@
 
 package forms
 
-import (
-	"html/template"
-
-	"github.com/gernest/gforms"
-)
+import "net/http"
 
 // JobForm is a form for job posting
 type JobForm struct {
-	Title       string `gforms:"title"`
-	Description string `gforms:"description"`
+	Title       string `schema:"title"`
+	Description string `schema:"description"`
+}
+
+func (j *JobForm) Valid() bool {
+	return true
 }
 
 // JobForm implements gform.ModelForm interface.
-func (f *Form) JobForm() gforms.ModelForm {
-	titleAttrs := map[string]string{
-		"id": "job-title",
+func (f *Form) DecodeJobForm(r *http.Request) (*JobForm, error) {
+	if err := r.ParseForm(); err != nil {
+		return nil, err
 	}
-	descAttr := map[string]string{
-		"id": "job-description",
+	l := &JobForm{}
+	if err := decoder.Decode(l, r.PostForm); err != nil {
+		return nil, err
 	}
-	return gforms.DefineModelForm(JobForm{}, gforms.NewFields(
-		gforms.NewTextField(
-			"title",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.TextInputWidget(titleAttrs),
-		),
-		gforms.NewTextField(
-			"description",
-			gforms.Validators{
-				gforms.Required(f.tr.T(msgRequired)),
-			},
-			gforms.TextAreaWidget(descAttr),
-		),
-	))
-}
-
-func (f *Form) NewJobForm() template.HTML {
-	return template.HTML(`
-<div class="field">
-	<label> Title</label>
-	<input type="text" name="title" placeholder="jJob Title">
-</div>
-`)
+	return l, nil
 }
