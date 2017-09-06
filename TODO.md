@@ -3,7 +3,7 @@
     - [x] create
     - [ ] view
       - [x] single view
-      - [ ] listing view
+      - [x] listing view
     - [ ] update
     - [ ] Delete
   - [ ] json API

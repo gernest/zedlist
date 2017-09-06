@@ -1,0 +1,15 @@
+{{$owner :=owner .}}
+<div class="eight wide column">
+    <div class=" ui segments">
+        <div class="ui segment">
+            {{if .ID}}
+            <a href="/jobs/view/{{.ID}}"> {{username $owner.PersonName.Name}}/{{.ID}} </a>
+            {{end}}
+        </div>
+        <div class="ui center aligned segment">
+            {{if .Title}}
+            {{.Title}}
+            {{end}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+{{template "partials/common_header.html" .}}
+<div class=" ui container">
+    <div class="ui grid">
+        <div class="ui eight wide column">
+            <div class=" ui container">
+                <div class="ui grid">
+                    {{range .Jobs}} {{template "partials/job_box.html" .}} {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{template "partials/footer.html" .}}

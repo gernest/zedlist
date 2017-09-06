@@ -195,7 +195,7 @@ type User struct {
 	Password  string
 	Name      string `gorm:"unique"`
 	Person    Person
-	PersonID  int
+	PersonID  int64
 	Status    int
 	CreatedAt time.Time
 	UpdatedAt time.Time

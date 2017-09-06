@@ -12,10 +12,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gernest/zedlist/modules/db"
+	"github.com/gernest/zedlist/modules/query"
+
 	"github.com/labstack/echo"
 
 	"github.com/Unknwon/com"
 	asset "github.com/gernest/zedlist/bindata/template"
+	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/i18n"
 	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/mdown"
@@ -30,8 +34,11 @@ const (
 
 	DeleteTpl = "auth/delete.html"
 
-	JobsNewTpl  = "jobs/new.html"
+	JobsNewTpl = "jobs/new.html"
+
 	JobsViewTpl = "jobs/view.html"
+
+	JobsListTpl = "jobs/list.html"
 
 	//RegisterScripts addition scripts to be included in the registration page
 	// this adds link to the pickadate.js jquery and other date related javascript.
@@ -137,6 +144,7 @@ var Funcs = template.FuncMap{
 	"flag":       flagClass,
 	"switchLang": switchLang,
 	"username":   useername,
+	"owner":      owner,
 }
 
 // Config is the template configuration. Templates are loaded from embedded source, this act as a
@@ -286,6 +294,10 @@ func label(s string) string {
 
 func useername(s string) string {
 	return "@" + s
+}
+
+func owner(job *models.Job) (*models.Person, error) {
+	return query.GetPersonByID(db.Conn, job.PersonID)
 }
 
 // adds the content of the given file into the template document. This is a helper for

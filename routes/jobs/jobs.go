@@ -83,3 +83,15 @@ func View(ctx echo.Context) error {
 	}
 	return ctx.Render(http.StatusOK, tmpl.JobsViewTpl, utils.GetData(ctx))
 }
+
+func List(ctx echo.Context) error {
+	jobs, err := query.GetLatestJobs(db.Conn)
+	if err != nil {
+		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+
+	}
+	utils.SetData(ctx, "Jobs", jobs)
+	utils.SetData(ctx, "PageTitle", "jobs")
+	return ctx.Render(http.StatusOK, tmpl.JobsListTpl, utils.GetData(ctx))
+}

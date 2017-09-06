@@ -98,6 +98,10 @@ func PopulateDB(conn *gorm.DB) {
 	qj := conn.First(&models.Job{})
 	qu := conn.First(&models.User{})
 	if q.Error != nil && qj.Error != nil && qu.Error != nil {
+		usr, err := SampleUser(conn)
+		if err != nil {
+			sysLog.Println(err)
+		}
 		for _, v := range migrationData {
 			conn.FirstOrCreate(&models.Region{}, models.Region{Name: v.name, Short: v.short})
 		}
@@ -107,16 +111,14 @@ func PopulateDB(conn *gorm.DB) {
 			for _, v := range regs {
 				j := composeJob()
 				j.Deadline = deadline
+				j.PersonID = usr.Person.ID
 				j.Region = v
 				conn.Create(j)
 			}
 		}
 
 		// create a sample user
-		err := SampleUser(conn)
-		if err != nil {
-			sysLog.Println(err)
-		}
+
 	}
 	sysLog.Printf("Done. \n")
 }
@@ -132,21 +134,15 @@ func DropSession(conn *gorm.DB) {
 }
 
 // SampleUser creates a sample user.
-func SampleUser(conn *gorm.DB) error {
+func SampleUser(conn *gorm.DB) (*models.User, error) {
 	// create a  sample user( to speed up development)
 	regForm := forms.Register{
+		UserName:        "sneakyjeff",
 		Email:           "root@home.com",
-		Password:        "superroot",
-		ConfirmPassword: "superroot",
+		Password:        "pass",
+		ConfirmPassword: "pass",
 	}
-	u, err := CreateNewUser(conn, regForm)
-	if err != nil {
-		return err
-	}
-	if u != nil {
-		sysLog.Printf("%s", fmt.Sprintf("created sample user email %s password %s", u.Email, regForm.Password))
-	}
-	return nil
+	return CreateNewUser(conn, regForm)
 }
 
 //

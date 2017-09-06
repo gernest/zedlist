@@ -167,7 +167,7 @@ func TestUserQuery(t *testing.T) {
 }
 
 func TestPersonQuery(t *testing.T) {
-	err := SampleUser(db.Conn)
+	_, err := SampleUser(db.Conn)
 	if err != nil {
 		t.Errorf("creating sample user %v", err)
 	}
