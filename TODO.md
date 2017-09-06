@@ -1,7 +1,7 @@
 - [ ] jobs
   - [ ] crud
     - [x] create
-    - [ ] view
+    - [x] view
       - [x] single view
       - [x] listing view
     - [ ] update
