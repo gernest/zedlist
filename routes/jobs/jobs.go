@@ -62,6 +62,24 @@ func NewPost(ctx echo.Context) error {
 }
 
 func View(ctx echo.Context) error {
-	utils.SetData(ctx, "PageTitle", "new job")
+	id, err := utils.GetInt64(ctx.Param("id"))
+	if err != nil {
+		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
+		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
+	}
+	job, err := query.GetJobByID(db.Conn, id)
+	if err != nil {
+		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+	}
+	if job != nil {
+		utils.SetData(ctx, "Job", job)
+		utils.SetData(ctx, "PageTitle", job.Title)
+		owner, err := query.GetPersonByID(db.Conn, job.PersonID)
+		if err != nil {
+			//TODO: handle this?
+		}
+		utils.SetData(ctx, "Owner", owner)
+	}
 	return ctx.Render(http.StatusOK, tmpl.JobsViewTpl, utils.GetData(ctx))
 }

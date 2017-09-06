@@ -2,7 +2,7 @@
   - [ ] crud
     - [x] create
     - [ ] view
-      - [ ] single view
+      - [x] single view
       - [ ] listing view
     - [ ] update
     - [ ] Delete

@@ -275,6 +275,15 @@ func GetPersonByUserID(conn *gorm.DB, userID int64) (*models.Person, error) {
 	return p, nil
 }
 
+func GetPersonByID(conn *gorm.DB, id int64) (*models.Person, error) {
+	p := &models.Person{}
+	qu := conn.Preload("PersonName").First(p, id)
+	if qu.Error != nil {
+		return nil, qu.Error
+	}
+	return p, nil
+}
+
 // PersonCreateJob creates a job associated with the person p using the given jobForm j.
 func PersonCreateJob(conn *gorm.DB, p *models.Person, j forms.JobForm) (*models.Job, error) {
 	job := &models.Job{

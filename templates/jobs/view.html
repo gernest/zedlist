@@ -1,2 +1,31 @@
 {{template "partials/common_header.html" .}}
+<div class=" ui container">
+    <div class="ui grid">
+        <div class="row">
+            <div class=" ui eight wide column">
+                <div class="ui segments">
+                    <div class="ui segment">
+                        {{if .Job}}
+                        <h2>{{.Job.Title}}</h2>
+                        {{end}}
+                    </div>
+                    <div class="ui segment">
+                        {{if .Job}} {{md .Job.Description}} {{end}}
+                    </div>
+                    <div class=" ui right dividing rail">
+                        <div class="ui segmant">
+                            <button class="positive fluid ui button">Apply</button>
+                        </div>
+                        <div class="ui segment">
+                            {{if .Owner}}
+                            by <a href="/u/{{.Owner.PersonName.Name}}">{{username .Owner.PersonName.Name}}</a>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 {{template "partials/footer.html" .}}

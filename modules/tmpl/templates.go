@@ -136,6 +136,7 @@ var Funcs = template.FuncMap{
 	"dashed":     dashed,
 	"flag":       flagClass,
 	"switchLang": switchLang,
+	"username":   useername,
 }
 
 // Config is the template configuration. Templates are loaded from embedded source, this act as a
@@ -281,6 +282,10 @@ func toHTML(s string) template.HTML {
 //		label("mwanza_tanzania") //=> "mwanza tanzania"
 func label(s string) string {
 	return strings.Replace(s, "_", " ", -1)
+}
+
+func useername(s string) string {
+	return "@" + s
 }
 
 // adds the content of the given file into the template document. This is a helper for
