@@ -40,6 +40,7 @@ func SupportedLangs() []Lang {
 func Langs() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		utils.SetData(ctx, settings.SupportedLangs, SupportedLangs())
+		utils.SetData(ctx, settings.CurrentPath, ctx.Request().URL.Path)
 		sess, _ := store.Get(ctx.Request(), settings.App.Session.Lang)
 		target := sess.Values[settings.LangSessionKey]
 		if target != nil {

@@ -1,9 +1,10 @@
 <div class="ui  dropdown link item">
     <div class="text"><i class="{{flag .ActiveLang}} flag "></i>{{.ActiveLang}}</div>
     <i class="dropdown icon"></i>
+    {{$c:=.CurrentPath}}
     <div class="menu">
         {{range .SupportedLangs}}
-        <a class="item" href="/language/{{.Short}}"><i class="{{.Flag}} flag"></i> {{.Long}}</a>
+        <a class="item" href="/language/{{.Short}}?path={{$c}}"><i class="{{.Flag}} flag"></i> {{.Long}}</a>
         {{end}}
     </div>
 </div>
