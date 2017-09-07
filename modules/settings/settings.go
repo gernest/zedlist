@@ -75,6 +75,8 @@ const (
 	FlashKey = "Flash"
 
 	FlashCtxKey = "FlashCtx"
+
+	SupportedLangs = "SupportedLangs"
 )
 
 func init() {

@@ -15,9 +15,31 @@ import (
 
 var store = session.New()
 
+type Lang struct {
+	Long  string
+	Short string
+	Flag  string
+}
+
+func SupportedLangs() []Lang {
+	return []Lang{
+		{
+			Long:  "Swahili",
+			Short: "sw",
+			Flag:  "tz",
+		},
+		{
+			Long:  "English",
+			Short: "en",
+			Flag:  "us",
+		},
+	}
+}
+
 // Langs sets active language in the request context.
 func Langs() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
+		utils.SetData(ctx, settings.SupportedLangs, SupportedLangs())
 		sess, _ := store.Get(ctx.Request(), settings.App.Session.Lang)
 		target := sess.Values[settings.LangSessionKey]
 		if target != nil {
