@@ -15,6 +15,13 @@ var (
 	//App contains application specific variables
 	App *Config
 
+	// DocsPath is the relative directory for documents.
+
+	// CodecsKeyPair is a slice of key pairs used to secure cookies
+	CodecsKeyPair [][]byte
+)
+
+const (
 	// DefaultConfig is the default configuration file
 	DefaultConfig = "config.toml"
 
@@ -39,7 +46,7 @@ var (
 	JobsListKey = "jobs"
 
 	// PageTitleKey the key in the data context containing the pageTitle
-	PageTitleKey = "PageTitle"
+	PageTitle = "PageTitle"
 
 	// MaxListLimit the maximun number of items in a job list.
 	MaxListLimit = 20
@@ -50,7 +57,6 @@ var (
 	// RegionsListKey context key for regions list
 	RegionsListKey = "regions"
 
-	// DocsPath is the relative directory for documents.
 	DocsPath = "static/docs"
 
 	// DocsIndexPage the home page for documents
@@ -69,15 +75,6 @@ var (
 	FlashKey = "Flash"
 
 	FlashCtxKey = "FlashCtx"
-
-	// CodecsKeyPair is a slice of key pairs used to secure cookies
-	CodecsKeyPair [][]byte
-)
-
-var (
-
-	//WorkerAuthKey key used to authenticate with GoWorker
-	WorkerAuthKey = "w4PYxQjVP9ZStjWpBt5t28CEBmRs8NPx"
 )
 
 func init() {
@@ -109,6 +106,16 @@ type Config struct {
 	// sslmode	: disable
 	DBConn string `default:"postgres://postgres:postgres@localhost/zedlist?sslmode=disable"`
 }
+
+//flash messages keys
+const (
+	FlashAccountCreate       = "flash_account_create"
+	FlashAccountCreateFailed = "flash_account_create_fail"
+	FlashLoginSuccess        = "flash_login_success"
+	FlashLoginErr            = "flash_login_failed"
+	FlashNotAuthorized       = "flash_unauthorized"
+	FlashUnknownAccount      = "flash_unknown_account"
+)
 
 // Session configurations for sessions
 type Session struct {

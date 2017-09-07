@@ -7,6 +7,7 @@ package i18n
 
 import (
 	"github.com/gernest/gt"
+	"github.com/gernest/zedlist/modules/settings"
 )
 
 // Tr contains translations.
@@ -86,30 +87,7 @@ var Tr = &gt.Build{
 			"en": "documents",
 			"sw": "makala",
 		},
-		"flash_account_create": {
-			"en": "congard, your account has been successful created",
-			"sw": "hongera, akaunti yako imefanikiwa kutengenezwa",
-		},
-		"flash_account_create_fail": {
-			"en": "sorry, we can't create you account please try again later",
-			"sw": "samahaani, tumeshindwa kutengeneza akaunti yako, jaribu tena baadae",
-		},
-		"flash_login_success": {
-			"en": "welcome back",
-			"sw": "karibu ",
-		},
-		"flash_login_failed": {
-			"en": "there was a problem encountered, please check the details and try again",
-			"sw": "kuna majanga mkuu, jaribu kupitia maelezo ya fomu na ujaribu tena",
-		},
-		"flash_unauthorized": {
-			"en": "not authorized",
-			"sw": "ihauna ruhusa",
-		},
-		"flash_unknown_account": {
-			"en": "unknown account",
-			"sw": "ihauna ruhusa",
-		},
+
 		"issued_by": {
 			"en": "issued by",
 			"sw": "imetolewa na",
@@ -194,10 +172,40 @@ var Tr = &gt.Build{
 }
 
 func init() {
+	Tr.AddIndex(flash())
 	Tr.Init()
 }
 
 // CloneLang returns a copy of translations.
 func CloneLang() *gt.Build {
 	return Tr
+}
+
+func flash() gt.Strings {
+	return gt.Strings{
+		settings.FlashAccountCreate: {
+			"en": "congard, your account has been successful created",
+			"sw": "hongera, akaunti yako imefanikiwa kutengenezwa",
+		},
+		settings.FlashAccountCreateFailed: {
+			"en": "sorry, we can't create you account please try again later",
+			"sw": "samahaani, tumeshindwa kutengeneza akaunti yako, jaribu tena baadae",
+		},
+		settings.FlashLoginSuccess: {
+			"en": "welcome back",
+			"sw": "karibu ",
+		},
+		settings.FlashLoginErr: {
+			"en": "there was a problem encountered, please check the details and try again",
+			"sw": "kuna majanga mkuu, jaribu kupitia maelezo ya fomu na ujaribu tena",
+		},
+		settings.FlashNotAuthorized: {
+			"en": "not authorized",
+			"sw": "ihauna ruhusa",
+		},
+		settings.FlashUnknownAccount: {
+			"en": "unknown account",
+			"sw": "ihauna ruhusa",
+		},
+	}
 }

@@ -23,21 +23,6 @@ import (
 	"github.com/labstack/echo"
 )
 
-const (
-	msgAccountCreate       = "flash_account_create"
-	msgAccountCreateFailed = "flash_account_create_fail"
-	msgLoginSuccess        = "flash_login_success"
-	msgLoginErr            = "flash_login_failed"
-	msgNotAuthorized       = "flash_unauthorized"
-	msgUnknownAccount      = "flash_unknown_account"
-	authForm               = "AuthForm"
-)
-
-const (
-	loginTitle = "login"
-	pageTitle  = "PageTitle"
-)
-
 var sessStore = session.New()
 
 // Login renders login form.
@@ -56,7 +41,7 @@ func Login(ctx echo.Context) error {
 	utils.SetData(ctx, "form", f)
 
 	// set page tittle to login
-	utils.SetData(ctx, pageTitle, loginTitle)
+	utils.SetData(ctx, settings.PageTitle, "login")
 
 	return ctx.Render(http.StatusOK, tmpl.LoginTpl, utils.GetData(ctx))
 }
@@ -99,7 +84,7 @@ func LoginPost(ctx echo.Context) error {
 			// We want the user to try again, but rather than rendering the form right
 			// away, we redirect him/her to /auth/login route(where the login process with
 			// start aflsesh albeit with a flash message)
-			flashMessages.Err(msgLoginErr)
+			flashMessages.Err(settings.FlashLoginErr)
 			flashMessages.Save(ctx)
 			ctx.Redirect(http.StatusFound, "/auth/login")
 			return nil
@@ -112,7 +97,7 @@ func LoginPost(ctx echo.Context) error {
 			// We want the user to try again, but rather than rendering the form right
 			// away, we redirect him/her to /auth/login route(where the login process with
 			// start aflsesh albeit with a flash message)
-			flashMessages.Err(msgLoginErr)
+			flashMessages.Err(settings.FlashLoginErr)
 			flashMessages.Save(ctx)
 			ctx.Redirect(http.StatusFound, "/auth/login")
 			return nil
@@ -133,7 +118,7 @@ func LoginPost(ctx echo.Context) error {
 	person, err := query.GetPersonByUserID(db.Conn, user.ID)
 	if err != nil {
 		log.Error(ctx, err)
-		flashMessages.Err(msgLoginErr)
+		flashMessages.Err(settings.FlashLoginErr)
 		flashMessages.Save(ctx)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
@@ -143,7 +128,7 @@ func LoginPost(ctx echo.Context) error {
 	// contains a models.Person object, where the PersonName is already loaded.
 	utils.SetData(ctx, "IsLoged", true)
 	utils.SetData(ctx, "User", person)
-	flashMessages.Success(msgLoginSuccess)
+	flashMessages.Success(settings.FlashLoginSuccess)
 	flashMessages.Save(ctx)
 	ctx.Redirect(http.StatusFound, "/")
 	return nil
@@ -183,7 +168,6 @@ func RegisterPost(ctx echo.Context) error {
 	lf, err := f.DecodeRegister(ctx.Request())
 	if err != nil {
 		// Case the form is not valid, ships it back with the errors exclusively
-		utils.SetData(ctx, authForm, lf)
 		return ctx.Render(http.StatusOK, tmpl.RegisterTpl, utils.GetData(ctx))
 	}
 	if !lf.Valid() {
@@ -197,7 +181,7 @@ func RegisterPost(ctx echo.Context) error {
 	// been created.
 	_, err = query.CreateNewUser(db.Conn, *lf)
 	if err != nil {
-		flashMessages.Err(msgAccountCreateFailed)
+		flashMessages.Err(settings.FlashAccountCreateFailed)
 		flashMessages.Save(ctx)
 		ctx.Redirect(http.StatusFound, "/auth/register")
 		return nil
@@ -205,7 +189,7 @@ func RegisterPost(ctx echo.Context) error {
 
 	// TODO: improve the message to include directions to use the current email and
 	// password to login?
-	flashMessages.Success(msgAccountCreate)
+	flashMessages.Success(settings.FlashAccountCreate)
 	flashMessages.Save(ctx)
 
 	// Don't create session in this route, its best to leave only one place which
@@ -241,7 +225,7 @@ func Delete(ctx echo.Context) error {
 	utils.SetData(ctx, "form", f)
 
 	// set page tittle to login
-	utils.SetData(ctx, pageTitle, "confirm deleting account")
+	utils.SetData(ctx, settings.PageTitle, "confirm deleting account")
 	return ctx.Render(http.StatusOK, tmpl.DeleteTpl, utils.GetData(ctx))
 }
 
@@ -250,14 +234,14 @@ func DeletePost(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	u, ok := ctx.Get("User").(*models.Person)
 	if !ok {
-		flashMessages.Err(msgNotAuthorized)
+		flashMessages.Err(settings.FlashNotAuthorized)
 		flashMessages.Save(ctx)
 		ctx.Redirect(http.StatusFound, "/auth/delete")
 		return nil
 	}
 	usr := f.DecodeDelete(ctx.Request())
 	if usr != u.PersonName.Name {
-		flashMessages.Err(msgUnknownAccount)
+		flashMessages.Err(settings.FlashUnknownAccount)
 		flashMessages.Save(ctx)
 		ctx.Redirect(http.StatusFound, "/auth/delete")
 		return nil

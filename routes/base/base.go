@@ -59,7 +59,7 @@ func JobsHome(ctx echo.Context) error {
 
 	}
 	utils.SetData(ctx, settings.JobsListKey, jobs)
-	utils.SetData(ctx, settings.PageTitleKey, "jobs")
+	utils.SetData(ctx, settings.PageTitle, "jobs")
 	return ctx.Render(http.StatusOK, tmpl.BaseJobsHomeTpl, utils.GetData(ctx))
 }
 

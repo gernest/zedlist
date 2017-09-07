@@ -69,12 +69,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/gernest/gforms"
-  packages = ["."]
-  revision = "133aa59f04e95277f74a73efab48776184b7d1aa"
-
-[[projects]]
-  branch = "master"
   name = "github.com/gernest/github_flavored_markdown"
   packages = ["."]
   revision = "a383c6079820de953d5341873de451dc5cf49873"
@@ -82,14 +76,8 @@
 [[projects]]
   name = "github.com/gernest/gt"
   packages = ["."]
-  revision = "7a6e877e96a228bc28dff7f64d6bd1370179a432"
-  version = "v1.1.0"
-
-[[projects]]
-  name = "github.com/gernest/vala"
-  packages = ["."]
-  revision = "bfe9b50e828ad56312e486cbf4165ff1ac3a9bae"
-  version = "v1"
+  revision = "7d8fd89f5f1fc3829e08935ea6c9e4a9c3ecb267"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/gorilla/context"
@@ -287,7 +275,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
-  revision = "7ddbeae9ae08c6a06a59597f0c9edbc5ff2444ce"
+  revision = "9aade4d3a3b7e6d876cd3823ad20ec45fc035402"
 
 [[projects]]
   name = "gopkg.in/russross/blackfriday.v1"
@@ -304,6 +292,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7ccd11caff4766a54445ca87bb43f7568db9c6061a4d3a4fdff9a5a4e81d1b9f"
+  inputs-digest = "e267e5b4e06dae91c7157910627c056d2c50ea0071638965ffe98172a98ba449"
   solver-name = "gps-cdcl"
   solver-version = 1
