@@ -181,6 +181,7 @@ func CloneLang() *gt.Build {
 	return Tr
 }
 
+// flash message translation indices
 func flash() gt.Strings {
 	return gt.Strings{
 		settings.FlashAccountCreate: {
