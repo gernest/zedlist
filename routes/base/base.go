@@ -41,55 +41,6 @@ func Home(ctx echo.Context) error {
 	return ctx.Render(http.StatusOK, tmpl.BaseHomeTpl, utils.GetData(ctx))
 }
 
-// JobsHome renders jobs home page
-//
-//
-//		Method           GET
-//
-//		Route            /jobs/
-//
-//		Restrictions     None
-//
-// 		Template         base/jobs.html
-func JobsHome(ctx echo.Context) error {
-	jobs, err := query.GetLatestJobs(db.Conn)
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-
-	}
-	utils.SetData(ctx, settings.JobsListKey, jobs)
-	utils.SetData(ctx, settings.PageTitle, "jobs")
-	return ctx.Render(http.StatusOK, tmpl.BaseJobsHomeTpl, utils.GetData(ctx))
-}
-
-// JobView displays a single job by the given job id.
-//
-//
-//		Method           GET
-//
-//		Route            /jobs/view/:id
-//
-//		Restrictions     None
-//
-// 		Template         base/jobs_view.html
-func JobView(ctx echo.Context) error {
-	id, err := utils.GetInt64(ctx.Param("id"))
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
-		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
-	}
-	job, err := query.GetJobByID(db.Conn, id)
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-	}
-	if job != nil {
-		utils.SetData(ctx, "Job", job)
-	}
-	return ctx.Render(http.StatusOK, tmpl.BaseJobsViewTpl, utils.GetData(ctx))
-}
-
 // SetLanguage switches language, between swahili and english. This means when this
 // handler is accessed, if the current language is en it will be set to sw and vice versa.
 //
@@ -102,17 +53,9 @@ func JobView(ctx echo.Context) error {
 // 		Template         None ( Redirection is made to home route ("/"))
 func SetLanguage(ctx echo.Context) error {
 	lang := ctx.Param("lang")
-	var language string
-	switch lang {
-	case "en", "sw":
-		language = lang
-	default:
-		language = "en"
-
-	}
 	store := session.New()
 	sess, _ := store.Get(ctx.Request(), settings.LangSessionName)
-	sess.Values[settings.LangSessionKey] = language
+	sess.Values[settings.LangSessionKey] = lang
 	store.Save(ctx.Request(), ctx.Response(), sess)
 	ctx.Redirect(http.StatusFound, "/")
 	return nil
