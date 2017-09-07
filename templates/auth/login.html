@@ -5,16 +5,28 @@
             <h2>
                 <div class=" content">{{tr .ActiveLang "login_form_title"}}</div>
             </h2>
-            <form method="post" class="ui large form">
+            <form method="post" class="ui large form {{if .FlashCtx}} error {{end}}">
                 <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
-                <div class="field">
+                <div class="field  {{if .FlashCtx}}{{if .FlashCtx.username_error}} error {{end}}{{end}}">
                     <label> {{tr .ActiveLang "username"}} </label>
-                    <input type="text" name="username" placeholder="{{tr .ActiveLang "username_or_email"}}">
+                    <input type="text" name="username" placeholder="{{tr .ActiveLang "username_or_email"}}"
+                    {{if .FlashCtx}}{{if .FlashCtx.username}} value="{{.FlashCtx.username}}"{{end}}{{end}}
+                    >
                 </div>
-                <div class="field">
+                {{if .FlashCtx}}
+                {{if .FlashCtx.username_error}}
+                <div class="ui error message">{{.FlashCtx.username_error}} </div>
+                {{end}}
+                {{end}}
+                <div class="field {{if .FlashCtx}}{{if .FlashCtx.password_error}} error {{end}}{{end}}">
                     <label> {{tr .ActiveLang "password"}}</label>
                     <input type="password" name="password" placeholder="{{tr .ActiveLang "password"}}">
                 </div>
+                {{if .FlashCtx}}
+                {{if .FlashCtx.password_error}}
+                <div class="ui error message">{{.FlashCtx.password_error}} </div>
+                {{end}}
+                {{end}}
                 <button class="ui fluid large submit button"> {{tr .ActiveLang "login"}}</button>
             </form>
         </div>

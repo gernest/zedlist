@@ -76,22 +76,21 @@ func Login(ctx echo.Context) error {
 // Flash messages may be set before redirection.
 func LoginPost(ctx echo.Context) error {
 	var flashMessages = flash.New()
-
 	f := forms.New(utils.GetLang(ctx))
 	lf, err := f.DecodeLogin(ctx.Request())
 	if err != nil {
-		utils.SetData(ctx, "form", f)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
 	}
 	if !lf.Valid() {
-		f.SetLogin(lf)
-		utils.SetData(ctx, "form", lf)
+		for k, v := range lf.Ctx() {
+			flashMessages.AddCtx(k, v)
+		}
+		flashMessages.Save(ctx)
 		ctx.Redirect(http.StatusFound, "/auth/login")
 		return nil
 	}
 	var user *models.User
-
 	if validate.IsEmail(lf.Name) {
 		user, err = query.AuthenticateUserByEmail(db.Conn, *lf)
 		if err != nil {
@@ -147,8 +146,6 @@ func LoginPost(ctx echo.Context) error {
 	flashMessages.Success(msgLoginSuccess)
 	flashMessages.Save(ctx)
 	ctx.Redirect(http.StatusFound, "/")
-
-	log.Info(ctx, "login success")
 	return nil
 }
 

@@ -29,10 +29,29 @@ type Login struct {
 	Name     string `schema:"username"`
 	Password string `schema:"password"`
 	CSRF     string `schema:"csrf_token"`
+	vals     map[string]string
 }
 
 func (l *Login) Valid() bool {
-	return true
+	if l.vals == nil {
+		l.vals = make(map[string]string)
+	}
+	var hasError bool
+	l.vals["username"] = l.Name
+	l.vals["password"] = l.Password
+	l.Name = strings.TrimSpace(l.Name)
+	if l.Name == "" {
+		l.vals["username_error"] = "username is required"
+		hasError = true
+	}
+	if l.Password == "" {
+		l.vals["password_error"] = "password is required"
+		hasError = true
+	}
+	return !hasError
+}
+func (l *Login) Ctx() map[string]string {
+	return l.vals
 }
 
 // Register is the registration form
