@@ -120,6 +120,7 @@ const (
 	FlashUnknownAccount      = "flash_unknown_account"
 	FlashCreateJobSuccess    = "flash_create_new_job_success"
 	FlashFailedNewJob        = "flash_failed_creating_new_job"
+	FlashSuccessUpdate       = "flash_success_update"
 )
 
 //keys for error messages

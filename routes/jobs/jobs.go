@@ -38,21 +38,16 @@ func NewPost(ctx echo.Context) error {
 		flashMessages.Save(ctx)
 		return ctx.Redirect(http.StatusFound, "/jobs/new")
 	}
-	if isLoged := ctx.Get("IsLoged"); isLoged != nil {
-		person := ctx.Get("User").(*models.Person)
-		jb, jerr := query.PersonCreateJob(db.Conn, person, *jf)
-		if jerr != nil {
-			flashMessages.Err(settings.FlashFailedNewJob)
-			flashMessages.Save(ctx)
-			return ctx.Redirect(http.StatusFound, "/jobs/new")
-		}
-		flashMessages.Success(settings.FlashCreateJobSuccess)
+	person := ctx.Get("User").(*models.Person)
+	jb, jerr := query.PersonCreateJob(db.Conn, person, *jf)
+	if jerr != nil {
+		flashMessages.Err(settings.FlashFailedNewJob)
 		flashMessages.Save(ctx)
-		return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", jb.ID))
+		return ctx.Redirect(http.StatusFound, "/jobs/new")
 	}
-	he := echo.NewHTTPError(http.StatusUnauthorized)
-	ctx.Error(he)
-	return nil
+	flashMessages.Success(settings.FlashCreateJobSuccess)
+	flashMessages.Save(ctx)
+	return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", jb.ID))
 }
 
 func View(ctx echo.Context) error {
@@ -93,4 +88,64 @@ func List(ctx echo.Context) error {
 	utils.SetData(ctx, "Jobs", jobs)
 	utils.SetData(ctx, settings.PageTitle, "jobs")
 	return ctx.Render(http.StatusOK, tmpl.JobsListTpl, utils.GetData(ctx))
+}
+
+func Update(ctx echo.Context) error {
+	id, err := utils.GetInt64(ctx.Param("id"))
+	if err != nil {
+		utils.SetData(ctx, settings.Message, settings.ErrBadRequest)
+		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
+	}
+	job, err := query.GetJobByID(db.Conn, id)
+	if err != nil {
+		if query.NotFound(err) {
+			utils.SetData(ctx, settings.Message, settings.ErrorResourceNotFound)
+			return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+		}
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
+	}
+	utils.SetData(ctx, "PageTitle", "new job")
+	utils.SetData(ctx, "Job", job)
+	return ctx.Render(http.StatusOK, tmpl.JobsUpdateTpl, utils.GetData(ctx))
+}
+
+func UpdatePost(ctx echo.Context) error {
+	id, err := utils.GetInt64(ctx.Param("id"))
+	if err != nil {
+		utils.SetData(ctx, settings.Message, settings.ErrBadRequest)
+		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
+	}
+	flashMessages := flash.New()
+	f := forms.New(utils.GetLang(ctx))
+	jf, err := f.DecodeJobForm(ctx.Request())
+	if err != nil {
+		flashMessages.Err(settings.ErrInvalidForm)
+		flashMessages.Save(ctx)
+		return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/update/%d", id))
+	}
+	if !jf.Valid() {
+		flashMessages.Err(settings.ErrInvalidForm)
+		flashMessages.Save(ctx)
+		return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/update/%d", id))
+	}
+	job, err := query.GetJobByID(db.Conn, id)
+	if err != nil {
+		if query.NotFound(err) {
+			utils.SetData(ctx, settings.Message, settings.ErrorResourceNotFound)
+			return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+		}
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
+	}
+	job.Title = jf.Title
+	job.Description = jf.Description
+	if err = query.Update(db.Conn, job); err != nil {
+		log.Error(ctx, err)
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
+	}
+	flashMessages.Success(settings.FlashSuccessUpdate)
+	flashMessages.Save(ctx)
+	return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", id))
 }

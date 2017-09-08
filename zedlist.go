@@ -86,6 +86,8 @@ func Routes() *echo.Echo {
 	j.GET("/new", jobs.New)
 	j.POST("/new", jobs.NewPost)
 	j.GET("/view/:id", jobs.View)
+	j.GET("/update/:id", jobs.Update)
+	j.POST("/update/:id", jobs.UpdatePost)
 
 	// RESUME
 	r := e.Group("/resume")

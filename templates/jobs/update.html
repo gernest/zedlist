@@ -1,0 +1,33 @@
+{{template "partials/common_header.html" .}}
+<div class=" ui container">
+    <div class=" ui grid">
+        <div class="row">
+            <div class="eight wide centered column">
+                <h2>
+                    <div class=" content">{{tr .ActiveLang "update_job_title"}}</div>
+                </h2>
+                <form method="post" class="ui large form">
+                    <input id="token" type="hidden" name="csrf_token" value="{{ .CsrfToken }}">
+                    <div class="field">
+                        <label> {{tr .ActiveLang "job_title"}} </label>
+                        <input type="text" name="title" 
+                        {{if .Job}}
+                        value="{{.Job.Title}}"
+                        {{end}}
+                        >
+                    </div>
+                    <div class="field">
+                        <label> {{tr .ActiveLang "job_desc"}} </label>
+                        <textarea name="description">
+                            {{if .Job}}
+                            {{.Job.Description}}
+                            {{end}}
+                        </textarea>
+                    </div>
+                    <button class="ui fluid large submit button"> {{tr .ActiveLang "update"}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{template "partials/footer.html" .}}

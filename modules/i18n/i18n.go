@@ -168,6 +168,14 @@ var Tr = &gt.Build{
 			"en": "Create",
 			"sw": "Tengeneza",
 		},
+		"update": {
+			"en": "Update",
+			"sw": "Sahihisha",
+		},
+		"update_job_title": {
+			"en": "Update a job posting",
+			"sw": "Sahihisha habari za ajira",
+		},
 	},
 }
 
@@ -216,6 +224,10 @@ func flash() gt.Strings {
 		settings.FlashFailedNewJob: {
 			"en": "sorry! We failed to create the new job",
 			"sw": "samahani tumeshindwa kutengeneza ajira mpya",
+		},
+		settings.FlashSuccessUpdate: {
+			"en": "succesful updated job listing",
+			"sw": "umefanikiwa kusahihisha habari za ajira",
 		},
 	}
 }

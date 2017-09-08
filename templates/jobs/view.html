@@ -8,6 +8,15 @@
                         {{if .Job}}
                         <h2>{{.Job.Title}}</h2>
                         {{end}}
+                        {{if .Owner}}
+                        {{if eq .Owner.ID .Job.PersonID}}
+                        <div class="ui icon buttons">
+                            <a class="ui labelled button" href="/jobs/update/{{.Job.ID}}"><i class="edit icon"></i>
+                                update
+                            </a>
+                        </div>
+                        {{end}}
+                        {{end}}  
                     </div>
                     <div class="ui segment">
                         {{if .Job}} {{md .Job.Description}} {{end}}
