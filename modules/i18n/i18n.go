@@ -229,6 +229,10 @@ func flash() gt.Strings {
 			"en": "succesful updated job listing",
 			"sw": "umefanikiwa kusahihisha habari za ajira",
 		},
+		settings.FlashSuccessDelete: {
+			"en": "succesful deleted a job listing",
+			"sw": "umefanikiwa kufuta ajira",
+		},
 	}
 }
 

@@ -149,3 +149,33 @@ func UpdatePost(ctx echo.Context) error {
 	flashMessages.Save(ctx)
 	return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", id))
 }
+
+func Delete(ctx echo.Context) error {
+	id, err := utils.GetInt64(ctx.Param("id"))
+	if err != nil {
+		utils.SetData(ctx, settings.Message, settings.ErrBadRequest)
+		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
+	}
+	flashMessages := flash.New()
+	job, err := query.GetJobByID(db.Conn, id)
+	if err != nil {
+		if query.NotFound(err) {
+			utils.SetData(ctx, settings.Message, settings.ErrorResourceNotFound)
+			return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+		}
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
+	}
+	person := ctx.Get("User").(*models.Person)
+	if person.ID != job.PersonID {
+		//TODO ; render unauthorized template
+	}
+	if err = query.Delete(db.Conn, job); err != nil {
+		log.Error(ctx, err)
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusInternalServerError, tmpl.ErrServerTpl, utils.GetData(ctx))
+	}
+	flashMessages.Success(settings.FlashSuccessDelete)
+	flashMessages.Save(ctx)
+	return ctx.Redirect(http.StatusFound, "/jobs/")
+}

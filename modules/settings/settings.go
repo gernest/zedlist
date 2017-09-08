@@ -121,6 +121,7 @@ const (
 	FlashCreateJobSuccess    = "flash_create_new_job_success"
 	FlashFailedNewJob        = "flash_failed_creating_new_job"
 	FlashSuccessUpdate       = "flash_success_update"
+	FlashSuccessDelete       = "flash_success_delete"
 )
 
 //keys for error messages
