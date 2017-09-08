@@ -1,0 +1,11 @@
+<div class=" ui container">
+    <div class=" ui middle aligned center aligned grid">
+        {{if .Message}}
+        <div class="text container">
+            <div class="ui negative message">
+                {{tr .ActiveLang .Message}}
+            </div>
+        </div>
+        {{end}}
+    </div>
+</div>

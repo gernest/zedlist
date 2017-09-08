@@ -20,6 +20,7 @@
 // templates/jobs/view.html
 // templates/partials/common_header.html
 // templates/partials/docs_index.html
+// templates/partials/error_message.html
 // templates/partials/flash.html
 // templates/partials/footer.html
 // templates/partials/header.html
@@ -139,7 +140,7 @@ func authLoginHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "auth/login.html", size: 1800, mode: os.FileMode(420), modTime: time.Unix(1504780036, 0)}
+	info := bindataFileInfo{name: "auth/login.html", size: 1800, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -279,7 +280,7 @@ func baseLandingHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "base/landing.html", size: 1417, mode: os.FileMode(420), modTime: time.Unix(1504784714, 0)}
+	info := bindataFileInfo{name: "base/landing.html", size: 1417, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -344,7 +345,7 @@ func baseRegions_paginateHtml() (*asset, error) {
 	return a, nil
 }
 
-var _errors400Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xaa\xae\xd6\xf3\x4d\x2d\x2e\x4e\x4c\x4f\x05\x73\xb0\x68\x49\xcb\xcf\x2f\x41\xd6\x02\x08\x00\x00\xff\xff\xcc\x88\x4f\xc3\x58\x00\x00\x00")
+var _errors400Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\x4f\xce\xcf\xcd\xcd\xcf\x8b\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xc2\xaa\x38\xb5\xa8\x28\xbf\x28\x3e\x37\xb5\xb8\x38\x31\x3d\x95\x90\xe2\xb4\xfc\xfc\x12\x64\x23\x01\x01\x00\x00\xff\xff\xe3\x6f\xa0\x18\x7f\x00\x00\x00")
 
 func errors400HtmlBytes() ([]byte, error) {
 	return bindataRead(
@@ -359,12 +360,12 @@ func errors400Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/400.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1503401626, 0)}
+	info := bindataFileInfo{name: "errors/400.html", size: 127, mode: os.FileMode(420), modTime: time.Unix(1504861203, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _errors404Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xaa\xae\xd6\xf3\x4d\x2d\x2e\x4e\x4c\x4f\x05\x73\xb0\x68\x49\xcb\xcf\x2f\x41\xd6\x02\x08\x00\x00\xff\xff\xcc\x88\x4f\xc3\x58\x00\x00\x00")
+var _errors404Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\x4f\xce\xcf\xcd\xcd\xcf\x8b\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xc2\xaa\x38\xb5\xa8\x28\xbf\x28\x3e\x37\xb5\xb8\x38\x31\x3d\x95\x90\xe2\xb4\xfc\xfc\x12\x64\x23\x01\x01\x00\x00\xff\xff\xe3\x6f\xa0\x18\x7f\x00\x00\x00")
 
 func errors404HtmlBytes() ([]byte, error) {
 	return bindataRead(
@@ -379,12 +380,12 @@ func errors404Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/404.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1503401626, 0)}
+	info := bindataFileInfo{name: "errors/404.html", size: 127, mode: os.FileMode(420), modTime: time.Unix(1504861221, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _errors500Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xaa\xae\xd6\xf3\x4d\x2d\x2e\x4e\x4c\x4f\x05\x73\xb0\x68\x49\xcb\xcf\x2f\x41\xd6\x02\x08\x00\x00\xff\xff\xcc\x88\x4f\xc3\x58\x00\x00\x00")
+var _errors500Html = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x2a\x48\x2c\x2a\xc9\x4c\xcc\x29\xd6\x4f\xce\xcf\xcd\xcd\xcf\x8b\xcf\x48\x4d\x4c\x49\x2d\xd2\xcb\x28\xc9\xcd\x51\x52\xd0\xab\xad\xe5\xc2\xaa\x38\xb5\xa8\x28\xbf\x28\x3e\x37\xb5\xb8\x38\x31\x3d\x95\x90\xe2\xb4\xfc\xfc\x12\x64\x23\x01\x01\x00\x00\xff\xff\xe3\x6f\xa0\x18\x7f\x00\x00\x00")
 
 func errors500HtmlBytes() ([]byte, error) {
 	return bindataRead(
@@ -399,7 +400,7 @@ func errors500Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/500.html", size: 88, mode: os.FileMode(420), modTime: time.Unix(1503401626, 0)}
+	info := bindataFileInfo{name: "errors/500.html", size: 127, mode: os.FileMode(420), modTime: time.Unix(1504861235, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -419,7 +420,7 @@ func jobsListHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "jobs/list.html", size: 415, mode: os.FileMode(420), modTime: time.Unix(1504693718, 0)}
+	info := bindataFileInfo{name: "jobs/list.html", size: 415, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -459,7 +460,7 @@ func jobsViewHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "jobs/view.html", size: 1218, mode: os.FileMode(420), modTime: time.Unix(1504694296, 0)}
+	info := bindataFileInfo{name: "jobs/view.html", size: 1218, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -500,6 +501,26 @@ func partialsDocs_indexHtml() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "partials/docs_index.html", size: 305, mode: os.FileMode(420), modTime: time.Unix(1503401626, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _partialsError_messageHtml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x8d\x4d\x0a\xc2\x30\x10\x85\xf7\x9e\xe2\xd1\x03\xd4\x0b\xa8\xe0\x5e\x0f\x31\x64\xc6\x30\xd0\x8e\x90\x4c\x8b\x10\x7a\x77\xa9\x2d\x55\x62\xb3\x09\x6f\xde\xcf\x77\x62\x1d\x11\x3a\xca\xf9\xdc\x60\x50\x84\xa7\x39\xa9\x49\x6a\x2e\x07\x00\xa8\xfd\x5e\x99\x3b\x01\x75\x1a\x4d\x18\x41\xcc\x25\x6d\x32\x26\xe5\xb5\x38\xbf\x52\xf4\x81\xf6\x2e\x39\x53\x94\x69\xda\xee\xbf\xa3\x2e\x2f\xff\xa3\xee\x05\x07\x85\x49\x24\xd7\x51\xd0\x2f\x93\x55\x7a\x41\x7a\x42\x7b\x0d\x73\xec\x46\x16\xf7\xf0\x9f\xe5\x23\xeb\xf8\xad\x57\xb2\x14\x31\x5e\x1b\xab\xb5\x7c\xef\x00\x00\x00\xff\xff\xfb\x8e\x65\xf6\x2f\x01\x00\x00")
+
+func partialsError_messageHtmlBytes() ([]byte, error) {
+	return bindataRead(
+		_partialsError_messageHtml,
+		"partials/error_message.html",
+	)
+}
+
+func partialsError_messageHtml() (*asset, error) {
+	bytes, err := partialsError_messageHtmlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "partials/error_message.html", size: 303, mode: os.FileMode(420), modTime: time.Unix(1504861642, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -579,7 +600,7 @@ func partialsJob_boxHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/job_box.html", size: 986, mode: os.FileMode(420), modTime: time.Unix(1504696618, 0)}
+	info := bindataFileInfo{name: "partials/job_box.html", size: 986, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -619,7 +640,7 @@ func partialsMain_menuHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/main_menu.html", size: 1038, mode: os.FileMode(420), modTime: time.Unix(1504784459, 0)}
+	info := bindataFileInfo{name: "partials/main_menu.html", size: 1038, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -679,7 +700,7 @@ func partialsSupported_langsHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/supported_langs.html", size: 381, mode: os.FileMode(420), modTime: time.Unix(1504786544, 0)}
+	info := bindataFileInfo{name: "partials/supported_langs.html", size: 381, mode: os.FileMode(420), modTime: time.Unix(1504859784, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -916,6 +937,7 @@ var _bindata = map[string]func() (*asset, error){
 	"jobs/view.html": jobsViewHtml,
 	"partials/common_header.html": partialsCommon_headerHtml,
 	"partials/docs_index.html": partialsDocs_indexHtml,
+	"partials/error_message.html": partialsError_messageHtml,
 	"partials/flash.html": partialsFlashHtml,
 	"partials/footer.html": partialsFooterHtml,
 	"partials/header.html": partialsHeaderHtml,
@@ -1004,6 +1026,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	"partials": &bintree{nil, map[string]*bintree{
 		"common_header.html": &bintree{partialsCommon_headerHtml, map[string]*bintree{}},
 		"docs_index.html": &bintree{partialsDocs_indexHtml, map[string]*bintree{}},
+		"error_message.html": &bintree{partialsError_messageHtml, map[string]*bintree{}},
 		"flash.html": &bintree{partialsFlashHtml, map[string]*bintree{}},
 		"footer.html": &bintree{partialsFooterHtml, map[string]*bintree{}},
 		"header.html": &bintree{partialsHeaderHtml, map[string]*bintree{}},

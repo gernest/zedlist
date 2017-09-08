@@ -173,6 +173,7 @@ var Tr = &gt.Build{
 
 func init() {
 	Tr.AddIndex(flash())
+	Tr.AddIndex(errorMessages())
 	Tr.Init()
 }
 
@@ -207,6 +208,23 @@ func flash() gt.Strings {
 		settings.FlashUnknownAccount: {
 			"en": "unknown account",
 			"sw": "ihauna ruhusa",
+		},
+	}
+}
+
+func errorMessages() gt.Strings {
+	return gt.Strings{
+		settings.ErrorResourceNotFound: {
+			"en": "Ooops! we cant find the resource you asked for",
+			"sw": "Oops! Tumeshindwa kupata ulichoulizia",
+		},
+		settings.ErrorInternalServer: {
+			"en": "Opps! we had a problem",
+			"sw": "Oops! kuna hitilafu",
+		},
+		settings.ErrBadRequest: {
+			"en": "Opps! bad request",
+			"sw": "Oops! bad request",
 		},
 	}
 }

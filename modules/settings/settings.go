@@ -120,6 +120,14 @@ const (
 	FlashUnknownAccount      = "flash_unknown_account"
 )
 
+//keys for error messages
+const (
+	ErrorResourceNotFound = "error_resource_not_found"
+	ErrorInternalServer   = "error_internal_server"
+	ErrBadRequest         = "error_bad_request"
+	Message               = "Message"
+)
+
 // Session configurations for sessions
 type Session struct {
 	Name     string `default:"_zlst_"`

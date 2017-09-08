@@ -38,6 +38,10 @@ func GetJobByID(conn *gorm.DB, id int64) (*models.Job, error) {
 	return jb, nil
 }
 
+func NotFound(err error) bool {
+	return err.Error() == gorm.ErrRecordNotFound.Error()
+}
+
 // GetALLJobs returns an ordered slice of all jobs reocrds. The order is by creation
 // date and id in descending order.
 // TODO remove id?

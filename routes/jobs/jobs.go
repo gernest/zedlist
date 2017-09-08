@@ -4,10 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gernest/zedlist/modules/settings"
+
 	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/flash"
 	"github.com/gernest/zedlist/modules/forms"
+	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
 	"github.com/gernest/zedlist/modules/utils"
@@ -64,20 +67,26 @@ func NewPost(ctx echo.Context) error {
 func View(ctx echo.Context) error {
 	id, err := utils.GetInt64(ctx.Param("id"))
 	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
+		utils.SetData(ctx, settings.Message, settings.ErrBadRequest)
 		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
 	}
 	job, err := query.GetJobByID(db.Conn, id)
 	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+		if query.NotFound(err) {
+			utils.SetData(ctx, settings.Message, settings.ErrorResourceNotFound)
+			return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
+		}
+		utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+		return ctx.Render(http.StatusNotFound, tmpl.ErrServerTpl, utils.GetData(ctx))
 	}
 	if job != nil {
 		utils.SetData(ctx, "Job", job)
 		utils.SetData(ctx, "PageTitle", job.Title)
 		owner, err := query.GetPersonByID(db.Conn, job.PersonID)
 		if err != nil {
-			//TODO: handle this?
+			log.Error(ctx, err)
+			utils.SetData(ctx, settings.Message, settings.ErrorInternalServer)
+			return ctx.Render(http.StatusNotFound, tmpl.ErrServerTpl, utils.GetData(ctx))
 		}
 		utils.SetData(ctx, "Owner", owner)
 	}
@@ -87,11 +96,10 @@ func View(ctx echo.Context) error {
 func List(ctx echo.Context) error {
 	jobs, err := query.GetLatestJobs(db.Conn)
 	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
+		utils.SetData(ctx, settings.Message, settings.ErrorResourceNotFound)
 		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-
 	}
 	utils.SetData(ctx, "Jobs", jobs)
-	utils.SetData(ctx, "PageTitle", "jobs")
+	utils.SetData(ctx, settings.PageTitle, "jobs")
 	return ctx.Render(http.StatusOK, tmpl.JobsListTpl, utils.GetData(ctx))
 }
