@@ -29,35 +29,26 @@ func NewPost(ctx echo.Context) error {
 	f := forms.New(utils.GetLang(ctx))
 	jf, err := f.DecodeJobForm(ctx.Request())
 	if err != nil {
-		// TODO: improve flash message ?
-		flashMessages.Err(msgInvalidorm)
+		flashMessages.Err(settings.ErrInvalidForm)
 		flashMessages.Save(ctx)
-		ctx.Redirect(http.StatusFound, "/jobs/new")
-		return nil
+		return ctx.Redirect(http.StatusFound, "/jobs/new")
 	}
 	if !jf.Valid() {
-		// TODO: improve flash message ?
-		flashMessages.Err(msgInvalidorm)
+		flashMessages.Err(settings.ErrInvalidForm)
 		flashMessages.Save(ctx)
-		ctx.Redirect(http.StatusFound, "/jobs/new")
-		return nil
+		return ctx.Redirect(http.StatusFound, "/jobs/new")
 	}
-
 	if isLoged := ctx.Get("IsLoged"); isLoged != nil {
 		person := ctx.Get("User").(*models.Person)
 		jb, jerr := query.PersonCreateJob(db.Conn, person, *jf)
 		if jerr != nil {
-			// TODO: improve flash message ?
-			flashMessages.Err("some really bad fish happened")
+			flashMessages.Err(settings.FlashFailedNewJob)
 			flashMessages.Save(ctx)
-			ctx.Redirect(http.StatusFound, "/jobs/new")
-			return nil
+			return ctx.Redirect(http.StatusFound, "/jobs/new")
 		}
-		// add flash message
-		flashMessages.Success("new job was created successful")
+		flashMessages.Success(settings.FlashCreateJobSuccess)
 		flashMessages.Save(ctx)
-		ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", jb.ID))
-		return nil
+		return ctx.Redirect(http.StatusFound, fmt.Sprintf("/jobs/view/%d", jb.ID))
 	}
 	he := echo.NewHTTPError(http.StatusUnauthorized)
 	ctx.Error(he)

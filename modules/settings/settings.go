@@ -118,6 +118,8 @@ const (
 	FlashLoginErr            = "flash_login_failed"
 	FlashNotAuthorized       = "flash_unauthorized"
 	FlashUnknownAccount      = "flash_unknown_account"
+	FlashCreateJobSuccess    = "flash_create_new_job_success"
+	FlashFailedNewJob        = "flash_failed_creating_new_job"
 )
 
 //keys for error messages
@@ -126,6 +128,7 @@ const (
 	ErrorInternalServer   = "error_internal_server"
 	ErrBadRequest         = "error_bad_request"
 	Message               = "Message"
+	ErrInvalidForm        = "error_ivalid_form"
 )
 
 // Session configurations for sessions

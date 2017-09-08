@@ -209,6 +209,14 @@ func flash() gt.Strings {
 			"en": "unknown account",
 			"sw": "ihauna ruhusa",
 		},
+		settings.FlashCreateJobSuccess: {
+			"en": "A new job was successful created",
+			"sw": "Ajia mpya imetangenezwa",
+		},
+		settings.FlashFailedNewJob: {
+			"en": "sorry! We failed to create the new job",
+			"sw": "samahani tumeshindwa kutengeneza ajira mpya",
+		},
 	}
 }
 
@@ -225,6 +233,10 @@ func errorMessages() gt.Strings {
 		settings.ErrBadRequest: {
 			"en": "Opps! bad request",
 			"sw": "Oops! bad request",
+		},
+		settings.ErrInvalidForm: {
+			"en": "something is wron with the submitted form",
+			"sw": "Kuna matatizo kwenye fomu",
 		},
 	}
 }
