@@ -147,6 +147,7 @@ var Funcs = template.FuncMap{
 	"switchLang": switchLang,
 	"username":   useername,
 	"owner":      owner,
+	"jobStats":   jobStats,
 }
 
 // Config is the template configuration. Templates are loaded from embedded source, this act as a
@@ -256,6 +257,10 @@ func switchLang(lang string) template.CSS {
 	default:
 		return template.CSS("en")
 	}
+}
+
+func jobStats(id int64) []models.Stats {
+	return query.JobStats(id)
 }
 
 // translate the str, into a given lang. Only two languages are supported english( en )

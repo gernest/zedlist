@@ -4,6 +4,7 @@ package query
 
 import (
 	"fmt"
+	"html/template"
 	sysLog "log"
 	"time"
 
@@ -477,4 +478,16 @@ func DeleteUser(conn *gorm.DB, id int64) error {
 		return q.Error
 	}
 	return Delete(conn, usr)
+}
+
+func JobStats(id int64) []models.Stats {
+	return []models.Stats{
+		{
+			Color: "blue",
+			Icon:  "star",
+			Label: "1,000",
+			Text:  "Applications",
+			Link:  template.HTML(fmt.Sprintf("/jobs/applications/%d", id)),
+		},
+	}
 }

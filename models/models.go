@@ -7,6 +7,7 @@ package models
 
 import (
 	"fmt"
+	"html/template"
 	"time"
 
 	"github.com/gernest/zedlist/modules/sanitize"
@@ -56,6 +57,14 @@ type Logger struct {
 	Time      time.Time
 	CreatedAt time.Time
 	UpdateAt  time.Time
+}
+
+type Stats struct {
+	Color string
+	Icon  string
+	Label string
+	Text  string
+	Link  template.HTML
 }
 
 const (

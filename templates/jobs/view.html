@@ -7,9 +7,7 @@
                     <div class="ui segment">
                         {{if .Job}}
                         <h2>{{.Job.Title}}</h2>
-                        {{end}}
-                        {{if .Owner}}
-                        {{if eq .Owner.ID .Job.PersonID}}
+                        {{end}} {{if .Owner}} {{if eq .Owner.ID .Job.PersonID}}
                         <div class="ui icon buttons">
                             <a class="ui labelled button" href="/jobs/update/{{.Job.ID}}"><i class="edit icon"></i>
                                 update
@@ -18,8 +16,6 @@
                                 remove
                             </a>
                         </div>
-                        {{end}}
-                        {{end}}  
                     </div>
                     <div class="ui segment">
                         {{if .Job}} {{md .Job.Description}} {{end}}
@@ -33,6 +29,9 @@
                         </div>
                         <div class="ui segment">
                             {{if .Owner}} by <a href="/u/{{.Owner.PersonName.Name}}">{{username .Owner.PersonName.Name}}</a>                            {{end}}
+                        </div>
+                        <div class=" ui segment">
+                            {{with jobStats .Job.ID}} {{template "partials/job_stats.html" .}} {{end}} {{end}} {{end}}
                         </div>
                     </div>
                 </div>

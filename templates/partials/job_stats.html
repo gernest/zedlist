@@ -1,0 +1,13 @@
+<div class="ui buttons">
+    {{range .}}
+    <div class="ui labeled button">
+        <div class="ui basic {{.Color}} button">
+            <i class="{{.Icon}} icon"></i>
+            {{.Text}}
+        </div>
+        <a class=" ui basic {{.Color}} left pointing label" href="{{.Link}}">
+            {{.Label}}
+        </a>
+    </div>
+    {{end}}
+</div>
