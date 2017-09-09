@@ -1,11 +1,11 @@
 - [ ] jobs
-  - [ ] crud
+  - [x] crud
     - [x] create
     - [x] view
       - [x] single view
       - [x] listing view
-    - [ ] update
-    - [ ] Delete
+    - [x] update
+    - [x] Delete
   - [ ] json API
 - [ ] resume
   - [ ] crud
