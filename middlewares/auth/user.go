@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/gernest/zedlist/modules/db"
+	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/session"
 	"github.com/gernest/zedlist/modules/utils"
@@ -24,7 +25,28 @@ var store = session.New()
 // in or not
 func Normal() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
-		Must()(ctx)
+		if v := ctx.Get("IsLoged"); v != nil && v.(bool) == true {
+			return nil
+		}
+		ss, err := store.Get(ctx.Request(), settings.App.Session.Name)
+		if err != nil {
+			log.Error(ctx, err)
+		}
+		if v, ok := ss.Values["userID"]; ok {
+			id := v.(int64)
+			person, err := query.GetPersonByUserID(db.Conn, id)
+			if err != nil {
+				log.Error(ctx, err)
+				return err
+			}
+			ctx.Set("IsLoged", true)
+			ctx.Set("User", person)
+			ctx.Set("UserID", id)
+			utils.SetData(ctx, "IsLoged", true)
+			utils.SetData(ctx, "User", person)
+			utils.SetData(ctx, "UserID", id)
+			return nil
+		}
 		return nil
 	}
 }
@@ -35,34 +57,28 @@ func Normal() echo.HandlerFunc {
 // TODO custom not authorized handler?
 func Must() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
-		// If this is called somewhere on the middleware chain, if we find the user
-		// we check the context if is set.
 		if v := ctx.Get("IsLoged"); v != nil && v.(bool) == true {
 			return nil
 		}
 		ss, err := store.Get(ctx.Request(), settings.App.Session.Name)
 		if err != nil {
-			// TODO: log this?
+			log.Error(ctx, err)
 		}
 		if v, ok := ss.Values["userID"]; ok {
 			id := v.(int64)
 			person, err := query.GetPersonByUserID(db.Conn, id)
 			if err != nil {
-				// TODO: log this?
+				log.Error(ctx, err)
+				return err
 			}
-			if person != nil {
-				// set in main context
-				ctx.Set("IsLoged", true)
-				ctx.Set("User", person)
-				ctx.Set("UserID", id)
-
-				// for templates
-				utils.SetData(ctx, "IsLoged", true)
-				utils.SetData(ctx, "User", person)
-				utils.SetData(ctx, "UserID", id)
-				return nil
-			}
+			ctx.Set("IsLoged", true)
+			ctx.Set("User", person)
+			ctx.Set("UserID", id)
+			utils.SetData(ctx, "IsLoged", true)
+			utils.SetData(ctx, "User", person)
+			utils.SetData(ctx, "UserID", id)
+			return nil
 		}
-		return echo.NewHTTPError(http.StatusUnauthorized)
+		return ctx.Redirect(http.StatusFound, "/auth/login")
 	}
 }
