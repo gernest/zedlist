@@ -17,6 +17,12 @@
       - [ ] `GET` `/jobs/delete/:id`
 - [ ] resume
   - [ ] crud
+      - [ ] create
+      - [ ] view
+        - [ ] single view
+        - [ ] multiple view
+      - [ ] update
+      - [ ] delete
   - [ ] json API
 - [ ] accounts
   - [ ] oauth2
