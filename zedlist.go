@@ -93,6 +93,7 @@ func Routes() *echo.Echo {
 	// RESUME
 	r := e.Group("/resume")
 	r.GET("/", resume.Home)
+	r.GET("/new", resume.New)
 	r.POST("/new", resume.Create)
 	r.GET("/view:id", resume.View)
 	r.POST("/update/:id", resume.Update)

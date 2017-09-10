@@ -55,7 +55,8 @@ const (
 	//DashProfileTpl renders user's profile page
 	DashProfileTpl = "dash/profile.html"
 
-	//ResumeHomeTpl renders resume home page
+	ResumeNewTpl = "resume/new.html"
+
 	ResumeHomeTpl = "resume/home.html"
 
 	//ResumeUpddateTpl renders resume update page
@@ -69,9 +70,6 @@ const (
 
 	//BaseJobsHomeTpl renders zedlist's jobs home page
 	BaseJobsHomeTpl = "base/jobs.html"
-
-	//BaseJobsViewTpl renders a sinlge job view for zedlist
-	BaseJobsViewTpl = "base/jobs_view.html"
 
 	//BaseDocsHomeTpl renders the home page for zedlist docs
 	BaseDocsHomeTpl = "base/docs_index.html"

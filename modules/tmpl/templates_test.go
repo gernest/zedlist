@@ -8,7 +8,6 @@ import (
 	"html/template"
 	"strings"
 	"testing"
-	"time"
 )
 
 func TestNew(t *testing.T) {
@@ -72,11 +71,5 @@ func TestFuncs(t *testing.T) {
 	}
 	if translate("sw", "home-btn") != "Nyumbani" {
 		t.Errorf("expected Nyumbani got %s", translate("ne", "home-btn"))
-	}
-
-	// date
-	now := time.Now()
-	if date(now) != now.Format(time.RFC822) {
-		t.Errorf("expected %s got %s", now.Format(time.RFC822), date(now))
 	}
 }
