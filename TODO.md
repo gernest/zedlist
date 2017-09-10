@@ -38,6 +38,7 @@
   - [ ] Profile
     - [ ] Update Profile details
     - [ ] Avatar/profile picture upload&display
+    - [ ] Generate patterns as placeholders for profile pictures
 - [ ] dashboard
 - [ ] ui
   - [x] migrate to semnatic-ui
