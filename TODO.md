@@ -7,6 +7,14 @@
     - [x] update
     - [x] Delete
   - [ ] json API
+  - [ ] tests
+      - [ ] `GET` `/jobs/`
+      - [ ] `GET` `/jobs/new`
+      - [ ] `POST` `/jobs/new`
+      - [ ] `GET` `/jobs/view/:id`
+      - [ ] `GET` `/jobs/update/:id`
+      - [ ] `POST` `/jobs/update/:id`
+      - [ ] `GET` `/jobs/delete/:id`
 - [ ] resume
   - [ ] crud
   - [ ] json API
