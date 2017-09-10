@@ -234,7 +234,7 @@ func (t *Template) load() (*Template, error) {
 
 // default date format for zedlist.
 func date(t time.Time) string {
-	return t.Format(time.RFC822)
+	return t.Format("Jan 02")
 }
 
 func flagClass(lang string) template.CSS {

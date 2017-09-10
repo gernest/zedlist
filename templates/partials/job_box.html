@@ -1,27 +1,7 @@
 {{$owner :=owner .}}
-<div class="eight wide column">
-    <div class=" ui segments">
-        <div class="ui segment">
-            {{if .ID}}
-            <div class="ui container">
-                <div class="ui middle aligned grid">
-                    <div class="row">
-                        <div class="ui eight wide column">
-                             <a href="/u/{{$owner.PersonName.Name}}">  {{username $owner.PersonName.Name}} </a>
-                        </div>
-                        <div class="ui eight wide column">
-                            <div class="ui segmant">
-                                <a href="/jobs/view/{{.ID}}" class="positive fluid ui button">  Apply</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            {{end}}
-        </div>
-        <div class="ui center aligned segment">
-            {{if .Title}} {{.Title}} {{end}}
-        </div>
-    </div>
-</div>
+<tr>
+    <td>{{if .Title}} {{.Title}} {{end}}</td>
+    <td><a href="/u/{{$owner.PersonName.Name}}">  {{username $owner.PersonName.Name}} </a></td>
+    <td>{{date .CreatedAt}}</td>
+    <td><a href="/jobs/view/{{.ID}}" class="positive fluid ui button">  Apply</a></td>
+</tr>
