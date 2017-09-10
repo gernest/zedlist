@@ -1,21 +1,19 @@
 {{template "partials/common_header.html" .}}
 <div class=" ui container">
-    <div class="ui grid">
-        <div class="ui ten wide column">
-            <div class=" ui grid container">
-                <table class="ui basic table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Published</th>
-                        </tr>
-                        <tbody>
-                            {{range .Jobs}} {{template "partials/job_box.html" .}} {{end}}
-                        </tbody>
-                    </thead>
-                </table>
-            </div>
+    <div class="ui grid container">
+        <div class=" row">
+            <table class="ui basic table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Published</th>
+                    </tr>
+                    <tbody>
+                        {{range .Jobs}} {{template "partials/job_box.html" .}} {{end}}
+                    </tbody>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
