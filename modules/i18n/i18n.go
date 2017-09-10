@@ -176,6 +176,10 @@ var Tr = &gt.Build{
 			"en": "Update a job posting",
 			"sw": "Sahihisha habari za ajira",
 		},
+		"settings": {
+			"en": "Settings",
+			"sw": "Settings",
+		},
 	},
 }
 

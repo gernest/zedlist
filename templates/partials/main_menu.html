@@ -1,7 +1,9 @@
 <div class="ui large top  menu">
     <div class="ui container">
         <a class="item" href="/">{{tr .ActiveLang "home-btn"}}</a> {{if .IsLoged}}
-        <a class="item" href="/jobs/">{{tr .ActiveLang "jobs-btn"}}</a> {{end}}
+        <a class="item" href="/jobs/">{{tr .ActiveLang "jobs-btn"}}</a> 
+        <a class="item" href="/resume/">{{tr .ActiveLang "resume"}}</a> 
+        {{end}}
         <a class="item" href="https://github.com/gernest/zedlist" target="_blank">Github</a>
         <a class="item" href="/docs/">{{tr .ActiveLang "help-btn"}}</a>
         <div class="right menu">
