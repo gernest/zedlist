@@ -54,15 +54,13 @@ func Home(ctx echo.Context) error {
 // 		Template         None ( Redirection is made to home route ("/"))
 func SetLanguage(ctx echo.Context) error {
 	lang := ctx.Param("lang")
-	u := ctx.Request().URL
-	p := u.Query().Get("path")
+	p := ctx.QueryParam("path")
 	q, _ := url.QueryUnescape(p)
 	store := session.New()
 	sess, _ := store.Get(ctx.Request(), settings.LangSessionName)
 	sess.Values[settings.LangSessionKey] = lang
 	store.Save(ctx.Request(), ctx.Response(), sess)
-	ctx.Redirect(http.StatusFound, q)
-	return nil
+	return ctx.Redirect(http.StatusFound, q)
 }
 
 //
