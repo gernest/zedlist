@@ -12,12 +12,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gernest/zedlist/middlewares/i18n"
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/query"
-	"github.com/gernest/zedlist/modules/tmpl"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/middlewares/i18n"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/tmpl"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/labstack/echo"
 )

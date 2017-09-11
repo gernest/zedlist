@@ -11,14 +11,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gernest/zedlist/bindata/static"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/query"
-	"github.com/gernest/zedlist/modules/session"
-	"github.com/gernest/zedlist/modules/settings"
-	"github.com/gernest/zedlist/modules/tmpl"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/bindata/static"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/session"
+	"github.com/zedio/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/tmpl"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/labstack/echo"
 )

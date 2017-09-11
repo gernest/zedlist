@@ -3,10 +3,10 @@ package query
 import (
 	"testing"
 
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/forms"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/forms"
 
-	"github.com/gernest/zedlist/models"
+	"github.com/zedio/zedlist/models"
 )
 
 func init() {

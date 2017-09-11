@@ -8,10 +8,10 @@ package flash
 import (
 	"encoding/gob"
 
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/session"
-	"github.com/gernest/zedlist/modules/settings"
 	"github.com/labstack/echo"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/session"
+	"github.com/zedio/zedlist/modules/settings"
 )
 
 func init() {

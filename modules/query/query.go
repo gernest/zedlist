@@ -8,12 +8,12 @@ import (
 	sysLog "log"
 	"time"
 
-	"github.com/gernest/zedlist/modules/forms"
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/forms"
+	"github.com/zedio/zedlist/modules/settings"
 	"github.com/jinzhu/gorm"
 
 	"github.com/drhodes/golorem"
-	"github.com/gernest/zedlist/models"
+	"github.com/zedio/zedlist/models"
 	"github.com/oxtoacart/bpool"
 	"golang.org/x/crypto/bcrypt"
 )

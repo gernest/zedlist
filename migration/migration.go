@@ -6,8 +6,8 @@
 package migration
 
 import (
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
 )
 
 // MigrateTables creates all the database tables used by zedlist.

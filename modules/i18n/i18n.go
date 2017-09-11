@@ -7,7 +7,7 @@ package i18n
 
 import (
 	"github.com/gernest/gt"
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/settings"
 )
 
 // Tr contains translations.

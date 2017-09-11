@@ -13,13 +13,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/query"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/query"
 
-	"github.com/gernest/zedlist/modules/settings"
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
+	"github.com/zedio/zedlist/modules/settings"
 )
 
 // PGStore is the session storage implementation for gorilla/sessions using postgresql

@@ -12,7 +12,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/labstack/echo"
 )

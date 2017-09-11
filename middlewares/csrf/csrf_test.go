@@ -13,7 +13,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/labstack/echo"
 )

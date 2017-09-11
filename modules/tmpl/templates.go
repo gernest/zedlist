@@ -13,17 +13,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/query"
 
 	"github.com/labstack/echo"
 
 	"github.com/Unknwon/com"
-	asset "github.com/gernest/zedlist/bindata/template"
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/i18n"
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/mdown"
+	asset "github.com/zedio/zedlist/bindata/template"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/i18n"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/mdown"
 )
 
 const (

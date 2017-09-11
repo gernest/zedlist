@@ -6,11 +6,11 @@
 package i18n
 
 import (
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/utils"
 
-	"github.com/gernest/zedlist/modules/session"
-	"github.com/gernest/zedlist/modules/settings"
 	"github.com/labstack/echo"
+	"github.com/zedio/zedlist/modules/session"
+	"github.com/zedio/zedlist/modules/settings"
 )
 
 var store = session.New()

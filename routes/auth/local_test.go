@@ -15,16 +15,16 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/tmpl"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/tmpl"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Unknwon/com"
-	userAuth "github.com/gernest/zedlist/middlewares/auth"
-	"github.com/gernest/zedlist/middlewares/csrf"
-	"github.com/gernest/zedlist/middlewares/flash"
-	"github.com/gernest/zedlist/middlewares/i18n"
-	"github.com/gernest/zedlist/routes/base"
+	userAuth "github.com/zedio/zedlist/middlewares/auth"
+	"github.com/zedio/zedlist/middlewares/csrf"
+	"github.com/zedio/zedlist/middlewares/flash"
+	"github.com/zedio/zedlist/middlewares/i18n"
+	"github.com/zedio/zedlist/routes/base"
 
 	"github.com/labstack/echo"
 )

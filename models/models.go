@@ -10,7 +10,7 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/gernest/zedlist/modules/sanitize"
+	"github.com/zedio/zedlist/modules/sanitize"
 )
 
 // JSONError is json resopnse error

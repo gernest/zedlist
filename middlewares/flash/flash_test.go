@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/flash"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/flash"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/kr/pretty"
 	"github.com/labstack/echo"

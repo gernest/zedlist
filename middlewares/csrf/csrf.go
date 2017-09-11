@@ -8,7 +8,7 @@ package csrf
 import (
 	"net/http"
 
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/modules/utils"
 
 	"github.com/justinas/nosurf"
 	"github.com/labstack/echo"

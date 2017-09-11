@@ -9,18 +9,18 @@ import (
 	"net/http"
 
 	validate "github.com/asaskevich/govalidator"
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/flash"
-	"github.com/gernest/zedlist/modules/forms"
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/query"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/flash"
+	"github.com/zedio/zedlist/modules/forms"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/utils"
 
-	"github.com/gernest/zedlist/modules/session"
-	"github.com/gernest/zedlist/modules/settings"
-	"github.com/gernest/zedlist/modules/tmpl"
 	"github.com/labstack/echo"
+	"github.com/zedio/zedlist/modules/session"
+	"github.com/zedio/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/tmpl"
 )
 
 var sessStore = session.New()

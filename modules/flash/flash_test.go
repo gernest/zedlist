@@ -11,7 +11,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/settings"
 
 	"github.com/labstack/echo"
 )

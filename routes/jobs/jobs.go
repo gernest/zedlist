@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/settings"
 
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/flash"
-	"github.com/gernest/zedlist/modules/forms"
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/query"
-	"github.com/gernest/zedlist/modules/tmpl"
-	"github.com/gernest/zedlist/modules/utils"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/flash"
+	"github.com/zedio/zedlist/modules/forms"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/tmpl"
+	"github.com/zedio/zedlist/modules/utils"
 	"github.com/labstack/echo"
 )
 

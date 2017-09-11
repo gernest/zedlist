@@ -5,9 +5,9 @@ import (
 	"errors"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/query"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/query"
 
 	"github.com/jinzhu/now"
 )

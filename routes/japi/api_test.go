@@ -17,8 +17,8 @@ import (
 	"github.com/labstack/echo"
 
 	"github.com/Unknwon/com"
-	"github.com/gernest/zedlist/models"
-	"github.com/gernest/zedlist/modules/db"
+	"github.com/zedio/zedlist/models"
+	"github.com/zedio/zedlist/modules/db"
 )
 
 var ts = testServer()

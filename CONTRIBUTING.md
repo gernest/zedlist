@@ -15,7 +15,7 @@ Depends on the situation, you will:
 
 ### Bug Report
 
-If you find something you consider a bug, please create a issue on [GitHub](https://github.com/gernest/zedlist/issues). To avoid wasting time and reduce back-and-forth communication with team members, please include at least the following information in a form comfortable for you:
+If you find something you consider a bug, please create a issue on [GitHub](https://github.com/zedio/zedlist/issues). To avoid wasting time and reduce back-and-forth communication with team members, please include at least the following information in a form comfortable for you:
 
 - Bug Description
 - Zedlist Version
@@ -24,7 +24,7 @@ If you find something you consider a bug, please create a issue on [GitHub](http
 - Error Log
 - Other information
 
-Please take a moment to check that an issue on [GitHub](https://github.com/gernest/zedlist/issues) doesn't already exist documenting your bug report or improvement proposal. If it does, it never hurts to add a quick "+1" or "I have this problem too". This will help prioritize the most common problems and requests.
+Please take a moment to check that an issue on [GitHub](https://github.com/zedio/zedlist/issues) doesn't already exist documenting your bug report or improvement proposal. If it does, it never hurts to add a quick "+1" or "I have this problem too". This will help prioritize the most common problems and requests.
 
 
 ### Feature Request
@@ -39,11 +39,11 @@ We are always thrilled to receive pull requests, and do our best to process them
 
 If your pull request is not accepted on the first try, don't be discouraged! If there's a problem with the implementation, hopefully you received feedback on what to improve.
 
-We're trying very hard to keep Zedlist lean and focused. We don't want it to do everything for everybody. This means that we might decide against incorporating a new feature. We believe you do like to discuss with us first in [Gitter](https://gitter.im/gernest/zedlist).
+We're trying very hard to keep Zedlist lean and focused. We don't want it to do everything for everybody. This means that we might decide against incorporating a new feature. We believe you do like to discuss with us first in [Gitter](https://gitter.im/zedio/zedlist).
 
 ## Things To Notice
 
-Please take a moment to check that an issue on [GitHub](https://github.com/gernest/zedlist/issues)  doesn't already exist documenting your bug report or improvement proposal. If it does, it never hurts to add a quick "+1" or "I have this problem too". This will help prioritize the most common problems and requests.
+Please take a moment to check that an issue on [GitHub](https://github.com/zedio/zedlist/issues)  doesn't already exist documenting your bug report or improvement proposal. If it does, it never hurts to add a quick "+1" or "I have this problem too". This will help prioritize the most common problems and requests.
 
 ## Code of conduct
 

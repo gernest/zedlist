@@ -7,7 +7,7 @@ package db
 import (
 	"testing"
 
-	"github.com/gernest/zedlist/modules/settings"
+	"github.com/zedio/zedlist/modules/settings"
 )
 
 func TestDB_Connect(t *testing.T) {

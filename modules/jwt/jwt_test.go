@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/gernest/zedlist/modules/db"
-	"github.com/gernest/zedlist/modules/query"
+	"github.com/zedio/zedlist/modules/db"
+	"github.com/zedio/zedlist/modules/query"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"

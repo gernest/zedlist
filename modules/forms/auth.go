@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/gernest/gt"
-	"github.com/gernest/zedlist/modules/i18n"
 	"github.com/gorilla/schema"
+	"github.com/zedio/zedlist/modules/i18n"
 )
 
 var (

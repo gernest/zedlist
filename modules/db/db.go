@@ -6,9 +6,9 @@
 package db
 
 import (
-	"github.com/gernest/zedlist/modules/log"
-	"github.com/gernest/zedlist/modules/settings"
 	"github.com/jinzhu/gorm"
+	"github.com/zedio/zedlist/modules/log"
+	"github.com/zedio/zedlist/modules/settings"
 
 	// use postgres only
 	_ "github.com/lib/pq"

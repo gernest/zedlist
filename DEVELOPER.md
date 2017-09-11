@@ -21,13 +21,13 @@ At the new forked repository, there is a a place which has the project URL. Keep
 ### Step 2 Get the original project
 go get the project
 
-	go get -v github.com/gernest/zedlist/...
+	go get -v github.com/zedio/zedlist/...
 
 ### Step 3 Setup remotes.
 
 cd into the project you just installed. NOTE for all the steps that follow I assume you are in the project root(i.e you never left the console after running this command)
 
-	cd $GOPATH/github.com/gernest/zedlist
+	cd $GOPATH/github.com/zedio/zedlist
 
 To make life easier for the folloing steps its wise to do something about expoerting the database connection URL on your shell. There are many ways , I hope you can research and choose whatever you like. The easiest though is to export in the current shell like this.
 

@@ -7,10 +7,10 @@ package main
 import (
 	"os"
 
-	"github.com/gernest/zedlist/modules/version"
+	"github.com/zedio/zedlist/modules/version"
 
-	app "github.com/gernest/zedlist"
 	"github.com/urfave/cli"
+	app "github.com/zedio/zedlist"
 )
 
 func main() {

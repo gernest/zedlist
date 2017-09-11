@@ -6,8 +6,8 @@
 package flash
 
 import (
-	"github.com/gernest/zedlist/modules/flash"
 	"github.com/labstack/echo"
+	"github.com/zedio/zedlist/modules/flash"
 )
 
 // Flash adds flash messages to the request context.
