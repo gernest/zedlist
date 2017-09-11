@@ -134,6 +134,29 @@ func BasicPost(ctx echo.Context) error {
 	return ctx.JSONPretty(http.StatusCreated, b, "\t")
 }
 
+func BasicGet(ctx echo.Context) error {
+	id, err := utils.GetInt64(ctx.Param("id"))
+	if err != nil {
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	b, err := query.GetBasicResumeByID(db.Conn, id)
+	if err != nil {
+		log.Error(ctx, err)
+		if query.NotFound(err) {
+			return ctx.JSON(http.StatusNotFound, models.NewJSONErr(http.StatusText(
+				http.StatusNotFound,
+			)))
+		}
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
+	}
+	return ctx.JSONPretty(http.StatusOK, b, "\t")
+}
+
 // Create creates a new resume.
 //
 //		Method           POST

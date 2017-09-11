@@ -491,3 +491,12 @@ func JobStats(id int64) []models.Stats {
 		},
 	}
 }
+
+func GetBasicResumeByID(conn *gorm.DB, id int64) (*models.Basic, error) {
+	b := &models.Basic{}
+	q := conn.First(b, id)
+	if q.Error != nil {
+		return nil, q.Error
+	}
+	return b, nil
+}

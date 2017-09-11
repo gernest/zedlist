@@ -92,6 +92,7 @@ func Routes() *echo.Echo {
 
 	// RESUME
 	r := e.Group("/resume")
+	r.Use(utils.WrapMiddleware(userAuth.Must()))
 	r.GET("/", resume.Home)
 	r.GET("/new", resume.New)
 	r.POST("/new", resume.Create)
@@ -100,6 +101,7 @@ func Routes() *echo.Echo {
 	r.POST("/delete/:id", resume.Delete)
 	r.POST("/basic", resume.BasicPost)
 	r.PUT("/basic", resume.BasicPut)
+	r.GET("/basic/:id", resume.BasicGet)
 
 	// SEARCH
 	e.POST("/search", search.Find)
