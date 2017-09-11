@@ -43,7 +43,7 @@ func Normal() echo.HandlerFunc {
 			ctx.Set("User", person)
 			ctx.Set("UserID", id)
 			utils.SetData(ctx, "IsLoged", true)
-			utils.SetData(ctx, "User", person)
+			utils.SetData(ctx, "Person", person)
 			utils.SetData(ctx, "UserID", id)
 			return nil
 		}

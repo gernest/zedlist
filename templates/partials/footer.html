@@ -1,8 +1,13 @@
 {{if .Scripts -}}
-{{range .Scripts}}
+{{range .Scripts -}}
 <script src="{{.}}"></script>
-{{end}}
 {{- end}}
+{{- end}}
+<script>
+    {{if .IsLoged -}}
+    window.localStorage.setItem("profileID",{{asJS .Person.ID}})
+    {{- end}}
+</script>
 <script src="/static/js/zedlist.js"></script>
 </body>
 </html>

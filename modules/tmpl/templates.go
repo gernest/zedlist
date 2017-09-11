@@ -7,6 +7,7 @@ package tmpl
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"io"
 	"strings"
@@ -146,6 +147,7 @@ var Funcs = template.FuncMap{
 	"username":   useername,
 	"owner":      owner,
 	"jobStats":   jobStats,
+	"asJS":       asJS,
 }
 
 // Config is the template configuration. Templates are loaded from embedded source, this act as a
@@ -319,6 +321,10 @@ func script(name string) template.HTML {
 		return template.HTML(err.Error())
 	}
 	return template.HTML(b)
+}
+
+func asJS(v interface{}) template.JS {
+	return template.JS(fmt.Sprint(v))
 }
 
 // returns a string, which is the result of replacing any underscore character with a dash.
