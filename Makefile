@@ -55,3 +55,6 @@ dist:
 
 server:build
 	./bin/zedlist server
+	
+migrate:
+	./bin/zedlist migrate -d
