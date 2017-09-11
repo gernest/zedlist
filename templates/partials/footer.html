@@ -1,3 +1,8 @@
-</div>
+{{if .Scripts -}}
+{{range .Scripts}}
+<script src="{{.}}"></script>
+{{end}}
+{{- end}}
+<script src="/static/js/zedlist.js"></script>
 </body>
 </html>
