@@ -10,26 +10,26 @@ import (
 
 // Resume represent Curriculum Vitae
 type Resume struct {
-	ID            int64               `json:"id"`
-	PersonID      int64               `json:"person_id"`
-	Name          string              `json:"name"`
-	ResumeBasic   ResumeBasic         `json:"basic"`
-	ResumeBasicID int64               `json:"basic_id"`
-	Work          []ResumeWork        `json:"work"`
-	Volunteer     []ResumeWork        `json:"volunteer"`
-	Education     []ResumeEducation   `json:"education"`
-	Awards        []ResumeAward       `json:"awards"`
-	Publications  []ResumePublication `json:"publications"`
-	Skills        []ResumeSkill       `json:"skills"`
-	Languages     []ResumeLanguage    `json:"languages"`
-	Interests     []ResumeInterest    `json:"interests"`
-	References    []ResumeReferee     `json:"references"`
-	CreatedAt     time.Time           `json:"created_at"`
-	UpdatedAt     time.Time           `json:"updated_at"`
+	ID            int64         `json:"id"`
+	PersonID      int64         `json:"person_id"`
+	Name          string        `json:"name"`
+	ResumeBasic   Basic         `json:"basic"`
+	ResumeBasicID int64         `json:"basic_id"`
+	Work          []Work        `json:"work"`
+	Volunteer     []Work        `json:"volunteer"`
+	Education     []Education   `json:"education"`
+	Awards        []Award       `json:"awards"`
+	Publications  []Publication `json:"publications"`
+	Skills        []Skill       `json:"skills"`
+	Languages     []Language    `json:"languages"`
+	Interests     []Interest    `json:"interests"`
+	References    []Referee     `json:"references"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
 }
 
-// ResumeBasic is the basic information for a resume
-type ResumeBasic struct {
+// Basic is the basic information for a resume
+type Basic struct {
 	ID int64 `json:"id" schema:"-"`
 
 	// Name is the name of the resume holder
@@ -57,17 +57,17 @@ type ResumeBasic struct {
 	//Summary is a 2-3 sentence biography about resume owner
 	Summary string `json:"summary" schema:"summary"`
 
-	ResumeLocation   ResumeLocation `json:"location" schema:"location"`
-	ResumeLocationID int64          `json:"-" shema:"-"`
+	ResumeLocation   Location `json:"location" schema:"location"`
+	ResumeLocationID int64    `json:"-" shema:"-"`
 
-	Profiles []ResumeProfile `json:"profiles" schema:"-"`
+	Profiles []SocialProfile `json:"profiles" schema:"-"`
 
 	CreatedAt time.Time `json:"created_at" schema:"-"`
 	UpdatedAt time.Time `json:"updated_at" schema:"-"`
 }
 
-// ResumeLocation is the location details of a resume owner.
-type ResumeLocation struct {
+// Location is the location details of a resume owner.
+type Location struct {
 	ID          int64     `json:"id" schema:"-"`
 	Address     string    `json:"address" schema:"address"`
 	PostalCode  string    `json:"postalCode" schema:"postal_code"`
@@ -78,8 +78,8 @@ type ResumeLocation struct {
 	UpdatedAt   time.Time `json:"updated_at" schema:"-"`
 }
 
-// ResumeProfile is the profile of the resume owner.
-type ResumeProfile struct {
+// SocialProfile is the profile of the resume owner.
+type SocialProfile struct {
 	ID            int64 `json:"id"`
 	ResumeBasicID int64 `sql:"index"`
 
@@ -99,8 +99,8 @@ type ResumeProfile struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeWork is the work details of the resume owner.
-type ResumeWork struct {
+// Work is the work details of the resume owner.
+type Work struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `sql:"index"`
 
@@ -125,14 +125,14 @@ type ResumeWork struct {
 	Summary string `json:"summary"`
 
 	//Highlights is a list of accomplishments
-	Highlights []ResumeItem `json:"highlights" gorm:"polymorphic:Item"`
+	Highlights []Item `json:"highlights" gorm:"polymorphic:Item"`
 
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeItem is a single item.
-type ResumeItem struct {
+// Item is a single item.
+type Item struct {
 	ID        int64     `json:"id"`
 	Body      string    `json:"item"`
 	ItemID    int64     `json:"item_id"`
@@ -140,8 +140,8 @@ type ResumeItem struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeEducation is the education details of the resume owner.
-type ResumeEducation struct {
+// Education is the education details of the resume owner.
+type Education struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 
@@ -161,14 +161,14 @@ type ResumeEducation struct {
 	GPA string `json:"gpa"`
 
 	// e.g Development studies
-	Courses []ResumeItem `json:"courses" gorm:"polymorphic:Item"`
+	Courses []Item `json:"courses" gorm:"polymorphic:Item"`
 
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeAward is the award details of the resume owner.
-type ResumeAward struct {
+// Award is the award details of the resume owner.
+type Award struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 	// e.g Best dreamer
@@ -187,8 +187,8 @@ type ResumeAward struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumePublication is the publication details of the resume owner.
-type ResumePublication struct {
+// Publication is the publication details of the resume owner.
+type Publication struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 
@@ -211,8 +211,8 @@ type ResumePublication struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeSkill is the skill details of the resume owner.
-type ResumeSkill struct {
+// Skill is the skill details of the resume owner.
+type Skill struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 
@@ -223,14 +223,14 @@ type ResumeSkill struct {
 	Level string `json:"level"`
 
 	// e.g Golang
-	KeyWords []ResumeItem `json:"keywords" gorm:"polymorphic:Item"`
+	KeyWords []Item `json:"keywords" gorm:"polymorphic:Item"`
 
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeLanguage is the language details of the resume owner.
-type ResumeLanguage struct {
+// Language is the language details of the resume owner.
+type Language struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 
@@ -244,8 +244,8 @@ type ResumeLanguage struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeInterest is the interest details of the resume owner.
-type ResumeInterest struct {
+// Interest is the interest details of the resume owner.
+type Interest struct {
 	ID       int64 `json:"id"`
 	ResumeID int64 `json:"resume_id"`
 
@@ -253,14 +253,14 @@ type ResumeInterest struct {
 	Name string `json:"name"`
 
 	// e.g Vampire Weekend
-	Keywords []ResumeItem `json:"keywords" gorm:"polymorphic:Item"`
+	Keywords []Item `json:"keywords" gorm:"polymorphic:Item"`
 
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ResumeReferee is the details about a person who is refereeing for the resume owner.
-type ResumeReferee struct {
+// Referee is the details about a person who is refereeing for the resume owner.
+type Referee struct {
 	ID        int64     `json:"id"`
 	ResumeID  int64     `json:"resume_id"`
 	Name      string    `json:"name"`
@@ -274,7 +274,7 @@ func SampleResume() Resume {
 	now := time.Now()
 	return Resume{
 		Name: "Sample Resume",
-		ResumeBasic: ResumeBasic{
+		ResumeBasic: Basic{
 			Name:    "John Doe",
 			Label:   "A dreamer from tz",
 			Picture: "/static/img/gopher.png",
@@ -282,76 +282,76 @@ func SampleResume() Resume {
 			Phone:   "+2557690000000",
 			Website: "www.zedlist.com",
 			Summary: "WITNESS NE",
-			ResumeLocation: ResumeLocation{
+			ResumeLocation: Location{
 				Address:     "home",
 				PostalCode:  "200000",
 				City:        "Mwanza",
 				CountryCode: "+255",
 				Region:      "Mwanza",
 			},
-			Profiles: []ResumeProfile{
-				ResumeProfile{
+			Profiles: []SocialProfile{
+				SocialProfile{
 					Network:  "github",
 					UserName: "johnDoe",
 					URL:      "gihub.com/johnDoe",
 				},
 			},
 		},
-		Work: []ResumeWork{
-			ResumeWork{
+		Work: []Work{
+			Work{
 				Company:   "johnDee",
 				Position:  "founder",
 				Website:   "johndoe.com",
 				StartDate: now,
 				EndDate:   now,
 				Summary:   "WITNESS ME",
-				Highlights: []ResumeItem{
-					ResumeItem{
+				Highlights: []Item{
+					Item{
 						Body: "paid to sleep",
 					},
 				},
 			},
 		},
-		Volunteer: []ResumeWork{
-			ResumeWork{
+		Volunteer: []Work{
+			Work{
 				Company:   "johnDee",
 				Position:  "founder",
 				Website:   "johndoe.com",
 				StartDate: now,
 				EndDate:   now,
 				Summary:   "WITNESS ME",
-				Highlights: []ResumeItem{
-					ResumeItem{
+				Highlights: []Item{
+					Item{
 						Body: "charity and stuffs",
 					},
 				},
 			},
 		},
-		Education: []ResumeEducation{
-			ResumeEducation{
+		Education: []Education{
+			Education{
 				Institution: "UFOS",
 				Area:        "busness",
 				StudyType:   "bachelor",
 				GPA:         "4.0",
 				StartDate:   now,
 				EndDate:     now,
-				Courses: []ResumeItem{
-					ResumeItem{
+				Courses: []Item{
+					Item{
 						Body: "whacko",
 					},
 				},
 			},
 		},
-		Awards: []ResumeAward{
-			ResumeAward{
+		Awards: []Award{
+			Award{
 				Title:   "dreamer",
 				Date:    now,
 				Awarder: "Van Helsing",
 				Summary: "best dreamer",
 			},
 		},
-		Publications: []ResumePublication{
-			ResumePublication{
+		Publications: []Publication{
+			Publication{
 				Name:        "Witness Me",
 				Publisher:   "whacko",
 				ReleaseDate: now,
@@ -359,35 +359,35 @@ func SampleResume() Resume {
 				Summary:     "WITNESS ME",
 			},
 		},
-		Skills: []ResumeSkill{
-			ResumeSkill{
+		Skills: []Skill{
+			Skill{
 				Name:  "web -dev",
 				Level: "master",
-				KeyWords: []ResumeItem{
-					ResumeItem{
+				KeyWords: []Item{
+					Item{
 						Body: "golang",
 					},
 				},
 			},
 		},
-		Languages: []ResumeLanguage{
-			ResumeLanguage{
+		Languages: []Language{
+			Language{
 				Language: "swahili",
 				Fluency:  "master",
 			},
 		},
-		Interests: []ResumeInterest{
-			ResumeInterest{
+		Interests: []Interest{
+			Interest{
 				Name: "music",
-				Keywords: []ResumeItem{
-					ResumeItem{
+				Keywords: []Item{
+					Item{
 						Body: "vampire weekend",
 					},
 				},
 			},
 		},
-		References: []ResumeReferee{
-			ResumeReferee{
+		References: []Referee{
+			Referee{
 				Name:      "whacko wacka",
 				Reference: " grave digger",
 			},
