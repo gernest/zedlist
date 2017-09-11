@@ -115,14 +115,14 @@ func BasicPost(ctx echo.Context) error {
 	if err != nil {
 		log.Error(ctx, err)
 		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
-			http.StatusBadGateway,
+			http.StatusBadRequest,
 		)))
 	}
 	err = json.Unmarshal(o, b)
 	if err != nil {
 		log.Error(ctx, err)
 		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
-			http.StatusBadGateway,
+			http.StatusBadRequest,
 		)))
 	}
 	if err = query.Create(db.Conn, b); err != nil {
