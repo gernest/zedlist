@@ -6,8 +6,10 @@
 package resume
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/gernest/zedlist/models"
@@ -68,6 +70,28 @@ func New(ctx echo.Context) error {
 		template.HTML(`/static/js/resume.js`),
 	})
 	return ctx.Render(http.StatusOK, tmpl.ResumeNewTpl, utils.GetData(ctx))
+}
+
+func BasicPut(ctx echo.Context) error {
+	r := ctx.Request()
+	c := r.Header.Get(echo.HeaderContentType)
+	if c != echo.MIMEApplicationJSON {
+		ctx.Echo().DefaultHTTPErrorHandler(echo.ErrUnsupportedMediaType, ctx)
+		return nil
+	}
+	b := &models.Basic{}
+	o, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		//TODO handle error
+	}
+	err = json.Unmarshal(o, b)
+	if err != nil {
+		//TDDO handle error
+	}
+	if err = query.Update(db.Conn, b); err != nil {
+		//TDDO handle error
+	}
+	return ctx.JSONPretty(http.StatusOK, b, "\t")
 }
 
 // Create creates a new resume.
