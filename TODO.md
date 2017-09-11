@@ -24,6 +24,10 @@
       - [ ] update
       - [ ] delete
   - [ ] json API
+  - [ ] test
+      - [ ] `PUT` `/resume/basic`
+      - [ ] `POST` `/resume/basic`
+      - [ ] `GET` `/resume/basic/:id`
 - [ ] accounts
   - [ ] oauth2
     - [ ] Github

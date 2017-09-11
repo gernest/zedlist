@@ -1,4 +1,4 @@
-// Copyright 2015 Geofrey Ernest <geofreyernest@live.com>. All rights reserved.
+// Copyright 2015-2017 Geofrey Ernest <geofreyernest@live.com>. All rights reserved.
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
@@ -98,6 +98,7 @@ func Routes() *echo.Echo {
 	r.GET("/view:id", resume.View)
 	r.POST("/update/:id", resume.Update)
 	r.POST("/delete/:id", resume.Delete)
+	r.POST("/basic", resume.BasicPost)
 	r.PUT("/basic", resume.BasicPut)
 
 	// SEARCH

@@ -1,4 +1,4 @@
-// Copyright 2015 Geofrey Ernest <geofreyernest@live.com>. All rights reserved.
+// Copyright 2015-2017 Geofrey Ernest <geofreyernest@live.com>. All rights reserved.
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
@@ -75,7 +75,7 @@ func Must() echo.HandlerFunc {
 			ctx.Set("User", person)
 			ctx.Set("UserID", id)
 			utils.SetData(ctx, "IsLoged", true)
-			utils.SetData(ctx, "User", person)
+			utils.SetData(ctx, "Person", person)
 			utils.SetData(ctx, "UserID", id)
 			return nil
 		}
