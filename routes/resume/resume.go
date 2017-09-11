@@ -112,7 +112,7 @@ func Create(ctx echo.Context) error {
 	user := ctx.Get("User").(*models.Person)
 
 	resume := models.SampleResume()
-	resume.Name = name
+	resume.Title = name
 	err := query.CreateResume(db.Conn, user, resume)
 	if err != nil {
 		utils.SetData(ctx, "Message", tmpl.ServerErrorMessage)

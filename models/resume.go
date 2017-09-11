@@ -12,7 +12,7 @@ import (
 type Resume struct {
 	ID            int64         `json:"id"`
 	PersonID      int64         `json:"person_id"`
-	Name          string        `json:"name"`
+	Title         string        `json:"title"`
 	ResumeBasic   Basic         `json:"basic"`
 	ResumeBasicID int64         `json:"basic_id"`
 	Work          []Work        `json:"work"`
@@ -273,7 +273,7 @@ type Referee struct {
 func SampleResume() Resume {
 	now := time.Now()
 	return Resume{
-		Name: "Sample Resume",
+		Title: "Sample Resume",
 		ResumeBasic: Basic{
 			Name:    "John Doe",
 			Label:   "A dreamer from tz",

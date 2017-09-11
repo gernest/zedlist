@@ -210,7 +210,7 @@ func TestResumeQuery(t *testing.T) {
 	// Add a sample resumes
 	for _, v := range []string{"one", "two", "three"} {
 		resume := models.SampleResume()
-		resume.Name = v
+		resume.Title = v
 
 		//
 		//	CreateResume
