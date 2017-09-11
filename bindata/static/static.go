@@ -359,7 +359,7 @@ func staticJsMoonMinJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/moon.min.js", size: 18765, mode: os.FileMode(420), modTime: time.Unix(1505048331, 0)}
+	info := bindataFileInfo{name: "static/js/moon.min.js", size: 18765, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -379,7 +379,7 @@ func staticJsResumeJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/resume.js", size: 199, mode: os.FileMode(420), modTime: time.Unix(1505118203, 0)}
+	info := bindataFileInfo{name: "static/js/resume.js", size: 199, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -419,7 +419,7 @@ func staticJsZedlistJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/zedlist.js", size: 216, mode: os.FileMode(420), modTime: time.Unix(1505118183, 0)}
+	info := bindataFileInfo{name: "static/js/zedlist.js", size: 216, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

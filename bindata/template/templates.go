@@ -402,7 +402,7 @@ func jobsListHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "jobs/list.html", size: 636, mode: os.FileMode(420), modTime: time.Unix(1505036981, 0)}
+	info := bindataFileInfo{name: "jobs/list.html", size: 636, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -562,7 +562,7 @@ func partialsFooterHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/footer.html", size: 270, mode: os.FileMode(420), modTime: time.Unix(1505118026, 0)}
+	info := bindataFileInfo{name: "partials/footer.html", size: 270, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -582,7 +582,7 @@ func partialsHeaderHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/header.html", size: 474, mode: os.FileMode(420), modTime: time.Unix(1505115478, 0)}
+	info := bindataFileInfo{name: "partials/header.html", size: 474, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -602,7 +602,7 @@ func partialsJob_boxHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/job_box.html", size: 293, mode: os.FileMode(420), modTime: time.Unix(1505036444, 0)}
+	info := bindataFileInfo{name: "partials/job_box.html", size: 293, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -662,7 +662,7 @@ func partialsMain_menuHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/main_menu.html", size: 1120, mode: os.FileMode(420), modTime: time.Unix(1505038467, 0)}
+	info := bindataFileInfo{name: "partials/main_menu.html", size: 1120, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -727,7 +727,7 @@ func partialsSupported_langsHtml() (*asset, error) {
 	return a, nil
 }
 
-var _partialsUserHtml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xb4\x92\x51\x4e\xc3\x30\x0c\x86\xdf\x39\x85\x95\x03\x34\x17\xe8\x2a\xf1\x8e\x10\x2f\x1c\x20\x6b\x4d\xe7\xd1\xd8\x28\x76\x3a\xa4\x69\x77\x47\x2b\x09\x9a\x44\x2b\x90\x10\x2f\xc9\xc3\x17\x7f\xb6\x7f\xa5\x1d\x68\x86\x7e\x0a\xaa\x3b\x97\x09\x60\x48\xf2\x36\xc8\x89\x61\x22\x7e\x05\x32\x8c\xae\xbb\x03\x00\xb8\x7d\x68\xf8\x6e\xae\x3b\x9f\x2d\x41\x73\xdf\x1b\xcd\xf8\x10\x78\x04\xc7\x78\x72\x97\x4b\xeb\x07\x9a\x4b\x11\xd5\x92\x2f\x2f\xf5\xc2\xae\x6b\x3d\x7d\xd7\x46\xe4\x5c\xba\x2d\x28\x54\xb0\x8c\x01\x87\x84\x2f\x3b\xe7\x8f\xb2\x57\x7f\xed\xb4\x32\xc0\x51\xf6\xcb\x00\xe1\x47\x4b\x42\xcd\x11\xb7\x3c\x9f\xf4\x56\x55\x96\xaa\xd7\x5f\x52\x6b\x9e\x15\x53\xf3\x84\x49\x85\x1f\x43\xc4\xe6\x7a\xfc\x7b\x6c\x8a\x66\xc4\xa3\xfa\xb5\x7d\x2b\xfc\x65\x78\x21\xdb\xc1\x4f\x32\x4a\x5e\xfd\x06\x85\x6c\xa5\xf7\x11\x00\x00\xff\xff\x0c\x2c\x9d\x4f\x73\x02\x00\x00")
+var _partialsUserHtml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xb4\x92\x51\x6a\xc3\x30\x0c\x86\xdf\x77\x0a\xe1\x03\xc4\x17\x48\x03\x7b\x1f\x63\x57\x70\x63\x2d\x55\x17\x4b\xc3\x96\xd3\x41\xe9\xdd\x47\x32\x7b\x04\x96\xb0\xc1\xe8\x8b\xf5\xf0\x5b\x9f\x7e\xfd\xa8\xf5\x34\x41\x3f\xba\x94\x0e\x26\x13\x80\x8f\xf2\xee\xe5\xc2\x30\x12\xbf\x01\x29\x06\xd3\x3d\x00\x00\xac\x3f\x2a\x7e\xa8\xe9\xae\x57\x8d\xd0\x3c\xf6\x4a\x13\x3e\x39\x1e\xc0\x30\x5e\xcc\xed\xd6\x5a\x4f\x53\x69\xa2\xda\xf2\xcd\xa5\x5e\xd8\x74\xad\xa5\x9f\xd8\x80\x9c\xcb\xb4\x45\x72\x55\x58\x6c\xc0\x29\xe2\xeb\xc1\xd8\xb3\x1c\x93\x9d\x27\x6d\x18\x38\xcb\x71\x31\xe0\x7e\xa5\x44\x4c\x39\xe0\x1e\xe7\x4b\x5d\xa3\xca\x52\xb5\xfc\x27\xb5\xe6\x05\x63\x12\x2e\xe5\xd9\x05\x6c\xe6\xe7\xee\xc1\x25\x54\x25\x1e\x92\xdd\xda\xb8\x8a\x7f\x8c\xcf\x65\x3d\xd9\x51\x06\xc9\x9b\x87\x50\x94\xbd\xfc\x3e\x03\x00\x00\xff\xff\x1b\x6d\x6f\xdb\x75\x02\x00\x00")
 
 func partialsUserHtmlBytes() ([]byte, error) {
 	return bindataRead(
@@ -742,7 +742,7 @@ func partialsUserHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "partials/user.html", size: 627, mode: os.FileMode(420), modTime: time.Unix(1505038214, 0)}
+	info := bindataFileInfo{name: "partials/user.html", size: 629, mode: os.FileMode(420), modTime: time.Unix(1505130383, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -782,7 +782,7 @@ func resumeNewHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "resume/new.html", size: 349, mode: os.FileMode(420), modTime: time.Unix(1505115018, 0)}
+	info := bindataFileInfo{name: "resume/new.html", size: 349, mode: os.FileMode(420), modTime: time.Unix(1505122484, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
