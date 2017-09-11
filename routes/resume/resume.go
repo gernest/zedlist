@@ -15,6 +15,7 @@ import (
 	"github.com/gernest/zedlist/models"
 	"github.com/gernest/zedlist/modules/db"
 	"github.com/gernest/zedlist/modules/flash"
+	"github.com/gernest/zedlist/modules/log"
 	"github.com/gernest/zedlist/modules/query"
 	"github.com/gernest/zedlist/modules/tmpl"
 	"github.com/gernest/zedlist/modules/utils"
@@ -76,22 +77,61 @@ func BasicPut(ctx echo.Context) error {
 	r := ctx.Request()
 	c := r.Header.Get(echo.HeaderContentType)
 	if c != echo.MIMEApplicationJSON {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	b := &models.Basic{}
+	o, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	err = json.Unmarshal(o, b)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, models.NewJSONErr(http.StatusText(
+			http.StatusUnprocessableEntity,
+		)))
+	}
+	if err = query.Update(db.Conn, b); err != nil {
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
+	}
+	return ctx.JSONPretty(http.StatusOK, b, "\t")
+}
+
+func BasicPost(ctx echo.Context) error {
+	r := ctx.Request()
+	c := r.Header.Get(echo.HeaderContentType)
+	if c != echo.MIMEApplicationJSON {
 		ctx.Echo().DefaultHTTPErrorHandler(echo.ErrUnsupportedMediaType, ctx)
 		return nil
 	}
 	b := &models.Basic{}
 	o, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		//TODO handle error
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadGateway,
+		)))
 	}
 	err = json.Unmarshal(o, b)
 	if err != nil {
-		//TDDO handle error
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadGateway,
+		)))
 	}
-	if err = query.Update(db.Conn, b); err != nil {
-		//TDDO handle error
+	if err = query.Create(db.Conn, b); err != nil {
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
 	}
-	return ctx.JSONPretty(http.StatusOK, b, "\t")
+	return ctx.JSONPretty(http.StatusCreated, b, "\t")
 }
 
 // Create creates a new resume.
