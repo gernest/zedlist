@@ -95,7 +95,7 @@ func Routes() *echo.Echo {
 	r.Use(utils.WrapMiddleware(userAuth.Must()))
 	r.GET("/", resume.Home)
 	r.GET("/new", resume.New)
-	r.POST("/new", resume.Create)
+	r.POST("/new", resume.NewPost)
 	r.GET("/view:id", resume.View)
 	r.POST("/update/:id", resume.Update)
 	r.POST("/delete/:id", resume.Delete)

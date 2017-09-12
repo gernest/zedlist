@@ -68,9 +68,49 @@ func New(ctx echo.Context) error {
 	utils.SetData(ctx, "PageTitle", "new resume")
 	utils.SetData(ctx, "Scripts", []template.HTML{
 		template.HTML(`/static/js/moon.min.js`),
+		template.HTML(`/static/js/monx.min.js`),
 		template.HTML(`/static/js/resume.js`),
 	})
 	return ctx.Render(http.StatusOK, tmpl.ResumeNewTpl, utils.GetData(ctx))
+}
+
+type resumeReq struct {
+	ProfileID int64  `json:"profileID"`
+	Title     string `json:"title"`
+}
+
+func NewPost(ctx echo.Context) error {
+	r := ctx.Request()
+	c := r.Header.Get(echo.HeaderContentType)
+	if c != echo.MIMEApplicationJSON {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	req := &resumeReq{}
+	o, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	err = json.Unmarshal(o, req)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, models.NewJSONErr(http.StatusText(
+			http.StatusUnprocessableEntity,
+		)))
+	}
+	rs := &models.Resume{
+		PersonID: req.ProfileID,
+		Title:    req.Title,
+	}
+	if err = query.Create(db.Conn, rs); err != nil {
+		log.Error(ctx, err)
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
+	}
+	return ctx.JSON(http.StatusOK, rs)
 }
 
 func BasicPut(ctx echo.Context) error {
