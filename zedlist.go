@@ -97,7 +97,7 @@ func Routes() *echo.Echo {
 	r.GET("/new", resume.New)
 	r.POST("/new", resume.NewPost)
 	r.GET("/view:id", resume.View)
-	r.POST("/update/:id", resume.Update)
+	r.POST("/update", resume.Update)
 	r.POST("/delete/:id", resume.Delete)
 	r.POST("/basic", resume.BasicPost)
 	r.PUT("/basic", resume.BasicPut)

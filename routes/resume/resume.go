@@ -75,8 +75,45 @@ func New(ctx echo.Context) error {
 }
 
 type resumeReq struct {
+	ID        int64  `json:"id,omitempty"`
 	ProfileID int64  `json:"profileID"`
 	Title     string `json:"title"`
+}
+
+func Update(ctx echo.Context) error {
+	r := ctx.Request()
+	c := r.Header.Get(echo.HeaderContentType)
+	if c != echo.MIMEApplicationJSON {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	req := &resumeReq{}
+	o, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	err = json.Unmarshal(o, req)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, models.NewJSONErr(http.StatusText(
+			http.StatusUnprocessableEntity,
+		)))
+	}
+	rs, err := query.GetResumeByID(db.Conn, req.ID)
+	if err != nil {
+		log.Error(ctx, err)
+		if query.NotFound(err) {
+			return ctx.JSON(http.StatusNotFound, models.NewJSONErr(http.StatusText(
+				http.StatusNotFound,
+			)))
+		}
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
+	}
+	return ctx.JSON(http.StatusOK, rs)
 }
 
 func NewPost(ctx echo.Context) error {
@@ -228,38 +265,6 @@ func Create(ctx echo.Context) error {
 	// Redirect to the update page for further updating of the resume.
 	ctx.Redirect(http.StatusFound, fmt.Sprintf("/resume/update/%d", resume.ID))
 	return nil
-}
-
-// Update renders the resume update page.
-//
-//		Method           GET
-//
-//		Route            /resume/update/:id
-//
-//		Restrictions     Yes
-//
-// 		Template         None
-func Update(ctx echo.Context) error {
-	id, err := utils.GetInt64(ctx.Param("id"))
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
-		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
-	}
-	user := ctx.Get("User").(*models.Person)
-
-	resume, err := query.GetResumeByID(db.Conn, id)
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-	}
-
-	// Users are allowed to update resumes that they own.
-	if resume.PersonID != user.ID {
-		utils.SetData(ctx, "Message", tmpl.BadRequestMessage)
-		return ctx.Render(http.StatusBadRequest, tmpl.ErrBadRequest, utils.GetData(ctx))
-	}
-	utils.SetData(ctx, "resume", resume)
-	return ctx.Render(http.StatusOK, tmpl.ResumeUpddateTpl, utils.GetData(ctx))
 }
 
 // Delete deletes the resume.
