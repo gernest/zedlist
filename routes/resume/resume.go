@@ -68,7 +68,6 @@ func New(ctx echo.Context) error {
 	utils.SetData(ctx, "PageTitle", "new resume")
 	utils.SetData(ctx, "Scripts", []template.HTML{
 		template.HTML(`/static/js/moon.min.js`),
-		template.HTML(`/static/js/monx.min.js`),
 		template.HTML(`/static/js/resume.js`),
 	})
 	return ctx.Render(http.StatusOK, tmpl.ResumeNewTpl, utils.GetData(ctx))
