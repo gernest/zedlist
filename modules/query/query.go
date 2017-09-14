@@ -447,7 +447,7 @@ func GetTokenByKey(conn *gorm.DB, key string) (*models.Token, error) {
 // GetResumeByID retrieves the resume by ID.
 func GetResumeByID(conn *gorm.DB, id int64) (*models.Resume, error) {
 	resume := &models.Resume{}
-	q := conn.Preload("ResumeBasic").First(resume, id)
+	q := conn.Preload("Basic").First(resume, id)
 	if q.Error != nil {
 		return nil, q.Error
 	}

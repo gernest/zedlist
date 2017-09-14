@@ -76,7 +76,8 @@ func New(ctx echo.Context) error {
 type resumeReq struct {
 	ID        int64  `json:"id,omitempty"`
 	ProfileID int64  `json:"profileID"`
-	Title     string `json:"title"`
+	Title     string `json:"title,omitempty"`
+	BasicID   int64  `json:"basicID,omitempty"`
 }
 
 func Update(ctx echo.Context) error {
@@ -108,6 +109,23 @@ func Update(ctx echo.Context) error {
 				http.StatusNotFound,
 			)))
 		}
+		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
+			http.StatusInternalServerError,
+		)))
+	}
+	if req.ProfileID != rs.PersonID {
+		return ctx.JSON(http.StatusBadRequest, models.NewJSONErr(http.StatusText(
+			http.StatusBadRequest,
+		)))
+	}
+	if req.Title != "" && req.Title != rs.Title {
+		rs.Title = req.Title
+	}
+	if req.BasicID != 0 && req.BasicID != rs.BasicID {
+		rs.BasicID = req.BasicID
+	}
+	if err = query.Update(db.Conn, rs); err != nil {
+		log.Error(ctx, err)
 		return ctx.JSON(http.StatusInternalServerError, models.NewJSONErr(http.StatusText(
 			http.StatusInternalServerError,
 		)))

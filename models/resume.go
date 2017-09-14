@@ -80,8 +80,8 @@ type Location struct {
 
 // SocialProfile is the profile of the resume owner.
 type SocialProfile struct {
-	ID            int64 `json:"id"`
-	ResumeBasicID int64 `sql:"index"`
+	ID      int64 `json:"id"`
+	BasicID int64 `sql:"index"`
 
 	// Network is a social network
 	// e.g Facebook google+ or github

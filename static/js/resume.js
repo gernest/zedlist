@@ -63,6 +63,20 @@ Moon.component("resume", {
                 self.set('value', resume)
                 self.set('action', 'Update')
             };
+            bus.on('createdBasic', async (payload) => {
+                const value = self.get('value')
+                try {
+                    const data = await HTTP.sendJSON('POST', "/resume/update", {
+                        id: value.id,
+                        profileID: profileId,
+                        basicID: payload.id
+                    })
+                    this.sendMessage('success', 'successful updated')
+                    state.resume = data
+                } catch (e) {
+                    self.sendMessage('error', `failed to update basic details`)
+                }
+            })
         }
     },
     methods: {
@@ -83,32 +97,30 @@ Moon.component("resume", {
                     this.sendMessage('success', 'saved')
                     return null
                 }
-                await HTTP.sendJSON('POST', "/resume/update", {
-                    id: value.id,
-                    profileID: profileId,
-                    title: title
-                }).then((res) => {
-                    data = res;
-                }, (error) => {
-                    err = error;
-                })
+                try {
+                    const data = await HTTP.sendJSON('POST', "/resume/update", {
+                        id: value.id,
+                        profileID: profileId,
+                        title: title
+                    })
+                    this.sendMessage('success', 'successful updated')
+                    state.resume = data;
+                } catch (e) {
+                    this.sendMessage('error', 'failed to update resume')
+                }
             } else {
-                await HTTP.sendJSON('POST', "/resume/new", {
-                    profileID: profileId,
-                    title: title
-                }).then((res) => {
-                    data = res;
-                }, (error) => {
-                    err = error;
-                })
-            }
-            if (data) {
-                this.sendMessage('success', 'successful created')
-                this.createdResume(data)
-                state.resume = data;
-                bus.emit('createResume', data)
-            } else if (err) {
-                this.callMethod('message', ['error', 'some fish'])
+                try {
+                    const data = await HTTP.sendJSON('POST', "/resume/new", {
+                        profileID: profileId,
+                        title: title
+                    })
+                    this.sendMessage('success', 'successful created')
+                    this.createdResume(data)
+                    state.resume = data;
+                    bus.emit('createResume', data)
+                } catch (e) {
+                    this.sendMessage('error', 'failed to create resume')
+                }
             }
         }
     },
@@ -186,9 +198,16 @@ Moon.component('basic', {
         destroyMessage() {
             this.set('hasMessage', false)
         },
-        create(e) {
+        async create(e) {
             const value = this.get("fields")
-            value
+            try {
+                const data = await HTTP.sendJSON('POST', "/resume/basic", value)
+                bus.emit('createdBasic', data)
+                this.sendMessage('success', 'successful created basic details')
+            } catch (e) {
+                this.sendMessage('error', 'failed creating basic details')
+                console.log(e)
+            }
         }
     }
 })
