@@ -58,10 +58,10 @@ Moon.component("resume", {
                 self.set('messageState', status)
                 self.set('messageText', text)
             };
-            this.createdResume=(resume)=>{
+            this.createdResume = (resume) => {
                 self.set('created', true)
                 self.set('value', resume)
-                self.set('action', 'Update')      
+                self.set('action', 'Update')
             };
         }
     },
@@ -169,20 +169,26 @@ Moon.component('basic', {
             action: 'Create'
         }
     },
+    hooks: {
+        init() {
+            const self = this;
+            this.sendMessage = (status, text) => {
+                self.set('hasMessage', true)
+                self.set('messageState', status)
+                self.set('messageText', text)
+            };
+        }
+    },
     methods: {
         updateField(e) {
             this.set(`fields.${e.target.name}`, e.target.value)
-        },
-        message(state, text) {
-            this.set('hasMessage', true)
-            this.set('messageState', state)
-            this.set('messageText', text)
         },
         destroyMessage() {
             this.set('hasMessage', false)
         },
         create(e) {
             const value = this.get("fields")
+            value
         }
     }
 })
