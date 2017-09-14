@@ -10,22 +10,22 @@ import (
 
 // Resume represent Curriculum Vitae
 type Resume struct {
-	ID            int64         `json:"id"`
-	PersonID      int64         `json:"person_id"`
-	Title         string        `json:"title"`
-	ResumeBasic   Basic         `json:"basic"`
-	ResumeBasicID int64         `json:"basic_id"`
-	Work          []Work        `json:"work"`
-	Volunteer     []Work        `json:"volunteer"`
-	Education     []Education   `json:"education"`
-	Awards        []Award       `json:"awards"`
-	Publications  []Publication `json:"publications"`
-	Skills        []Skill       `json:"skills"`
-	Languages     []Language    `json:"languages"`
-	Interests     []Interest    `json:"interests"`
-	References    []Referee     `json:"references"`
-	CreatedAt     time.Time     `json:"created_at"`
-	UpdatedAt     time.Time     `json:"updated_at"`
+	ID           int64         `json:"id"`
+	PersonID     int64         `json:"person_id"`
+	Title        string        `json:"title"`
+	Basic        Basic         `json:"basic"`
+	BasicID      int64         `json:"basic_id"`
+	Work         []Work        `json:"work"`
+	Volunteer    []Work        `json:"volunteer"`
+	Education    []Education   `json:"education"`
+	Awards       []Award       `json:"awards"`
+	Publications []Publication `json:"publications"`
+	Skills       []Skill       `json:"skills"`
+	Languages    []Language    `json:"languages"`
+	Interests    []Interest    `json:"interests"`
+	References   []Referee     `json:"references"`
+	CreatedAt    time.Time     `json:"created_at"`
+	UpdatedAt    time.Time     `json:"updated_at"`
 }
 
 // Basic is the basic information for a resume
@@ -274,7 +274,7 @@ func SampleResume() Resume {
 	now := time.Now()
 	return Resume{
 		Title: "Sample Resume",
-		ResumeBasic: Basic{
+		Basic: Basic{
 			Name:    "John Doe",
 			Label:   "A dreamer from tz",
 			Picture: "/static/img/gopher.png",

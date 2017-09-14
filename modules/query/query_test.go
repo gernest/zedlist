@@ -230,8 +230,8 @@ func TestResumeQuery(t *testing.T) {
 	}
 
 	// check whether the ResumeBasic was loaded
-	if resume.ResumeBasic.Name != "John Doe" {
-		t.Errorf("expected Jon Doe got %s", resume.ResumeBasic.Name)
+	if resume.Basic.Name != "John Doe" {
+		t.Errorf("expected Jon Doe got %s", resume.Basic.Name)
 	}
 
 	//
