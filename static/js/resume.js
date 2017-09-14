@@ -50,14 +50,24 @@ Moon.component("resume", {
             action: 'Create'
         }
     },
+    hooks: {
+        init() {
+            const self = this;
+            this.sendMessage = (status, text) => {
+                self.set('hasMessage', true)
+                self.set('messageState', status)
+                self.set('messageText', text)
+            };
+            this.createdResume=(resume)=>{
+                self.set('created', true)
+                self.set('value', resume)
+                self.set('action', 'Update')      
+            };
+        }
+    },
     methods: {
         updateTitle(e) {
             this.set('title', e.target.value)
-        },
-        message(state, text) {
-            this.set('hasMessage', true)
-            this.set('messageState', state)
-            this.set('messageText', text)
         },
         destroyMessage() {
             this.set('hasMessage', false)
@@ -70,7 +80,7 @@ Moon.component("resume", {
             if (isCreated) {
                 const value = this.get('value')
                 if (value.title === title) {
-                    this.callMethod('message', ['success', 'saved'])
+                    this.sendMessage('success', 'saved')
                     return null
                 }
                 await HTTP.sendJSON('POST', "/resume/update", {
@@ -93,10 +103,8 @@ Moon.component("resume", {
                 })
             }
             if (data) {
-                this.callMethod('message', ['success', 'successful created'])
-                this.set('created', true)
-                this.set('value', data)
-                this.set('action', 'Update')
+                this.sendMessage('success', 'successful created')
+                this.createdResume(data)
                 state.resume = data;
                 bus.emit('createResume', data)
             } else if (err) {
@@ -195,7 +203,7 @@ Moon.component('app', {
             const self = this;
             bus.on("createResume", (payload) => {
                 self.set('showBasic', true)
-                state.resume=payload;
+                state.resume = payload;
             })
         }
     }
