@@ -1,0 +1,1 @@
+module.exports.BEGIN_CREATE_RESUME='beginCreateResume';

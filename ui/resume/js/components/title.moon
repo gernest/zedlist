@@ -10,7 +10,7 @@
             <label>title</label>
             <input type="text" name="title" m-on:change="updateTitle(event)">
         </div>
-        <button class="ui fluid large primary submit button" m-on:click.prevent="create(event)"> {{action}} </button>
+        <button class="ui fluid large primary submit button" m-on:click.prevent="create(event)"> {{store.state.resume.action}} </button>
     </form>
 </div>
 </template>
