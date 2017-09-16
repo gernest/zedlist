@@ -3,7 +3,7 @@
 =============================*/
 
 const Moon = require("moonjs");
-require("./components/header.moon")(Moon);
+require("./components/title.moon")(Moon);
 
 new Moon({
   el: "#app"
