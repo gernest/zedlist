@@ -58,3 +58,9 @@ server:build
 	
 migrate:build
 	./bin/zedlist migrate -d
+
+resume:resume-build
+	cp ./ui/resume/dist/js/resume.min.js static/js/resume.min.js
+
+resume-build:
+	cd ./ui/resume/ && npm run build

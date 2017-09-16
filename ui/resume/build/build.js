@@ -34,7 +34,7 @@ bundler
 bundler.on("bundle", function(bs) {
   bs.on("end", function() {
     jsHash = Slash(fs.readFileSync(tmpJSPath).toString()).toLowerCase();
-    fs.renameSync(tmpJSPath, path.join(cwd, "dist", "js", `build.${jsHash}.js`));
+    fs.renameSync(tmpJSPath, path.join(cwd, "dist", "js", `resume.min.js`));
     cssHash = require("./bundle-css.js");
     buildHTML();
   });
