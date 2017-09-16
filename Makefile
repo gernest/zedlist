@@ -64,3 +64,5 @@ resume:resume-build
 
 resume-build:
 	cd ./ui/resume/ && npm run build
+ui-dev:
+	cd ./ui/resume/ && npm run dev
