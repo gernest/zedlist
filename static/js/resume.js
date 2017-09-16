@@ -89,8 +89,6 @@ Moon.component("resume", {
         async create(e) {
             const title = this.get('title');
             const isCreated = this.get('created')
-            let data;
-            let err;
             if (isCreated) {
                 const value = this.get('value')
                 if (value.title === title) {
