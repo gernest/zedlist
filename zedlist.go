@@ -135,7 +135,7 @@ var ServerCommand = cli.Command{
 	Name:        "server",
 	ShortName:   "s",
 	Usage:       "Runs zedlist server",
-	Description: `starts a loal web server`,
+	Description: `starts a local web server`,
 	Action:      Server,
 }
 
