@@ -2,8 +2,7 @@ const keys = require('./constants.js');
 
 const actions = {
     [keys.BEGIN_CREATE_RESUME](state) {
-        state.showForm = false
-        state.showProgress = true;
+        state.resume.loading = 'loading'
     }
 }
 
@@ -14,7 +13,8 @@ module.exports.init = (opts) => {
         created: false,
         action: 'Create',
         showProgress: false,
-        showForm: true
+        showForm: true,
+        loading: ''
     }
     Object.assign(opts.actions, actions)
 }

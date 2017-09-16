@@ -5,7 +5,7 @@
     <div class="header">{{ messageText}}</div>
     <i class="close icon" m-on:click="destroyMessage"></i>
  </div>
-    <form method="post" class="ui large form">
+    <form method="post" class="ui large {{store.state.resume.loading}} form">
         <div class="field">
             <label>title</label>
             <input type="text" name="title" m-on:change="updateTitle(event)">
