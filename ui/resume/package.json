@@ -11,6 +11,7 @@
     "build": "cross-env NODE_ENV=production node build/build.js"
   },
   "dependencies": {
+    "monx": "^0.1.1",
     "moonjs": "0.11.0"
   },
   "devDependencies": {
