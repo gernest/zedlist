@@ -1,0 +1,32 @@
+{
+  "name": "resume",
+  "version": "0.0.0",
+  "description": "Resume app for zedlist",
+  "scripts": {
+    "watch": "./node_modules/.bin/watchify -vd -e js/scripts.js -o dist/js/build.min.js -t moonify -p browserify-hmr",
+    "serve": "http-server -o -c 1 -a localhost",
+    "bundle-css": "node ./build/bundle-css.js",
+    "watch-css": "node ./build/watch.js",
+    "dev": "cross-env NODE_ENV=development npm-run-all --parallel watch serve watch-css bundle-css",
+    "build": "cross-env NODE_ENV=production node build/build.js"
+  },
+  "dependencies": {
+    "moonjs": "0.11.0"
+  },
+  "devDependencies": {
+    "browserify": "14.1.0",
+    "browserify-hmr": "0.3.5",
+    "bubleify": "^0.7.0",
+    "clean-css": "4.0.8",
+    "cross-env": "^4.0.0",
+    "html-minifier": "^3.4.1",
+    "http-server": "0.9.0",
+    "moonify": "0.0.15",
+    "npm-run-all": "^2.3.0",
+    "slashjs": "^1.0.0",
+    "uglify-js": "latest",
+    "uglifyify": "3.0.4",
+    "watchify": "3.9.0"
+  },
+  "author": "gernest"
+}
