@@ -17,6 +17,5 @@
 
 <script>
 const title= require('./title.js');
-console.log(title);
 exports= title()
 </script>
