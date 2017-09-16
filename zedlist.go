@@ -27,6 +27,7 @@ import (
 	"github.com/zedio/zedlist/routes/japi"
 	"github.com/zedio/zedlist/routes/jobs"
 	"github.com/zedio/zedlist/routes/resume"
+	"github.com/zedio/zedlist/routes/resume/basic"
 	"github.com/zedio/zedlist/routes/search"
 
 	"github.com/zedio/zedlist/migration"
@@ -99,9 +100,9 @@ func Routes() *echo.Echo {
 	r.GET("/view:id", resume.View)
 	r.POST("/update", resume.Update)
 	r.POST("/delete/:id", resume.Delete)
-	r.POST("/basic", resume.BasicPost)
-	r.PUT("/basic", resume.BasicPut)
-	r.GET("/basic/:id", resume.BasicGet)
+	r.POST("/basic", basic.Post)
+	r.PUT("/basic", basic.Put)
+	r.GET("/basic/:id", basic.Get)
 
 	// SEARCH
 	e.POST("/search", search.Find)
