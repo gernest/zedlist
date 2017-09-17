@@ -123,6 +123,10 @@ func Routes() *echo.Echo {
 	}
 	staticFileServer := http.StripPrefix("/static/", http.FileServer(box))
 	e.GET("/static/*", echo.WrapHandler(staticFileServer))
+	e.GET("/favicon.ico", func(ctx echo.Context) error {
+		http.FileServer(box).ServeHTTP(ctx.Response(), ctx.Request())
+		return nil
+	})
 	return e
 }
 
