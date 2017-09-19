@@ -4,4 +4,3 @@ bin
 .sass-cache
 dist
 zedlist
-vendor/
