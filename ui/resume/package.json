@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "monx": "^0.1.1",
+    "moon-router": "^0.1.3",
     "moonjs": "0.11.0"
   },
   "devDependencies": {
