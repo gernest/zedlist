@@ -9,6 +9,9 @@ const actions = {
         state.resume.action = 'Update'
         state.resume.value = data
         state.resume.created = true
+    },
+    [keys.CREATE_RESUME_FAILED](state, data) {
+        state.resume.loading = ''
     }
 }
 

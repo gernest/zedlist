@@ -1,10 +1,7 @@
 <template>
-<div class="row nice-box">
+<div m-if="showForm" class="row nice-box">
     <h2 class="ui dividing header"> create a new resume </h2>
-<div m-if="hasMessage" class="ui transition message {{messageState}}">
-    <div class="header">{{ messageText}}</div>
-    <i class="close icon" m-on:click="destroyMessage"></i>
- </div>
+    <flash m-if="hasFlash" status="{{flashStatus}}" text="{{flashText}}" ></flash>
     <form method="post" class="ui large {{store.state.resume.loading}} form">
         <div class="field">
             <label>title</label>
@@ -14,7 +11,6 @@
     </form>
 </div>
 </template>
-
 <script>
 const title= require('./title.js');
 exports= title()
