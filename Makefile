@@ -14,7 +14,7 @@ endif
 ifeq "$(origin APP_VER)" "undefined"
 VERSION=0.1.0
 endif
-all: lint bindata test build
+all:  bindata test build
 
 clean:
 	@rm -r bin
