@@ -62,10 +62,6 @@ func Routes() *echo.Echo {
 	e.GET("/", base.Home)
 	e.GET("/language/:lang", base.SetLanguage)
 
-	// DOCS
-	e.GET("/docs", base.DocsHome)
-	e.GET("/docs/:name", base.Docs)
-
 	// AUTH
 	xauth := e.Group("/auth")
 

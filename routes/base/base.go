@@ -8,12 +8,8 @@ package base
 import (
 	"net/http"
 	"net/url"
-	"path/filepath"
-	"strings"
 
-	"github.com/zedio/zedlist/bindata/static"
 	"github.com/zedio/zedlist/modules/db"
-	"github.com/zedio/zedlist/modules/log"
 	"github.com/zedio/zedlist/modules/query"
 	"github.com/zedio/zedlist/modules/session"
 	"github.com/zedio/zedlist/modules/settings"
@@ -61,93 +57,6 @@ func SetLanguage(ctx echo.Context) error {
 	sess.Values[settings.LangSessionKey] = lang
 	store.Save(ctx.Request(), ctx.Response(), sess)
 	return ctx.Redirect(http.StatusFound, q)
-}
-
-//
-//
-//		DOCS
-//
-//
-
-var (
-	docIndex  = "docIndex"
-	docsRoute = "/docs/"
-)
-
-// DocsHome renders the home.md document for the given language.
-//
-//		Method           GET
-//
-//		Route            /docs
-//
-//		Restrictions     None
-//
-// 		Template         base/docs_index.html
-//
-func DocsHome(ctx echo.Context) error {
-	data := utils.GetData(ctx).(utils.Data)
-	lang := data.Get(settings.LangDataKey).(string)
-	home := settings.DocsPath + "/" + lang + "/" + settings.DocsIndexPage
-	d, err := static.Asset(home)
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-	}
-	data.Set("doc", string(d))
-	data.Set(docIndex, getDocIndex(lang))
-	data.Set("PageTitle", settings.DocsIndexPage)
-	return ctx.Render(http.StatusOK, tmpl.BaseDocsHomeTpl, data)
-}
-
-// Docs renders individual zedlist document.
-//
-//		Method           GET
-//
-//		Route            /docs/:name
-//
-//		Restrictions     None
-//
-// 		Template         base/docs.html
-func Docs(ctx echo.Context) error {
-	data := utils.GetData(ctx).(utils.Data)
-	lang := data.Get(settings.LangDataKey).(string)
-	fname := ctx.Param("name")
-	if filepath.Ext(fname) != ".md" {
-		fname = fname + ".md"
-	}
-	fPath := settings.DocsPath + "/" + lang + "/" + fname
-	d, err := static.Asset(fPath)
-	if err != nil {
-		utils.SetData(ctx, "Message", tmpl.NotFoundMessage)
-		return ctx.Render(http.StatusNotFound, tmpl.ErrNotFoundTpl, utils.GetData(ctx))
-	}
-	data.Set("doc", string(d))
-	data.Set("PageTitle", fname)
-	data.Set(docIndex, getDocIndex(lang))
-	return ctx.Render(http.StatusOK, tmpl.BaseDocTpl, data)
-}
-
-// Doc is a markdown document residing in the static/docs path. It represend documents
-// that are internally shipped with zedlist.
-type Doc struct {
-	Name string
-	URL  string
-}
-
-func getDocIndex(lang string) []*Doc {
-	rst := []*Doc{}
-	fdir := settings.DocsPath + "/" + lang
-	files, err := static.AssetDir(fdir)
-	if err != nil {
-		log.Error(nil, err)
-		return rst
-	}
-	for _, v := range files {
-		fURL := settings.App.AppURL + docsRoute + v
-		name := strings.TrimSuffix(v, filepath.Ext(v))
-		rst = append(rst, &Doc{name, fURL})
-	}
-	return rst
 }
 
 //
