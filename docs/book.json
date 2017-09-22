@@ -1,3 +1,9 @@
 {
-    "plugins": ["theme-vuejs"]
+    "plugins": [
+        "theme-vuejs",
+        "custom-favicon"
+    ],
+    "pluginsConfig": {
+        "favicon": "favicon.ico"
+    }
 }
